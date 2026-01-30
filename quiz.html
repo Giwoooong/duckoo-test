@@ -370,27 +370,8 @@
       return { correct, score, rawPoints, totalPoints };
     }
 
-    function loadRanks() {
-      const raw = localStorage.getItem("op-ranks");
-      if (!raw) return [];
-      try {
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (err) {
-        return [];
-      }
-    }
-
-    function saveRank(entry) {
-      const ranks = loadRanks();
-      ranks.push(entry);
-      ranks.sort((a, b) => b.score - a.score);
-      localStorage.setItem("op-ranks", JSON.stringify(ranks.slice(0, 10)));
-    }
-
     function showResult() {
       const { correct, score, rawPoints, totalPoints } = calculateScore();
-      saveRank({ name: state.player, score, date: Date.now() });
       localStorage.setItem(
         "op-last-result",
         JSON.stringify({

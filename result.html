@@ -222,11 +222,6 @@
       </div>
 
       <div class="card" style="margin-top:16px;">
-        <h3>랭킹</h3>
-        <div class="rank-list" id="rank-list"></div>
-      </div>
-
-      <div class="card" style="margin-top:16px;">
         <h3>댓글</h3>
         <div id="disqus_thread"></div>
       </div>
@@ -238,36 +233,11 @@
     const scoreEl = document.getElementById("score");
     const rankEl = document.getElementById("rank");
     const summaryEl = document.getElementById("summary");
-    const rankListEl = document.getElementById("rank-list");
     const certificateEl = document.getElementById("certificate");
     const retryBtn = document.getElementById("retry-btn");
     const downloadBtn = document.getElementById("download-btn");
     const shareBtn = document.getElementById("share-btn");
 
-    function loadRanks() {
-      const raw = localStorage.getItem("op-ranks");
-      if (!raw) return [];
-      try {
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (err) {
-        return [];
-      }
-    }
-
-    function renderRanks(ranks) {
-      rankListEl.innerHTML = "";
-      if (ranks.length === 0) {
-        rankListEl.innerHTML = "<div class=\"rank-item\">아직 기록이 없습니다. 첫 번째 덕후가 되어보세요!</div>";
-        return;
-      }
-      ranks.forEach((entry, idx) => {
-        const item = document.createElement("div");
-        item.className = "rank-item";
-        item.innerHTML = `<strong>#${idx + 1}</strong> ${entry.name} <span>${entry.score}점</span>`;
-        rankListEl.appendChild(item);
-      });
-    }
 
     function loadResult() {
       const raw = localStorage.getItem("op-last-result");
@@ -335,7 +305,6 @@
       scoreEl.textContent = `${result.score}점`;
       rankEl.textContent = `칭호: ${getRank(result.score)}`;
       summaryEl.textContent = `${result.totalCount}문제 중 ${result.correct}개 정답! (${result.rawPoints}/${result.totalPoints}점) 다시 도전해서 100점에 도전해보자.`;
-      renderRanks(loadRanks());
     });
   </script>
   <script>
