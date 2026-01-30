@@ -182,10 +182,50 @@
     }
 
     .certificate {
-      background: #ffffff;
-      border: 1px solid rgba(17, 17, 17, 0.12);
-      padding: 28px;
-      border-radius: 20px;
+      background: linear-gradient(135deg, #fffdf6, #fff3d9);
+      border: 2px solid #d8b26a;
+      padding: 32px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(182, 124, 26, 0.15);
+    }
+
+    .certificate::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px dashed rgba(182, 124, 26, 0.35);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .certificate::after {
+      content: "ONE PIECE";
+      position: absolute;
+      right: 16px;
+      bottom: 8px;
+      font-size: 44px;
+      color: rgba(182, 124, 26, 0.08);
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .seal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffe7a3, #d6a853);
+      color: #5a3b00;
+      font-size: 11px;
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(90, 59, 0, 0.25);
     }
 
     .cert-title {
@@ -267,11 +307,15 @@
 
     <section id="result" class="panel hidden">
       <div class="certificate" id="certificate">
-        <div class="cert-title">덕후 인증 상장</div>
+        <div class="seal">CERTIFIED</div>
+        <div class="cert-title">덕후 인증서</div>
         <p id="cert-name">수여자: ???</p>
         <div class="score" id="score">0점</div>
         <div class="rank" id="rank">칭호: ???</div>
         <p id="summary">정답률을 확인하고 다시 도전해보자!</p>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <h3>랭킹</h3>
         <div class="rank-list" id="rank-list"></div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
@@ -392,12 +436,18 @@
     }
 
     function startQuiz() {
-      state.player = localStorage.getItem("op-player") || "";
-      if (!state.player) {
+      const name = localStorage.getItem("op-player-name") || "";
+      let tag = localStorage.getItem("op-player-tag") || "";
+      if (!name) {
         alert("닉네임이 필요합니다. 처음 화면에서 입력해주세요.");
         window.location.href = "index.html";
         return;
       }
+      if (!tag) {
+        tag = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+        localStorage.setItem("op-player-tag", tag);
+      }
+      state.player = `${name} #${tag}`;
       state.quiz = pickQuestions(state.all);
       state.answers = new Array(state.quiz.length).fill(null);
       state.index = 0;
@@ -450,11 +500,10 @@
     }
 
     function getRank(score) {
-      if (score === 100) return "해적왕급 덕후";
-      if (score >= 85) return "사황급 덕후";
-      if (score >= 70) return "삼장성급 덕후";
-      if (score >= 55) return "베테랑 크루";
-      return "수련 중인 루키";
+      if (score <= 30) return "원피스 입문자 (이스트 블루 시민)";
+      if (score <= 70) return "현상금 사냥꾼 (위대한 항로 해적)";
+      if (score <= 90) return "최악의 세대 (신세계의 루키)";
+      return "전설의 해적 (해적왕의 동료)";
     }
 
     function loadRanks() {
@@ -528,7 +577,8 @@
     async function downloadCertificate() {
       const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
       const link = document.createElement("a");
-      link.download = `onepiece_${state.player}_${Date.now()}.png`;
+      const safeName = state.player.replace(/\s+/g, "_").replace("#", "");
+      link.download = `onepiece_${safeName}_${Date.now()}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
     }
@@ -538,7 +588,8 @@
         const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
         const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
         if (!blob) throw new Error("share failed");
-        const file = new File([blob], `onepiece_${state.player}.png`, { type: "image/png" });
+        const safeName = state.player.replace(/\s+/g, "_").replace("#", "");
+        const file = new File([blob], `onepiece_${safeName}.png`, { type: "image/png" });
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({ title: "원피스 덕후 테스트", text: `${state.player}의 결과를 확인해봐!`, files: [file] });
         } else {

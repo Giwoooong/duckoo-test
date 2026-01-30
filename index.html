@@ -150,7 +150,7 @@
       <div>
         <div class="badge">One Piece Fan Test</div>
         <h1>원피스 덕후 테스트</h1>
-        <p>랜덤 20문제를 풀고 상장까지 받자!</p>
+        <p>랜덤 20문제를 풀고 인증서를 받아보자!</p>
       </div>
       <div class="pill" id="status-pill">준비 중</div>
     </div>
@@ -158,10 +158,9 @@
     <section id="home" class="panel">
       <div class="home-grid">
         <div>
-          <h2>심화 4지선다형</h2>
           <p>원피스 찐팬이라면 100점 가능. 매번 랜덤 20문제가 출제돼요.</p>
           <div style="margin: 18px 0 12px;">
-            <label for="player" style="display:block;margin-bottom:6px;">상장에 들어갈 이름</label>
+            <label for="player" style="display:block;margin-bottom:6px;">인증서에 들어갈 이름</label>
             <input id="player" class="input" placeholder="예: 루피" />
             <div class="hint">닉네임을 입력해야 테스트를 시작할 수 있어요.</div>
           </div>
@@ -173,8 +172,7 @@
           <h3>테스트 규칙</h3>
           <p>• 총 20문제, 난이도별 차등 배점</p>
           <p>• 순서는 매번 랜덤</p>
-          <p>• 한 문제당 한 페이지</p>
-          <p>• 완료 시 상장 스타일 결과 제공</p>
+          <p>• 완료 시 인증서 스타일 결과 제공</p>
         </div>
       </div>
     </section>
@@ -192,13 +190,15 @@
         playerInput.focus();
         return;
       }
-      localStorage.setItem("op-player", name);
+      const tag = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+      localStorage.setItem("op-player-name", name);
+      localStorage.setItem("op-player-tag", tag);
       window.location.href = "quiz.html";
     });
 
     window.addEventListener("load", () => {
       statusPill.textContent = "문항 준비 완료";
-      const saved = localStorage.getItem("op-player");
+      const saved = localStorage.getItem("op-player-name");
       if (saved) playerInput.value = saved;
     });
   </script>
