@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>원피스 덕후 테스트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;500;700&family=Black+Han+Sans&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg-1: #f9f4e9;
+      --bg-2: #f3f0ff;
+      --bg-3: #ecf7ff;
+      --gold: #b67c1a;
+      --ink: #1a1a1a;
+      --cream: #1b1b1b;
+      --coral: #ff6b6b;
+      --teal: #2d9c93;
+      --shadow: rgba(24, 24, 24, 0.12);
+      --panel: rgba(255, 255, 255, 0.88);
+      --panel-border: rgba(17, 17, 17, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hahmlet", serif;
+      color: var(--cream);
+      background: radial-gradient(circle at top left, rgba(255, 214, 156, 0.45), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(117, 190, 255, 0.25), transparent 40%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px 64px;
+    }
+
+    .app {
+      width: min(980px, 96vw);
+      position: relative;
+    }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      padding: 10px 16px;
+      background: rgba(244, 200, 106, 0.18);
+      border: 1px solid rgba(182, 124, 26, 0.5);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1 {
+      font-family: "Black Han Sans", sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      margin: 0 0 8px;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-weight: 600;
+      font-size: clamp(20px, 3vw, 28px);
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.6;
+      color: rgba(27, 27, 27, 0.8);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 24px 60px var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 246, 230, 0.06) 40%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+
+    .panel:hover::after {
+      opacity: 1;
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 20px;
+      padding: 18px 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--gold);
+    }
+
+    .btn {
+      border: none;
+      background: linear-gradient(120deg, var(--gold), #ffb347);
+      color: var(--ink);
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 20px rgba(244, 200, 106, 0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 14px 26px rgba(244, 200, 106, 0.5);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink);
+      box-shadow: none;
+      border: 1px solid rgba(17, 17, 17, 0.15);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px dashed rgba(17, 17, 17, 0.2);
+      box-shadow: none;
+    }
+
+    .input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 17, 17, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      font-size: clamp(20px, 3vw, 28px);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      background: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      transition: all 0.2s ease;
+      color: var(--ink);
+    }
+
+    .option:hover {
+      border-color: rgba(79, 209, 197, 0.6);
+      background: rgba(79, 209, 197, 0.1);
+    }
+
+    .option.selected {
+      border-color: var(--gold);
+      background: rgba(244, 200, 106, 0.2);
+      box-shadow: 0 8px 20px rgba(244, 200, 106, 0.15);
+      color: var(--ink);
+    }
+
+    .option span {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      font-size: 13px;
+      color: rgba(27, 27, 27, 0.8);
+    }
+
+    .certificate {
+      background: linear-gradient(140deg, rgba(244, 200, 106, 0.22), rgba(255, 255, 255, 0.8));
+      border: 2px solid rgba(182, 124, 26, 0.5);
+      padding: 32px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .certificate::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px dashed rgba(182, 124, 26, 0.35);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .cert-title {
+      font-family: "Black Han Sans", sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .score {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 12px 0;
+    }
+
+    .rank {
+      font-size: 20px;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      font-size: 14px;
+    }
+
+    .rank-item strong {
+      color: var(--gold);
+    }
+
+    .hint {
+      font-size: 13px;
+      color: rgba(27, 27, 27, 0.65);
+      margin-top: 8px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .home-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+
+      .banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="banner">
+      <div>
+        <div class="badge">One Piece Fan Test</div>
+        <h1>원피스 덕후 테스트</h1>
+        <p>40문항 중 랜덤 20문제. 한 문제씩 풀고 상장까지 받자!</p>
+      </div>
+      <div class="pill" id="status-pill">준비 중</div>
+    </div>
+
+    <section id="home" class="panel fade-in">
+      <div class="home-grid">
+        <div>
+          <h2>심화 4지선다형</h2>
+          <p>원피스 찐팬이라면 100점 가능. 매번 랜덤 20문제가 출제돼요.</p>
+          <div style="margin: 18px 0 12px;">
+            <label for="player" style="display:block;margin-bottom:6px;">상장에 들어갈 이름</label>
+            <input id="player" class="input" placeholder="예: 루피" />
+            <div class="hint">닉네임을 입력해야 테스트를 시작할 수 있어요.</div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+            <button class="btn" id="start-btn">테스트 시작</button>
+            <button class="btn secondary" id="preview-btn">문항 보기</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>테스트 규칙</h3>
+          <p>• 총 20문제, 문제당 5점</p>
+          <p>• 순서는 매번 랜덤</p>
+          <p>• 한 문제당 한 페이지</p>
+          <p>• 완료 시 상장 스타일 결과 제공</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="panel hidden">
+      <div class="progress">
+        <div class="pill" id="count-pill">1 / 20</div>
+        <div class="progress-bar"><span id="progress-bar"></span></div>
+      </div>
+      <div class="question" id="question-text"></div>
+      <div class="options" id="options"></div>
+      <div class="nav">
+        <button class="btn secondary" id="prev-btn">이전 문제</button>
+        <button class="btn ghost" id="home-btn">처음 화면</button>
+        <button class="btn" id="next-btn">다음 문제</button>
+      </div>
+    </section>
+
+    <section id="result" class="panel hidden">
+      <div class="certificate fade-in" id="certificate">
+        <div class="cert-title">덕후 인증 상장</div>
+        <p id="cert-name">수여자: ???</p>
+        <div class="score" id="score">0점</div>
+        <div class="rank" id="rank">칭호: ???</div>
+        <p id="summary">정답률을 확인하고 다시 도전해보자!</p>
+        <div class="rank-list" id="rank-list"></div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn" id="retry-btn">다시 도전</button>
+        <button class="btn secondary" id="download-btn">결과 이미지 저장</button>
+        <button class="btn ghost" id="share-btn">결과 공유</button>
+        <button class="btn ghost" id="review-btn">오답 리뷰</button>
+      </div>
+      <div id="review" class="card hidden" style="margin-top:16px;"></div>
+      <div class="card" style="margin-top:16px;">
+        <h3>댓글</h3>
+        <div id="disqus_thread"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      all: [],
+      quiz: [],
+      answers: [],
+      index: 0,
+      player: "",
+    };
+
+    const homeEl = document.getElementById("home");
+    const quizEl = document.getElementById("quiz");
+    const resultEl = document.getElementById("result");
+    const statusPill = document.getElementById("status-pill");
+
+    const startBtn = document.getElementById("start-btn");
+    const previewBtn = document.getElementById("preview-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const retryBtn = document.getElementById("retry-btn");
+    const reviewBtn = document.getElementById("review-btn");
+    const homeBtn = document.getElementById("home-btn");
+    const downloadBtn = document.getElementById("download-btn");
+    const shareBtn = document.getElementById("share-btn");
+
+    const playerInput = document.getElementById("player");
+    const questionText = document.getElementById("question-text");
+    const optionsEl = document.getElementById("options");
+    const countPill = document.getElementById("count-pill");
+    const progressBar = document.getElementById("progress-bar");
+    const scoreEl = document.getElementById("score");
+    const rankEl = document.getElementById("rank");
+    const certName = document.getElementById("cert-name");
+    const summaryEl = document.getElementById("summary");
+    const reviewEl = document.getElementById("review");
+    const rankListEl = document.getElementById("rank-list");
+    const certificateEl = document.getElementById("certificate");
+
+    const embeddedText = `
+[원피스 덕후 테스트 40문항 - 심화 4지선다형]
+1. 루피가 먹은 악마의 열매 '고무고무 열매'의 본명은 무엇인가? ① 사람사람 열매 모델 니카 ② 사람사람 열매 모델 명왕 ③ 고무고무 열매 모델 태양신 ④ 동물동물 열매 모델 해태 정답: ①
+2. 조로가 롤로노아 가문의 후예임을 암시하는 와노쿠니의 가문 이름은? ① 코즈키 가문 ② 시모츠키 가문 ③ 쿠로즈미 가문 ④ 아마츠키 가문 정답: ②
+3. 상디가 제르마 66에서 불리던 고유 번호와 코드네임은? ① 1번 - 스파클링 레드 ② 2번 - 일렉트릭 블루 ③ 3번 - 스텔스 블랙 ④ 4번 - 윈치 그린 정답: ③
+4. 나미가 하늘섬 에피소드 이후 웨더리아에서 배운 기술로 제작한 새로운 무기는? ① 마법의 크리마 택트 ② 퍼펙트 크리마 택트 ③ 소서리 크리마 택트 ④ 웨더 크리마 택트 정답: ③
+5. 쵸파가 럼블볼을 사용해 변신하는 형태 중, 2년 후 제어가 가능해진 거대화 형태는? ① 가드 포인트 ② 혼 포인트 ③ 몬스터 포인트 ④ 쿵푸 포인트 정답: ③
+6. 로빈이 8세의 나이로 현상범이 되었을 때 붙은 별명은? ① 오하라의 악마 ② 금기된 지식인 ③ 포네그리프의 아이 ④ 공백의 마녀 정답: ①
+7. 프랑키가 워터 세븐에서 만든 '사우전드 써니호'의 주재료인 나무의 이름은? ① 아담 ② 이브 ③ 보배나무 아담 ④ 보배나무 이브 정답: ③
+8. 브룩이 부활부활 열매의 능력을 깨닫고 영혼 상태로 다닐 수 있게 된 것은 몇 년 후인가? ① 1년 후 ② 2년 후 ③ 3년 후 ④ 5년 후 정답: ②
+9. 징베가 어인섬 편에서 루피에게 수혈해줄 때 언급된 루피의 혈액형은? ① X형 ② F형 ③ S형 ④ XF형 정답: ②
+10. 우솝의 고향에서 우솝이 이끌던 '우솝 해적단'의 꼬마 세 명의 이름이 아닌 것은? ① 피망 ② 당근 ③ 양파 ④ 마늘 정답: ④
+11. 해군 대장 '키자루' 볼사리노의 공격 기술이 아닌 것은? ① 팔사경 ② 천총운검 ③ 팔척경곡옥 ④ 대분화 정답: ④
+12. 조로가 카이도에게 상처를 입힐 때 사용한 기술의 이름은? ① 삼도류 오의 - 삼천세계 ② 구도류 - 아수라 발검 망자희 ③ 일도류 - 사자노래 ④ 대천세계 정답: ②
+13. 골 D. 로저가 하늘섬 포네그리프 옆에 문구를 남길 때 사용한 특수한 기술은? ① 고대 문자 해독 ② 만물의 소리를 듣는 힘 ③ 견문색 패기 ④ 악마의 열매 능력 정답: ②
+14. 트라팔가 로우가 하트 해적단을 결성한 북쪽 바다의 섬 이름은? ① 플레반스 ② 스왈로 섬 ③ 루브니르 왕국 ④ 미니온 섬 정답: ②
+15. 크로커다일이 결성한 비밀 범죄 조직 '바로크 워크스'에서 그의 코드네임은? ① Mr. 0 ② Mr. 1 ③ Mr. 크로커다일 ④ 마스터 정답: ①
+16. 에넬이 달로 떠날 때 타고 간 방주(배)의 이름은? ① 맥심 ② 노아 ③ 아폴로 ④ 프로메테우스 정답: ①
+17. 혁명군 총사령관 드래곤의 현상금 수식어는? ① 세계 최고의 범죄자 ② 세계 최악의 범죄자 ③ 해방의 전사 ④ 정부의 숙적 정답: ②
+18. 정상결전 당시 흰 수염을 찌른 산하 해적단 선장의 이름은? ① 스쿼드 ② 오즈 Jr. ③ 비스타 ④ 죠즈 정답: ①
+19. 코즈키 오뎅이 처형당할 때 가마솥 안에서 버틴 시간은? ① 30분 ② 1시간 ③ 2시간 ④ 10시간 정답: ②
+20. 라프텔에 도착한 로저 해적단이 보물을 보고 보인 반응은? ① 눈물을 흘렸다 ② 크게 웃었다 ③ 허탈해했다 ④ 싸웠다 정답: ②
+21. 흰 수염 해적단 마르코의 '불사조' 능력은 어느 계열인가? ① 동물계 환수종 ② 초인계 ③ 자연계 ④ 동물계 고대종 정답: ①
+22. 루피의 어머니에 대해 작가 오다 에이치로가 언급한 성격적 특징은? ① 매우 미인이다 ② 엄격한 여장부 스타일이다 ③ 상냥하고 따뜻하다 ④ 이미 작중 등장했다 정답: ②
+23. 검은 수염 티치가 흰 수염 해적단에서 '어둠어둠 열매'를 뺏기 위해 죽인 인물은? ① 삿치 ② 마르코 ③ 에이스 ④ 죠즈 정답: ①
+24. 기어 4 '스네이크맨'이 '바운드맨'보다 특화된 장점은? ① 파괴력 ② 방어력 ③ 가속도와 변칙적 궤도 ④ 공중 부양 시간 정답: ③
+25. 빅 맘이 샬롯 푸딩에게 기대했던 '제3의 눈'의 진정한 개안 능력은? ① 미래 예지 ② 포네그리프 해독 ③ 기억 조작 강화 ④ 광범위 투시 정답: ②
+26. 카이도의 딸(아들로 자처)인 야마토가 먹은 열매의 이름은? ① 개개 열매 모델 오오구치노마가미 ② 개개 열매 모델 자칼 ③ 사람사람 열매 모델 대불 ④ 고양이고양이 열매 모델 타이거 정답: ①
+27. 상디가 요리사로서 절대 사용하지 않는 신체 부위는? ① 발 ② 머리 ③ 손 ④ 목소리 정답: ③
+28. 나미가 빅 맘의 구름 '제우스'를 자신의 하인으로 삼을 때 먹인 것은? ① 번개 구름 (블랙볼) ② 설탕 가루 ③ 콜라 ④ 영혼의 조각 정답: ①
+29. 버기가 사황이 된 결정적인 이유 중 하나인 조직 '크로스 길드'의 주요 멤버는? ① 미호크, 크로커다일 ② 핸콕, 도플라밍고 ③ 모리아, 징베 ④ 티치, 샹크스 정답: ①
+30. 오로성이 공석인 옥좌에 앉은 '임'에게 질문할 때 부르는 칭호는? ① 임 성(聖) ② 임 님 ③ 위대한 창조주 ④ 허의 옥좌 주인 정답: ②
+31. 루피가 어린 시절 에이스, 사보와 함께 지낸 산적 두목의 이름은? ① 다단 ② 마키노 ③ 가프 ④ 벨메일 정답: ①
+32. 쿠마가 샤본디 제도에서 루피 일행을 날려 보낸 진짜 이유는? ① 해군에게 잡히게 하려고 ② 동료들을 떼어놓으려고 ③ 일행을 보호하고 수련하게 하려고 ④ 세계정부의 명령 때문에 정답: ③
+33. 루피의 가문 성씨인 '몽키(Monkey)' 중 가프의 직함은? ① 해군 원수 ② 해군 대장 ③ 해군 중장 (영웅) ④ CP0 장관 정답: ③
+34. 조로의 고향 도장에서 함께 수련했던, 계단에서 굴러 떨어져 사망한 라이벌은? ① 쿠이나 ② 타시기 ③ 히요리 ④ 페로나 정답: ①
+35. 도플라밍고가 지배했던 드레스 로자의 비극적인 '장난감'들의 정체는? ① 실제 로봇 ② 하비하비 열매 능력으로 변한 인간들 ③ 마법에 걸린 인형 ④ 죽은 사람들의 영혼 정답: ②
+36. 베가펑크가 자신의 뇌를 6개로 나누어 만든 분신 '새틀라이트'가 아닌 이름은? ① 샤카 (정) ② 릴리스 (악) ③ 요크 (욕) ④ 쥬 피터 (현) 정답: ④
+37. 로저가 처형당한 장소인 '로그 타운'의 별명은? ① 해적의 마을 ② 시작과 끝의 마을 ③ 황금의 마을 ④ 정의의 마을 정답: ②
+38. 크로스 길드가 해군에게 현상금을 거는 제도의 이름은? ① 해군 사냥 ② 역 현상금 제도 ③ 해병 사냥 ④ 정의 심판 정답: ③
+39. 바르톨로뮤 쿠마가 개조되어 만들어진 인간 병기의 이름은? ① 파시피스타 ② 세라핌 ③ 제르마 66 ④ 인조인간 정답: ①
+40. 해군 대장 후지토라가 먹은 열매의 이름은? ① 중력중력 열매 ② 쿵푸쿵푸 열매 ③ 쿠릉쿠릉 열매 ④ 묵직묵직 열매 정답: ①
+`;
+
+    function shuffle(arr) {
+      return arr
+        .map((item) => ({ item, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((entry) => entry.item);
+    }
+
+    function parseQuestions(text) {
+      const matches = [...text.matchAll(/(\d+)\.\s*([\s\S]*?)정답:\s*([①②③④])/g)];
+      return matches.map((match) => {
+        const body = match[2].trim();
+        const answerToken = match[3];
+        const parts = body.split(/[①②③④]/).map((part) => part.trim()).filter(Boolean);
+        const question = parts.shift();
+        const options = parts.slice(0, 4);
+        const answerIndex = { "①": 0, "②": 1, "③": 2, "④": 3 }[answerToken];
+        return { id: Number(match[1]), question, options, answerIndex };
+      });
+    }
+
+    async function loadQuestions() {
+      try {
+        const res = await fetch("questions.txt");
+        if (!res.ok) throw new Error("load failed");
+        const text = await res.text();
+        return parseQuestions(text);
+      } catch (err) {
+        return parseQuestions(embeddedText);
+      }
+    }
+
+    function setStatus(text) {
+      statusPill.textContent = text;
+    }
+
+    function show(section) {
+      [homeEl, quizEl, resultEl].forEach((el) => el.classList.add("hidden"));
+      section.classList.remove("hidden");
+      section.classList.add("fade-in");
+      setTimeout(() => section.classList.remove("fade-in"), 700);
+    }
+
+    function startQuiz() {
+      state.player = playerInput.value.trim();
+      if (!state.player) {
+        alert("닉네임을 입력해주세요!");
+        playerInput.focus();
+        return;
+      }
+      state.quiz = shuffle(state.all).slice(0, 20);
+      state.answers = new Array(state.quiz.length).fill(null);
+      state.index = 0;
+      renderQuestion();
+      setStatus("문제 풀이 중");
+      show(quizEl);
+    }
+
+    function renderQuestion() {
+      const current = state.quiz[state.index];
+      questionText.textContent = current.question;
+      optionsEl.innerHTML = "";
+      current.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        if (state.answers[state.index] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span>${idx + 1}</span> ${opt}`;
+        btn.addEventListener("click", () => {
+          state.answers[state.index] = idx;
+          renderQuestion();
+        });
+        optionsEl.appendChild(btn);
+      });
+      countPill.textContent = `${state.index + 1} / ${state.quiz.length}`;
+      progressBar.style.width = `${((state.index + 1) / state.quiz.length) * 100}%`;
+      prevBtn.disabled = state.index === 0;
+      nextBtn.textContent = state.index === state.quiz.length - 1 ? "결과 보기" : "다음 문제";
+    }
+
+    function calculateScore() {
+      const correct = state.quiz.reduce((sum, q, i) => sum + (state.answers[i] === q.answerIndex ? 1 : 0), 0);
+      const score = correct * 5;
+      return { correct, score };
+    }
+
+    function getRank(score) {
+      if (score === 100) return "해적왕급 덕후";
+      if (score >= 85) return "사황급 덕후";
+      if (score >= 70) return "삼장성급 덕후";
+      if (score >= 55) return "베테랑 크루";
+      return "수련 중인 루키";
+    }
+
+    function loadRanks() {
+      const raw = localStorage.getItem("op-ranks");
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveRank(entry) {
+      const ranks = loadRanks();
+      ranks.push(entry);
+      ranks.sort((a, b) => b.score - a.score);
+      localStorage.setItem("op-ranks", JSON.stringify(ranks.slice(0, 10)));
+      return ranks.slice(0, 10);
+    }
+
+    function renderRanks(ranks) {
+      rankListEl.innerHTML = "";
+      if (ranks.length === 0) {
+        rankListEl.innerHTML = "<div class=\"rank-item\">아직 기록이 없습니다. 첫 번째 덕후가 되어보세요!</div>";
+        return;
+      }
+      ranks.forEach((entry, idx) => {
+        const item = document.createElement("div");
+        item.className = "rank-item";
+        item.innerHTML = `<strong>#${idx + 1}</strong> ${entry.name} <span>${entry.score}점</span>`;
+        rankListEl.appendChild(item);
+      });
+    }
+
+    function showResult() {
+      const { correct, score } = calculateScore();
+      scoreEl.textContent = `${score}점`;
+      rankEl.textContent = `칭호: ${getRank(score)}`;
+      certName.textContent = `수여자: ${state.player}`;
+      summaryEl.textContent = `${state.quiz.length}문제 중 ${correct}개 정답! 다시 도전해서 100점에 도전해보자.`;
+      const ranks = saveRank({ name: state.player, score, date: Date.now() });
+      renderRanks(ranks);
+      setStatus("결과 확인");
+      show(resultEl);
+    }
+
+    function showReview() {
+      reviewEl.innerHTML = "";
+      const wrong = state.quiz
+        .map((q, i) => ({ q, i }))
+        .filter(({ q, i }) => state.answers[i] !== q.answerIndex);
+
+      if (wrong.length === 0) {
+        reviewEl.innerHTML = "<p>오답이 없습니다. 진정한 덕후!</p>";
+      } else {
+        wrong.forEach(({ q, i }) => {
+          const item = document.createElement("div");
+          item.style.marginBottom = "12px";
+          item.innerHTML = `
+            <strong>Q${i + 1}. ${q.question}</strong><br />
+            당신의 답: ${state.answers[i] === null ? "미응답" : q.options[state.answers[i]]}<br />
+            정답: ${q.options[q.answerIndex]}
+          `;
+          reviewEl.appendChild(item);
+        });
+      }
+      reviewEl.classList.remove("hidden");
+    }
+
+    async function downloadCertificate() {
+      const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+      const link = document.createElement("a");
+      link.download = `onepiece_${state.player}_${Date.now()}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    async function shareCertificate() {
+      try {
+        const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!blob) throw new Error("share failed");
+        const file = new File([blob], `onepiece_${state.player}.png`, { type: "image/png" });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: "원피스 덕후 테스트", text: `${state.player}의 결과를 확인해봐!`, files: [file] });
+        } else {
+          alert("이 브라우저는 파일 공유를 지원하지 않습니다. 이미지 저장 버튼을 사용하세요.");
+        }
+      } catch (err) {
+        alert("공유에 실패했어요. 이미지 저장을 사용해주세요.");
+      }
+    }
+
+    startBtn.addEventListener("click", async () => {
+      if (state.all.length === 0) {
+        state.all = await loadQuestions();
+      }
+      startQuiz();
+    });
+
+    previewBtn.addEventListener("click", async () => {
+      if (state.all.length === 0) {
+        state.all = await loadQuestions();
+      }
+      alert("문항이 준비되어 있습니다. 닉네임을 입력하고 시작을 눌러주세요!");
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (state.index > 0) {
+        state.index -= 1;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (state.answers[state.index] === null) {
+        alert("선택지를 골라주세요!");
+        return;
+      }
+      if (state.index < state.quiz.length - 1) {
+        state.index += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    homeBtn.addEventListener("click", () => {
+      show(homeEl);
+      setStatus("준비 중");
+    });
+
+    retryBtn.addEventListener("click", () => {
+      show(homeEl);
+      setStatus("준비 중");
+    });
+
+    reviewBtn.addEventListener("click", () => {
+      showReview();
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      downloadCertificate();
+    });
+
+    shareBtn.addEventListener("click", () => {
+      shareCertificate();
+    });
+
+    window.addEventListener("load", async () => {
+      state.all = await loadQuestions();
+      setStatus("문항 준비 완료");
+    });
+  </script>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://homemanager.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</body>
+</html>
