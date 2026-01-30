@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>원피스 덕후 테스트 - 결과</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --panel-border: rgba(17, 17, 17, 0.08);
+      --ink: #1a1a1a;
+      --muted: rgba(27, 27, 27, 0.7);
+      --accent: #b67c1a;
+      --teal: #2d9c93;
+      --shadow: rgba(24, 24, 24, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Hahmlet", serif;
+      color: var(--ink);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px 64px;
+    }
+
+    .app { width: min(980px, 96vw); position: relative; }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      background: #f3f3f3;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      margin: 0 0 8px;
+      letter-spacing: 0.02em;
+    }
+
+    p { margin: 0; line-height: 1.6; color: var(--muted); }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 10px 24px var(--shadow);
+      position: relative;
+    }
+
+    .certificate {
+      background: linear-gradient(135deg, #fffdf6, #fff3d9);
+      border: 2px solid #d8b26a;
+      padding: 32px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(182, 124, 26, 0.15);
+    }
+
+    .certificate::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px dashed rgba(182, 124, 26, 0.35);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .certificate::after {
+      content: "ONE PIECE";
+      position: absolute;
+      right: 16px;
+      bottom: 8px;
+      font-size: 44px;
+      color: rgba(182, 124, 26, 0.08);
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .seal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffe7a3, #d6a853);
+      color: #5a3b00;
+      font-size: 11px;
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(90, 59, 0, 0.25);
+    }
+
+    .cert-title {
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .score {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 12px 0;
+    }
+
+    .rank {
+      font-size: 18px;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .rank-list { display: grid; gap: 10px; margin-top: 12px; }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #fafafa;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      font-size: 14px;
+    }
+
+    .rank-item strong { color: var(--accent); }
+
+    .card {
+      background: #fafafa;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 20px;
+      padding: 18px 20px;
+    }
+
+    .btn {
+      border: none;
+      background: var(--accent);
+      color: var(--ink);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.secondary {
+      background: #ffffff;
+      color: var(--ink);
+      border: 1px solid rgba(17, 17, 17, 0.15);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px dashed rgba(17, 17, 17, 0.2);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 800px) {
+      .banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="banner">
+      <div>
+        <div class="badge">One Piece Fan Test</div>
+        <h1>테스트 결과</h1>
+        <p>결과 인증서를 확인하고 저장해보세요.</p>
+      </div>
+    </div>
+
+    <section class="panel">
+      <div class="certificate" id="certificate">
+        <div class="seal">CERTIFIED</div>
+        <div class="cert-title">덕후 인증서</div>
+        <p id="cert-name">수여자: ???</p>
+        <div class="score" id="score">0점</div>
+        <div class="rank" id="rank">칭호: ???</div>
+        <p id="summary">정답률을 확인하고 다시 도전해보자!</p>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn" id="retry-btn">다시 도전</button>
+        <button class="btn secondary" id="download-btn">인증서 이미지 저장</button>
+        <button class="btn ghost" id="share-btn">결과 공유</button>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3>랭킹</h3>
+        <div class="rank-list" id="rank-list"></div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3>댓글</h3>
+        <div id="disqus_thread"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const certName = document.getElementById("cert-name");
+    const scoreEl = document.getElementById("score");
+    const rankEl = document.getElementById("rank");
+    const summaryEl = document.getElementById("summary");
+    const rankListEl = document.getElementById("rank-list");
+    const certificateEl = document.getElementById("certificate");
+    const retryBtn = document.getElementById("retry-btn");
+    const downloadBtn = document.getElementById("download-btn");
+    const shareBtn = document.getElementById("share-btn");
+
+    function loadRanks() {
+      const raw = localStorage.getItem("op-ranks");
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function renderRanks(ranks) {
+      rankListEl.innerHTML = "";
+      if (ranks.length === 0) {
+        rankListEl.innerHTML = "<div class=\"rank-item\">아직 기록이 없습니다. 첫 번째 덕후가 되어보세요!</div>";
+        return;
+      }
+      ranks.forEach((entry, idx) => {
+        const item = document.createElement("div");
+        item.className = "rank-item";
+        item.innerHTML = `<strong>#${idx + 1}</strong> ${entry.name} <span>${entry.score}점</span>`;
+        rankListEl.appendChild(item);
+      });
+    }
+
+    function loadResult() {
+      const raw = localStorage.getItem("op-last-result");
+      if (!raw) return null;
+      try {
+        return JSON.parse(raw);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function getRank(score) {
+      if (score <= 30) return "원피스 입문자 (이스트 블루 시민)";
+      if (score <= 70) return "현상금 사냥꾼 (위대한 항로 해적)";
+      if (score <= 90) return "최악의 세대 (신세계의 루키)";
+      return "전설의 해적 (해적왕의 동료)";
+    }
+
+    async function downloadCertificate() {
+      const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+      const link = document.createElement("a");
+      const safeName = certName.textContent.replace(/\s+/g, "_").replace("수여자:", "");
+      link.download = `onepiece_${safeName}_${Date.now()}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    async function shareCertificate() {
+      try {
+        const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!blob) throw new Error("share failed");
+        const safeName = certName.textContent.replace(/\s+/g, "_").replace("수여자:", "");
+        const file = new File([blob], `onepiece_${safeName}.png`, { type: "image/png" });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: "원피스 덕후 테스트", text: "나의 결과를 확인해봐!", files: [file] });
+        } else {
+          alert("이 브라우저는 파일 공유를 지원하지 않습니다. 이미지 저장 버튼을 사용하세요.");
+        }
+      } catch (err) {
+        alert("공유에 실패했어요. 이미지 저장을 사용해주세요.");
+      }
+    }
+
+    retryBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      downloadCertificate();
+    });
+
+    shareBtn.addEventListener("click", () => {
+      shareCertificate();
+    });
+
+    window.addEventListener("load", () => {
+      const result = loadResult();
+      if (!result) {
+        alert("결과가 없습니다. 테스트를 먼저 진행해주세요.");
+        window.location.href = "index.html";
+        return;
+      }
+      certName.textContent = `수여자: ${result.player}`;
+      scoreEl.textContent = `${result.score}점`;
+      rankEl.textContent = `칭호: ${getRank(result.score)}`;
+      summaryEl.textContent = `${result.totalCount}문제 중 ${result.correct}개 정답! (${result.rawPoints}/${result.totalPoints}점) 다시 도전해서 100점에 도전해보자.`;
+      renderRanks(loadRanks());
+    });
+  </script>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://homemanager.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</body>
+</html>
