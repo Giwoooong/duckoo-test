@@ -393,8 +393,20 @@
         const question = parts.shift();
         const options = parts.slice(0, 4);
         const answerIndex = { "①": 0, "②": 1, "③": 2, "④": 3 }[answerToken];
-        return { id: Number(match[1]), question, options, answerIndex, difficulty, points };
+        const shuffled = shuffleOptions(options, answerIndex);
+        return { id: Number(match[1]), question, options: shuffled.options, answerIndex: shuffled.answerIndex, difficulty, points };
       });
+    }
+
+    function shuffleOptions(options, answerIndex) {
+      const arr = options.map((text, idx) => ({ text, idx }));
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      const newOptions = arr.map((item) => item.text);
+      const newAnswerIndex = arr.findIndex((item) => item.idx === answerIndex);
+      return { options: newOptions, answerIndex: newAnswerIndex };
     }
 
     async function loadQuestions() {
