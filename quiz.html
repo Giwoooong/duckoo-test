@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>원피스 덕후 테스트 - 문제 풀이</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;500;700&family=Black+Han+Sans&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg-1: #f9f4e9;
+      --bg-2: #f3f0ff;
+      --bg-3: #ecf7ff;
+      --gold: #b67c1a;
+      --ink: #1a1a1a;
+      --cream: #1b1b1b;
+      --coral: #ff6b6b;
+      --teal: #2d9c93;
+      --shadow: rgba(24, 24, 24, 0.12);
+      --panel: rgba(255, 255, 255, 0.88);
+      --panel-border: rgba(17, 17, 17, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Hahmlet", serif;
+      color: var(--cream);
+      background: radial-gradient(circle at top left, rgba(255, 214, 156, 0.45), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(117, 190, 255, 0.25), transparent 40%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px 64px;
+    }
+
+    .app { width: min(980px, 96vw); position: relative; }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      padding: 10px 16px;
+      background: rgba(244, 200, 106, 0.18);
+      border: 1px solid rgba(182, 124, 26, 0.5);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1 {
+      font-family: "Black Han Sans", sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      margin: 0 0 8px;
+      letter-spacing: 0.02em;
+    }
+
+    p { margin: 0; line-height: 1.6; color: rgba(27, 27, 27, 0.8); }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 24px 60px var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      font-size: 13px;
+      color: rgba(27, 27, 27, 0.8);
+    }
+
+    .question {
+      font-size: clamp(20px, 3vw, 28px);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      background: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      transition: all 0.2s ease;
+      color: var(--ink);
+    }
+
+    .option:hover {
+      border-color: rgba(45, 156, 147, 0.5);
+      background: rgba(79, 209, 197, 0.15);
+    }
+
+    .option.selected {
+      border-color: var(--gold);
+      background: rgba(244, 200, 106, 0.2);
+      box-shadow: 0 8px 20px rgba(244, 200, 106, 0.15);
+      color: var(--ink);
+    }
+
+    .option span { font-weight: 600; color: var(--gold); }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      background: linear-gradient(120deg, var(--gold), #ffb347);
+      color: var(--ink);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 20px rgba(244, 200, 106, 0.35);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink);
+      box-shadow: none;
+      border: 1px solid rgba(17, 17, 17, 0.15);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px dashed rgba(17, 17, 17, 0.2);
+      box-shadow: none;
+    }
+
+    .certificate {
+      background: linear-gradient(140deg, rgba(244, 200, 106, 0.22), rgba(255, 255, 255, 0.8));
+      border: 2px solid rgba(182, 124, 26, 0.5);
+      padding: 32px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .certificate::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px dashed rgba(182, 124, 26, 0.35);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .cert-title {
+      font-family: "Black Han Sans", sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .score {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 12px 0;
+    }
+
+    .rank {
+      font-size: 20px;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      font-size: 14px;
+    }
+
+    .rank-item strong { color: var(--gold); }
+
+    .card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 20px;
+      padding: 18px 20px;
+    }
+
+    .hidden { display: none !important; }
+
+    .fade-in { animation: fadeIn 0.6s ease both; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 800px) {
+      .banner { flex-direction: column; align-items: flex-start; }
+      .nav { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="banner">
+      <div>
+        <div class="badge">One Piece Fan Test</div>
+        <h1>문제 풀이</h1>
+        <p>문항을 선택하면 다음 문제로 자동 이동합니다.</p>
+      </div>
+      <div class="pill" id="status-pill">준비 중</div>
+    </div>
+
+    <section id="quiz" class="panel">
+      <div class="progress">
+        <div class="pill" id="count-pill">1 / 20</div>
+        <div class="progress-bar"><span id="progress-bar"></span></div>
+      </div>
+      <div class="pill" id="meta-pill">난이도 · 배점</div>
+      <div class="question" id="question-text"></div>
+      <div class="options" id="options"></div>
+      <div class="nav">
+        <button class="btn secondary" id="prev-btn">이전 문제</button>
+        <button class="btn ghost" id="home-btn">처음 화면</button>
+        <button class="btn" id="next-btn">다음 문제</button>
+      </div>
+    </section>
+
+    <section id="result" class="panel hidden">
+      <div class="certificate fade-in" id="certificate">
+        <div class="cert-title">덕후 인증 상장</div>
+        <p id="cert-name">수여자: ???</p>
+        <div class="score" id="score">0점</div>
+        <div class="rank" id="rank">칭호: ???</div>
+        <p id="summary">정답률을 확인하고 다시 도전해보자!</p>
+        <div class="rank-list" id="rank-list"></div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn" id="retry-btn">다시 도전</button>
+        <button class="btn secondary" id="download-btn">결과 이미지 저장</button>
+        <button class="btn ghost" id="share-btn">결과 공유</button>
+        <button class="btn ghost" id="review-btn">오답 리뷰</button>
+      </div>
+      <div id="review" class="card hidden" style="margin-top:16px;"></div>
+      <div class="card" style="margin-top:16px;">
+        <h3>댓글</h3>
+        <div id="disqus_thread"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      all: [],
+      quiz: [],
+      answers: [],
+      index: 0,
+      player: "",
+    };
+
+    const quizEl = document.getElementById("quiz");
+    const resultEl = document.getElementById("result");
+    const statusPill = document.getElementById("status-pill");
+
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const retryBtn = document.getElementById("retry-btn");
+    const reviewBtn = document.getElementById("review-btn");
+    const homeBtn = document.getElementById("home-btn");
+    const downloadBtn = document.getElementById("download-btn");
+    const shareBtn = document.getElementById("share-btn");
+
+    const questionText = document.getElementById("question-text");
+    const optionsEl = document.getElementById("options");
+    const countPill = document.getElementById("count-pill");
+    const progressBar = document.getElementById("progress-bar");
+    const scoreEl = document.getElementById("score");
+    const rankEl = document.getElementById("rank");
+    const certName = document.getElementById("cert-name");
+    const summaryEl = document.getElementById("summary");
+    const reviewEl = document.getElementById("review");
+    const rankListEl = document.getElementById("rank-list");
+    const certificateEl = document.getElementById("certificate");
+    const metaPill = document.getElementById("meta-pill");
+
+    function shuffle(arr) {
+      return arr
+        .map((item) => ({ item, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((entry) => entry.item);
+    }
+
+    function parseQuestions(text) {
+      const matches = [...text.matchAll(/(\d+)\.\s*([\s\S]*?)정답:\s*([①②③④])/g)];
+      return matches.map((match) => {
+        const body = match[2].trim();
+        const answerToken = match[3];
+        let difficulty = "중";
+        let points = 5;
+        let cleaned = body;
+        const diffMatch = body.match(/^\[(하|중|상)\/(\d+)점\]\s*/);
+        if (diffMatch) {
+          difficulty = diffMatch[1];
+          points = Number(diffMatch[2]);
+          cleaned = body.slice(diffMatch[0].length).trim();
+        }
+        const parts = cleaned.split(/[①②③④]/).map((part) => part.trim()).filter(Boolean);
+        const question = parts.shift();
+        const options = parts.slice(0, 4);
+        const answerIndex = { "①": 0, "②": 1, "③": 2, "④": 3 }[answerToken];
+        return { id: Number(match[1]), question, options, answerIndex, difficulty, points };
+      });
+    }
+
+    async function loadQuestions() {
+      const res = await fetch("questions.txt");
+      if (!res.ok) throw new Error("load failed");
+      const text = await res.text();
+      return parseQuestions(text);
+    }
+
+    function setStatus(text) {
+      statusPill.textContent = text;
+    }
+
+    function show(section) {
+      [quizEl, resultEl].forEach((el) => el.classList.add("hidden"));
+      section.classList.remove("hidden");
+      section.classList.add("fade-in");
+      setTimeout(() => section.classList.remove("fade-in"), 700);
+    }
+
+    function pickQuestions(all) {
+      const easy = shuffle(all.filter((q) => q.difficulty === "하"));
+      const mid = shuffle(all.filter((q) => q.difficulty === "중"));
+      const hard = shuffle(all.filter((q) => q.difficulty === "상"));
+
+      const pick = [];
+      pick.push(...easy.slice(0, 7));
+      pick.push(...mid.slice(0, 7));
+      pick.push(...hard.slice(0, 6));
+
+      if (pick.length < 20) {
+        const rest = shuffle(all.filter((q) => !pick.includes(q)));
+        pick.push(...rest.slice(0, 20 - pick.length));
+      }
+
+      return [...pick.filter((q) => q.difficulty === "하"),
+        ...pick.filter((q) => q.difficulty === "중"),
+        ...pick.filter((q) => q.difficulty === "상")];
+    }
+
+    function startQuiz() {
+      state.player = localStorage.getItem("op-player") || "";
+      if (!state.player) {
+        alert("닉네임이 필요합니다. 처음 화면에서 입력해주세요.");
+        window.location.href = "index.html";
+        return;
+      }
+      state.quiz = pickQuestions(state.all);
+      state.answers = new Array(state.quiz.length).fill(null);
+      state.index = 0;
+      renderQuestion();
+      setStatus("문제 풀이 중");
+      show(quizEl);
+    }
+
+    function renderQuestion() {
+      const current = state.quiz[state.index];
+      metaPill.textContent = `난이도 ${current.difficulty} · ${current.points}점`;
+      questionText.textContent = current.question;
+      optionsEl.innerHTML = "";
+      current.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        if (state.answers[state.index] === idx) {
+          btn.classList.add("selected");
+        }
+        btn.innerHTML = `<span>${idx + 1}</span> ${opt}`;
+        btn.addEventListener("click", () => {
+          state.answers[state.index] = idx;
+          if (state.index < state.quiz.length - 1) {
+            state.index += 1;
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        });
+        optionsEl.appendChild(btn);
+      });
+      countPill.textContent = `${state.index + 1} / ${state.quiz.length}`;
+      progressBar.style.width = `${((state.index + 1) / state.quiz.length) * 100}%`;
+      prevBtn.disabled = state.index === 0;
+      nextBtn.textContent = state.index === state.quiz.length - 1 ? "결과 보기" : "다음 문제";
+    }
+
+    function calculateScore() {
+      const totalPoints = state.quiz.reduce((sum, q) => sum + q.points, 0);
+      const rawPoints = state.quiz.reduce((sum, q, i) => sum + (state.answers[i] === q.answerIndex ? q.points : 0), 0);
+      const correct = state.quiz.reduce((sum, q, i) => sum + (state.answers[i] === q.answerIndex ? 1 : 0), 0);
+      const score = totalPoints === 0 ? 0 : Math.round((rawPoints / totalPoints) * 100);
+      return { correct, score, rawPoints, totalPoints };
+    }
+
+    function getRank(score) {
+      if (score === 100) return "해적왕급 덕후";
+      if (score >= 85) return "사황급 덕후";
+      if (score >= 70) return "삼장성급 덕후";
+      if (score >= 55) return "베테랑 크루";
+      return "수련 중인 루키";
+    }
+
+    function loadRanks() {
+      const raw = localStorage.getItem("op-ranks");
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveRank(entry) {
+      const ranks = loadRanks();
+      ranks.push(entry);
+      ranks.sort((a, b) => b.score - a.score);
+      localStorage.setItem("op-ranks", JSON.stringify(ranks.slice(0, 10)));
+      return ranks.slice(0, 10);
+    }
+
+    function renderRanks(ranks) {
+      rankListEl.innerHTML = "";
+      if (ranks.length === 0) {
+        rankListEl.innerHTML = "<div class=\"rank-item\">아직 기록이 없습니다. 첫 번째 덕후가 되어보세요!</div>";
+        return;
+      }
+      ranks.forEach((entry, idx) => {
+        const item = document.createElement("div");
+        item.className = "rank-item";
+        item.innerHTML = `<strong>#${idx + 1}</strong> ${entry.name} <span>${entry.score}점</span>`;
+        rankListEl.appendChild(item);
+      });
+    }
+
+    function showResult() {
+      const { correct, score, rawPoints, totalPoints } = calculateScore();
+      scoreEl.textContent = `${score}점`;
+      rankEl.textContent = `칭호: ${getRank(score)}`;
+      certName.textContent = `수여자: ${state.player}`;
+      summaryEl.textContent = `${state.quiz.length}문제 중 ${correct}개 정답! (${rawPoints}/${totalPoints}점) 다시 도전해서 100점에 도전해보자.`;
+      const ranks = saveRank({ name: state.player, score, date: Date.now() });
+      renderRanks(ranks);
+      setStatus("결과 확인");
+      show(resultEl);
+    }
+
+    function showReview() {
+      reviewEl.innerHTML = "";
+      const wrong = state.quiz
+        .map((q, i) => ({ q, i }))
+        .filter(({ q, i }) => state.answers[i] !== q.answerIndex);
+
+      if (wrong.length === 0) {
+        reviewEl.innerHTML = "<p>오답이 없습니다. 진정한 덕후!</p>";
+      } else {
+        wrong.forEach(({ q, i }) => {
+          const item = document.createElement("div");
+          item.style.marginBottom = "12px";
+          item.innerHTML = `
+            <strong>Q${i + 1}. ${q.question}</strong><br />
+            당신의 답: ${state.answers[i] === null ? "미응답" : q.options[state.answers[i]]}<br />
+            정답: ${q.options[q.answerIndex]}
+          `;
+          reviewEl.appendChild(item);
+        });
+      }
+      reviewEl.classList.remove("hidden");
+    }
+
+    async function downloadCertificate() {
+      const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+      const link = document.createElement("a");
+      link.download = `onepiece_${state.player}_${Date.now()}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    async function shareCertificate() {
+      try {
+        const canvas = await html2canvas(certificateEl, { backgroundColor: null, scale: 2 });
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!blob) throw new Error("share failed");
+        const file = new File([blob], `onepiece_${state.player}.png`, { type: "image/png" });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: "원피스 덕후 테스트", text: `${state.player}의 결과를 확인해봐!`, files: [file] });
+        } else {
+          alert("이 브라우저는 파일 공유를 지원하지 않습니다. 이미지 저장 버튼을 사용하세요.");
+        }
+      } catch (err) {
+        alert("공유에 실패했어요. 이미지 저장을 사용해주세요.");
+      }
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (state.index > 0) {
+        state.index -= 1;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (state.answers[state.index] === null) {
+        alert("선택지를 골라주세요!");
+        return;
+      }
+      if (state.index < state.quiz.length - 1) {
+        state.index += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    retryBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    reviewBtn.addEventListener("click", () => {
+      showReview();
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      downloadCertificate();
+    });
+
+    shareBtn.addEventListener("click", () => {
+      shareCertificate();
+    });
+
+    window.addEventListener("load", async () => {
+      try {
+        state.all = await loadQuestions();
+        setStatus("문항 준비 완료");
+        startQuiz();
+      } catch (err) {
+        alert("문항을 불러오지 못했습니다.");
+      }
+    });
+  </script>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://homemanager.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</body>
+</html>
