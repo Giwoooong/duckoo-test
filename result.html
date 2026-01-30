@@ -222,6 +222,19 @@
       </div>
 
       <div class="card" style="margin-top:16px;">
+        <h3>댓글용 정보</h3>
+        <p id="comment-info">닉네임#0000 00점</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="btn secondary" id="copy-btn">복사하기</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3>오답 노트</h3>
+        <div id="review-list"></div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
         <h3>댓글</h3>
         <div id="disqus_thread"></div>
       </div>
@@ -237,6 +250,9 @@
     const retryBtn = document.getElementById("retry-btn");
     const downloadBtn = document.getElementById("download-btn");
     const shareBtn = document.getElementById("share-btn");
+    const commentInfo = document.getElementById("comment-info");
+    const copyBtn = document.getElementById("copy-btn");
+    const reviewList = document.getElementById("review-list");
 
 
     function loadResult() {
@@ -254,6 +270,25 @@
       if (score <= 70) return "현상금 사냥꾼 (위대한 항로 해적)";
       if (score <= 90) return "최악의 세대 (신세계의 루키)";
       return "전설의 해적 (해적왕의 동료)";
+    }
+
+    function renderReview(review) {
+      reviewList.innerHTML = "";
+      const wrong = review.filter((item) => item.selectedIndex !== item.answerIndex);
+      if (wrong.length === 0) {
+        reviewList.innerHTML = "<p>오답이 없습니다. 완벽합니다!</p>";
+        return;
+      }
+      wrong.forEach((item, idx) => {
+        const row = document.createElement("div");
+        row.style.marginBottom = "12px";
+        row.innerHTML = `
+          <strong>Q${idx + 1}. ${item.question}</strong><br />
+          당신의 답: ${item.selectedIndex === null ? "미응답" : item.options[item.selectedIndex]}<br />
+          정답: ${item.options[item.answerIndex]}
+        `;
+        reviewList.appendChild(row);
+      });
     }
 
     async function downloadCertificate() {
@@ -294,6 +329,18 @@
       shareCertificate();
     });
 
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(commentInfo.textContent);
+        copyBtn.textContent = "복사됨";
+        setTimeout(() => {
+          copyBtn.textContent = "복사하기";
+        }, 1200);
+      } catch (err) {
+        alert("복사에 실패했어요. 수동으로 복사해주세요.");
+      }
+    });
+
     window.addEventListener("load", () => {
       const result = loadResult();
       if (!result) {
@@ -305,6 +352,10 @@
       scoreEl.textContent = `${result.score}점`;
       rankEl.textContent = `칭호: ${getRank(result.score)}`;
       summaryEl.textContent = `${result.totalCount}문제 중 ${result.correct}개 정답! (${result.rawPoints}/${result.totalPoints}점) 다시 도전해서 100점에 도전해보자.`;
+      commentInfo.textContent = `${result.player} ${String(result.score).padStart(2, "0")}점`;
+      if (Array.isArray(result.review)) {
+        renderReview(result.review);
+      }
     });
   </script>
   <script>

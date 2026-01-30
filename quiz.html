@@ -372,6 +372,12 @@
 
     function showResult() {
       const { correct, score, rawPoints, totalPoints } = calculateScore();
+      const review = state.quiz.map((q, i) => ({
+        question: q.question,
+        options: q.options,
+        answerIndex: q.answerIndex,
+        selectedIndex: state.answers[i],
+      }));
       localStorage.setItem(
         "op-last-result",
         JSON.stringify({
@@ -381,6 +387,7 @@
           rawPoints,
           totalPoints,
           totalCount: state.quiz.length,
+          review,
         })
       );
       window.location.href = "result.html";
