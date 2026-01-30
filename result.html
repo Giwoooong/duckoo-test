@@ -222,17 +222,8 @@
       </div>
 
       <div class="card" style="margin-top:16px;">
-        <h3>오답 노트</h3>
-        <div id="review-list"></div>
-      </div>
-
-      <div class="card" style="margin-top:16px;">
-        <h3>댓글용 정보</h3>
-        <p id="comment-info">닉네임#0000 00점</p>
-        <p style="font-size:12px;color:var(--muted);margin-top:6px;">복사해서 댓글에 남길 수 있어요.</p>
-        <div style="display:flex;gap:8px;margin-top:10px;">
-          <button class="btn secondary" id="copy-btn">복사하기</button>
-        </div>
+        <h3>랭킹</h3>
+        <div class="rank-list" id="rank-list"></div>
       </div>
 
       <div class="card" style="margin-top:16px;">
@@ -247,14 +238,36 @@
     const scoreEl = document.getElementById("score");
     const rankEl = document.getElementById("rank");
     const summaryEl = document.getElementById("summary");
+    const rankListEl = document.getElementById("rank-list");
     const certificateEl = document.getElementById("certificate");
     const retryBtn = document.getElementById("retry-btn");
     const downloadBtn = document.getElementById("download-btn");
     const shareBtn = document.getElementById("share-btn");
-    const commentInfo = document.getElementById("comment-info");
-    const copyBtn = document.getElementById("copy-btn");
-    const reviewList = document.getElementById("review-list");
 
+    function loadRanks() {
+      const raw = localStorage.getItem("op-ranks");
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function renderRanks(ranks) {
+      rankListEl.innerHTML = "";
+      if (ranks.length === 0) {
+        rankListEl.innerHTML = "<div class=\"rank-item\">아직 기록이 없습니다. 첫 번째 덕후가 되어보세요!</div>";
+        return;
+      }
+      ranks.forEach((entry, idx) => {
+        const item = document.createElement("div");
+        item.className = "rank-item";
+        item.innerHTML = `<strong>#${idx + 1}</strong> ${entry.name} <span>${entry.score}점</span>`;
+        rankListEl.appendChild(item);
+      });
+    }
 
     function loadResult() {
       const raw = localStorage.getItem("op-last-result");
@@ -267,29 +280,10 @@
     }
 
     function getRank(score) {
-      if (score <= 30) return "원피스 입문자 (이스트 블루 시민)";
-      if (score <= 70) return "현상금 사냥꾼 (위대한 항로 해적)";
-      if (score <= 90) return "최악의 세대 (신세계의 루키)";
-      return "전설의 해적 (해적왕의 동료)";
-    }
-
-    function renderReview(review) {
-      reviewList.innerHTML = "";
-      const wrong = review.filter((item) => item.selectedIndex !== item.answerIndex);
-      if (wrong.length === 0) {
-        reviewList.innerHTML = "<p>오답이 없습니다. 완벽합니다!</p>";
-        return;
-      }
-      wrong.forEach((item, idx) => {
-        const row = document.createElement("div");
-        row.style.marginBottom = "12px";
-        row.innerHTML = `
-          <strong>Q${idx + 1}. ${item.question}</strong><br />
-          당신의 답: ${item.selectedIndex === null ? "미응답" : item.options[item.selectedIndex]}<br />
-          정답: ${item.options[item.answerIndex]}
-        `;
-        reviewList.appendChild(row);
-      });
+      if (score <= 30) return "이스트 블루 시민";
+      if (score <= 70) return "위대한 항로 해적";
+      if (score <= 90) return "최악의 세대";
+      return "해적왕의 동료";
     }
 
     async function downloadCertificate() {
@@ -330,18 +324,6 @@
       shareCertificate();
     });
 
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(commentInfo.textContent);
-        copyBtn.textContent = "복사됨";
-        setTimeout(() => {
-          copyBtn.textContent = "복사하기";
-        }, 1200);
-      } catch (err) {
-        alert("복사에 실패했어요. 수동으로 복사해주세요.");
-      }
-    });
-
     window.addEventListener("load", () => {
       const result = loadResult();
       if (!result) {
@@ -353,10 +335,7 @@
       scoreEl.textContent = `${result.score}점`;
       rankEl.textContent = `칭호: ${getRank(result.score)}`;
       summaryEl.textContent = `${result.totalCount}문제 중 ${result.correct}개 정답! (${result.rawPoints}/${result.totalPoints}점) 다시 도전해서 100점에 도전해보자.`;
-      commentInfo.textContent = `${result.player} ${String(result.score).padStart(2, "0")}점`;
-      if (Array.isArray(result.review)) {
-        renderReview(result.review);
-      }
+      renderRanks(loadRanks());
     });
   </script>
   <script>
