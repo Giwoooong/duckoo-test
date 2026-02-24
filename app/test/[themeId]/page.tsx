@@ -1,9 +1,6 @@
 import { notFound } from "next/navigation";
 import TestClient from "./TestClient";
 import { getTheme } from "@/lib/tests/registry";
-
-export const runtime = 'edge';
-
 export default async function TestPage({ params }: { params: Promise<{ themeId: string }> }) {
   const { themeId } = await params;
   const theme = getTheme(themeId);
