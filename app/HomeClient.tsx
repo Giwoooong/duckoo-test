@@ -117,27 +117,27 @@ export default function HomeClient() {
         </section>
 
         {/* SEO & Informational Content Section for AdSense */}
-        <section className="seo-info-section" style={{ marginTop: '64px', marginBottom: '32px', textAlign: 'left', background: 'rgba(255, 255, 255, 0.4)', padding: '40px', borderRadius: '24px', border: '1px solid var(--border-color)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-          <h2 style={{ fontSize: '28px', marginBottom: '24px', color: 'var(--text-color)', fontWeight: 800 }}>덕후테스트란 무엇인가요?</h2>
-          <p style={{ fontSize: '16px', lineHeight: 1.8, color: 'var(--secondary-text-color)', marginBottom: '32px' }}>
+        <section className="seo-info-section">
+          <h2 className="seo-info-title">덕후테스트란 무엇인가요?</h2>
+          <p className="seo-info-desc">
             덕후테스트(DUCKOO TEST)는 자신이 열광하는 애니메이션, 영화, K-POP, 게임 등 다양한 서브컬처 작품에 대한 지식과 애정을 수치화하여 확인할 수 있는 <strong>프리미엄 팬덤 퀴즈 플랫폼</strong>입니다. 단순한 심심풀이 테스트를 넘어, 마니아층의 니즈를 충족시키는 고난도의 심층적인 문항들을 제공합니다.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', marginTop: '16px' }}>
-            <div>
-              <Search size={28} color="var(--primary-color)" style={{ marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', fontWeight: 700 }}>정교한 문항 설계</h3>
-              <p style={{ fontSize: '15px', color: 'var(--secondary-text-color)', lineHeight: 1.6 }}>작품의 세계관, 숨겨진 설정(이스터에그), 캐릭터의 대사 등 찐팬들만 알 수 있는 디테일한 문제로 구성됩니다.</p>
+          <div className="seo-grid">
+            <div className="seo-grid-item">
+              <Search size={28} color="var(--primary-color)" className="seo-grid-item-icon" />
+              <h3>정교한 문항 설계</h3>
+              <p>작품의 세계관, 숨겨진 설정(이스터에그), 캐릭터의 대사 등 찐팬들만 알 수 있는 디테일한 문제로 구성됩니다.</p>
             </div>
-            <div>
-              <Award size={28} color="#8b5cf6" style={{ marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', fontWeight: 700 }}>나만의 공식 인증서</h3>
-              <p style={{ fontSize: '15px', color: 'var(--secondary-text-color)', lineHeight: 1.6 }}>모든 관문을 통과하면 최종 점수와 등급이 각인된 세련된 디자인의 공식 마스터 인증서를 발급해 드립니다.</p>
+            <div className="seo-grid-item">
+              <Award size={28} color="#8b5cf6" className="seo-grid-item-icon" />
+              <h3>나만의 공식 인증서</h3>
+              <p>모든 관문을 통과하면 최종 점수와 등급이 각인된 세련된 디자인의 공식 마스터 인증서를 발급해 드립니다.</p>
             </div>
-            <div>
-              <Share2 size={28} color="#0ea5e9" style={{ marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '18px', marginBottom: '12px', fontWeight: 700 }}>쉬운 캡처 및 공유</h3>
-              <p style={{ fontSize: '15px', color: 'var(--secondary-text-color)', lineHeight: 1.6 }}>결과 이미지를 카카오톡, 인스타그램, X(트위터) 등 소셜 미디어와 팬 커뮤니티에 간편하게 공유하고 덕력을 인증하세요.</p>
+            <div className="seo-grid-item">
+              <Share2 size={28} color="#0ea5e9" className="seo-grid-item-icon" />
+              <h3>쉬운 캡처 및 공유</h3>
+              <p>결과 이미지를 카카오톡, 인스타그램, X(트위터) 등 소셜 미디어와 팬 커뮤니티에 간편하게 공유하고 덕력을 인증하세요.</p>
             </div>
           </div>
         </section>
