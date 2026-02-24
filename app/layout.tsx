@@ -5,7 +5,10 @@ import Header from "./Header"; // Import the Header component
 
 export const metadata: Metadata = {
   title: "덕후테스트",
-  description: "최애 작품 덕력을 증명하세요!" // Updated description for modern theme
+  description: "최애 작품 덕력을 증명하세요!", // Updated description for modern theme
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
