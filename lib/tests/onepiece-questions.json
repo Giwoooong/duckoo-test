@@ -1,0 +1,782 @@
+[
+  {
+    "id": 1,
+    "question": "루피의 고향 마을 이름은?",
+    "options": [
+      "후샤 마을",
+      "시모츠키 마을",
+      "코코야시 마을",
+      "로그 타운"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 2,
+    "question": "조로가 사용하는 검의 개수는?",
+    "options": [
+      "1개",
+      "2개",
+      "3개",
+      "4개"
+    ],
+    "answerIndex": 2,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 3,
+    "question": "나미의 왼쪽 어깨 문신은 무엇과 무엇을 합친 모양인가?",
+    "options": [
+      "귤과 바람개비",
+      "귤과 검",
+      "바람개비와 별",
+      "귤과 해골"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 4,
+    "question": "우솝의 아버지는 누구인가?",
+    "options": [
+      "야솝",
+      "벤 베크만",
+      "럭키 루",
+      "샹크스"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 5,
+    "question": "상디의 직업은?",
+    "options": [
+      "항해사",
+      "요리사",
+      "의사",
+      "목수"
+    ],
+    "answerIndex": 1,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 6,
+    "question": "쵸파는 어떤 동물인가?",
+    "options": [
+      "순록",
+      "여우",
+      "곰",
+      "사슴벌레"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 7,
+    "question": "로빈의 악마의 열매 이름은?",
+    "options": [
+      "꽃꽃 열매",
+      "실실 열매",
+      "오페오페 열매",
+      "무무 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 8,
+    "question": "프랑키의 몸을 움직이는 에너지는?",
+    "options": [
+      "콜라",
+      "전기",
+      "석탄",
+      "증기"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 9,
+    "question": "브룩의 악마의 열매 능력은?",
+    "options": [
+      "부활부활 열매",
+      "뼈뼈 열매",
+      "음음 열매",
+      "영혼영혼 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 10,
+    "question": "징베는 어떤 어인인가?",
+    "options": [
+      "상어 어인",
+      "고래상어 어인",
+      "가오리 어인",
+      "문어 어인"
+    ],
+    "answerIndex": 1,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 11,
+    "question": "루피의 의형제 에이스의 열매는?",
+    "options": [
+      "이글이글 열매",
+      "모래모래 열매",
+      "번개번개 열매",
+      "얼음얼음 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 12,
+    "question": "해군 본부 최고의 계급은?",
+    "options": [
+      "대장",
+      "중장",
+      "원수",
+      "대원"
+    ],
+    "answerIndex": 2,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 13,
+    "question": "루피의 배 '사우전드 써니호' 앞부분 장식 동물은?",
+    "options": [
+      "사자",
+      "용",
+      "고래",
+      "독수리"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 14,
+    "question": "'알라바스타' 왕국의 공주 이름은?",
+    "options": [
+      "비비",
+      "레베카",
+      "시라호시",
+      "코알라"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 15,
+    "question": "샹크스가 루피에게 맡긴 물건은?",
+    "options": [
+      "밀짚모자",
+      "검",
+      "지도",
+      "팔찌"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 16,
+    "question": "루피의 할아버지 가프의 직업은?",
+    "options": [
+      "해군",
+      "해적",
+      "혁명군",
+      "왕"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 17,
+    "question": "세계 제일의 검객은?",
+    "options": [
+      "쥬라큘 미호크",
+      "샹크스",
+      "레일리",
+      "비스타"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 18,
+    "question": "루피가 처음으로 현상금이 붙었을 때 금액은?",
+    "options": [
+      "3,000만 베리",
+      "1억 베리",
+      "5,000만 베리",
+      "2,000만 베리"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 19,
+    "question": "버기가 먹은 열매 이름은?",
+    "options": [
+      "동강동강 열매",
+      "고무고무 열매",
+      "폭폭 열매",
+      "뿔뿔 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 20,
+    "question": "상디가 일하던 해상 레스토랑의 이름은?",
+    "options": [
+      "발라티에",
+      "코코야시",
+      "오하라",
+      "아르바나"
+    ],
+    "answerIndex": 0,
+    "difficulty": "하",
+    "points": 4
+  },
+  {
+    "id": 21,
+    "question": "기어 4 '스네이크맨'의 필살기 중 하나는?",
+    "options": [
+      "킹 코브라",
+      "코끼리총",
+      "레드호크",
+      "엘리펀트 갤링"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 22,
+    "question": "조로가 슈스이를 돌려주고 와노쿠니에서 받은 검은?",
+    "options": [
+      "엔마",
+      "화도일문자",
+      "슈스이",
+      "산다이 키테츠"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 23,
+    "question": "상디의 형제 중 맏딸의 이름은?",
+    "options": [
+      "레이쥬",
+      "이치지",
+      "니지",
+      "욘지"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 24,
+    "question": "로빈의 고향 오하라를 멸망시킨 공격 명칭은?",
+    "options": [
+      "버스터 콜",
+      "골든 콜",
+      "저스티스 콜",
+      "블랙 콜"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 25,
+    "question": "트라팔가 로우의 하트 해적단 잠수함 이름은?",
+    "options": [
+      "폴라 탕 호",
+      "옐로 서브 호",
+      "오로 잭슨 호",
+      "빅 마마 샹티 호"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 26,
+    "question": "하늘섬 에넬이 다스리던 곳의 이름은?",
+    "options": [
+      "어퍼 야드",
+      "스카이피아",
+      "엔젤 비치",
+      "빌카"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 27,
+    "question": "루피의 현상금이 처음으로 1억을 넘었을 때 쓰러뜨린 칠무해는?",
+    "options": [
+      "크로커다일",
+      "모리아",
+      "도플라밍고",
+      "쿠마"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 28,
+    "question": "흰 수염 해적단의 1번대 대장은?",
+    "options": [
+      "마르코",
+      "죠즈",
+      "비스타",
+      "에이스"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 29,
+    "question": "바르톨로뮤 쿠마의 별명은?",
+    "options": [
+      "폭군",
+      "성자",
+      "거인",
+      "마왕"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 30,
+    "question": "칠무해 중 '여제'라 불리는 인물은?",
+    "options": [
+      "보아 핸콕",
+      "빅 맘",
+      "카리브",
+      "슈가"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 31,
+    "question": "돈키호테 도플라밍고의 열매 이름은?",
+    "options": [
+      "실실 열매",
+      "독독 열매",
+      "바람바람 열매",
+      "새새 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 32,
+    "question": "사보가 먹은 열매는?",
+    "options": [
+      "이글이글 열매",
+      "번개번개 열매",
+      "용용 열매",
+      "불불 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 33,
+    "question": "어인섬 편에서 루피가 패왕색으로 쓰러뜨린 인원수는?",
+    "options": [
+      "5천 명",
+      "5만 명",
+      "50만 명",
+      "500만 명"
+    ],
+    "answerIndex": 1,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 34,
+    "question": "베가펑크가 만든 인간병기의 이름은?",
+    "options": [
+      "파시피스타",
+      "세라핌",
+      "사이퍼",
+      "제르마"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 35,
+    "question": "골 D. 로저의 배 이름은?",
+    "options": [
+      "오로 잭슨 호",
+      "모비딕 호",
+      "레드 포스 호",
+      "써니호"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 36,
+    "question": "로저의 오른팔이라 불리는 인물은?",
+    "options": [
+      "실버즈 레일리",
+      "가프",
+      "센고쿠",
+      "미호크"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 37,
+    "question": "검은 수염 티치의 열매 2가지는?",
+    "options": [
+      "어둠어둠 + 흔들흔들",
+      "불불 + 얼음얼음",
+      "모래모래 + 번개번개",
+      "고무고무 + 불불"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 38,
+    "question": "카이도의 딸(아들 자처) 이름은?",
+    "options": [
+      "야마토",
+      "울티",
+      "블랙 마리아",
+      "페이지 원"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 39,
+    "question": "정상결전 당시 루피를 도운 임펠다운의 전 서장은?",
+    "options": [
+      "마젤란",
+      "한냐발",
+      "시류",
+      "이완코프"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 40,
+    "question": "루피 일행이 샤본디 제도에서 흩어진 뒤 루피가 간 섬은?",
+    "options": [
+      "아마존 릴리",
+      "루루시아",
+      "알라바스타",
+      "워터 세븐"
+    ],
+    "answerIndex": 0,
+    "difficulty": "중",
+    "points": 5
+  },
+  {
+    "id": 41,
+    "question": "코시로의 아버지가 만든 검 두 자루는?",
+    "options": [
+      "화도일문자, 엔마",
+      "화도일문자, 슈스이",
+      "엔마, 키테츠",
+      "슈스이, 키테츠"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 42,
+    "question": "세계정부의 정점에 있는 '임'의 전체 성함/칭호는?",
+    "options": [
+      "네로나 임",
+      "돈키호테 임",
+      "포트거스 임",
+      "고르곤 임"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 43,
+    "question": "베가펑크의 분신(새틀라이트) 중 '정(正)'을 담당하는 인물은?",
+    "options": [
+      "샤카",
+      "릴리스",
+      "요크",
+      "에디슨"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 44,
+    "question": "로우의 본명 중 숨겨진 이름은?",
+    "options": [
+      "트라팔가 D. 워텔 로",
+      "트라팔가 D. 워터 로",
+      "트라팔가 워텔 D. 로",
+      "워텔 D. 트라팔가"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 45,
+    "question": "골 D. 로저의 처형지 로그타운의 별명은?",
+    "options": [
+      "시작과 끝의 마을",
+      "해적의 마을",
+      "정의의 마을",
+      "폭풍의 마을"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 46,
+    "question": "빅 맘이 어릴 적 겪은 식탐앓이 사건의 장소는?",
+    "options": [
+      "엘바프",
+      "토트랜드",
+      "와노쿠니",
+      "오하라"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 47,
+    "question": "카이도가 먹은 열매의 정확한 명칭은?",
+    "options": [
+      "물고기물고기 열매 모델 청룡",
+      "용용 열매 모델 청룡",
+      "동물동물 열매 모델 청룡",
+      "환수환수 열매 모델 용"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 48,
+    "question": "오로성 중 법무무신을 담당하는 인물의 이름은?",
+    "options": [
+      "토프먼 워큐리 성",
+      "마커스 마스 성",
+      "에단바론 V. 나스쥬로 성",
+      "셰퍼드 주 피터 성"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 49,
+    "question": "혁명군 4군대장 중 동쪽 군대장의 이름은?",
+    "options": [
+      "벨로 베티",
+      "카라스",
+      "린드버그",
+      "모리"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 50,
+    "question": "기어 5 상태 '니카'의 웃음소리 의성어는?",
+    "options": [
+      "니카!",
+      "하하!",
+      "시시시!",
+      "고무!"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 51,
+    "question": "쿠마가 딸 보니에게 보여주고 싶어 했던 '태양신'의 이름은?",
+    "options": [
+      "니카",
+      "조이보이",
+      "루나",
+      "태양왕"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 52,
+    "question": "오뎅이 로저의 배로 옮긴 이유는?",
+    "options": [
+      "포네그리프를 읽기 위해",
+      "최강과 싸우기 위해",
+      "보물을 찾기 위해",
+      "세계일주를 위해"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 53,
+    "question": "샹크스가 이끄는 해적단의 이름은?",
+    "options": [
+      "빨간 머리 해적단",
+      "검은 수염 해적단",
+      "흰 수염 해적단",
+      "키드 해적단"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 54,
+    "question": "거인족의 영웅이자 루피와 친한 두 거인 선장은?",
+    "options": [
+      "도리, 브로기",
+      "오이모, 카시",
+      "하이루딘, 골드바그",
+      "산후안, 울프"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 55,
+    "question": "조로가 아수라를 사용할 때 나타나는 형상은 팔이 몇 개인가?",
+    "options": [
+      "4개",
+      "6개",
+      "8개",
+      "9개"
+    ],
+    "answerIndex": 1,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 56,
+    "question": "쵸파가 먹은 사람사람 열매의 일반인 형태는?",
+    "options": [
+      "워크 포인트",
+      "헤비 포인트",
+      "브레인 포인트",
+      "가드 포인트"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 57,
+    "question": "루피의 현상금이 '사황' 등극 시 얼마가 되었나?",
+    "options": [
+      "30억 베리",
+      "15억 베리",
+      "40억 베리",
+      "5억 베리"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 58,
+    "question": "드레스 로자의 비극을 만든 '설탕'의 열매 이름은?",
+    "options": [
+      "하비하비 열매",
+      "사탕사탕 열매",
+      "장난감장난감 열매",
+      "기억기억 열매"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 59,
+    "question": "코즈키 오뎅의 아내 이름은?",
+    "options": [
+      "코즈키 토키",
+      "코즈키 히요리",
+      "코즈키 루피",
+      "아마츠키 토키"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  },
+  {
+    "id": 60,
+    "question": "원피스 마지막 섬 '라프텔'의 영어 철자는?",
+    "options": [
+      "Laugh Tale",
+      "Raftel",
+      "Laugh Tail",
+      "Rough Tale"
+    ],
+    "answerIndex": 0,
+    "difficulty": "상",
+    "points": 7
+  }
+]
