@@ -53,7 +53,10 @@ export default function HomeClient() {
 
                 <div className="card-expanded-content">
                   <p className="accordion-description">
-                    루피와 함께 위대한 항로를 개척할 준비가 되셨나요? 세계관, 인물, 스토리를 심층 검증합니다.
+                    루피와 함께 위대한 항로를 개척할 준비가 되셨나요? 세계관, 인물, 스토리를 심층 검증합니다.<br />
+                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', display: 'block', marginTop: '8px' }}>
+                      * 방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
                   </p>
                   <div className="input-group" onClick={(e) => e.stopPropagation()}>
                     <input
@@ -94,7 +97,10 @@ export default function HomeClient() {
 
                 <div className="card-expanded-content">
                   <p className="accordion-description">
-                    소환사의 협곡에서 펼쳐지는 당신의 지식! 챔피언, 세계관, 게임 메커니즘을 마스터했나요?
+                    소환사의 협곡에서 펼쳐지는 당신의 지식! 챔피언, 세계관, 게임 메커니즘을 마스터했나요?<br />
+                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', display: 'block', marginTop: '8px' }}>
+                      * 방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
                   </p>
                   <div className="input-group" onClick={(e) => e.stopPropagation()}>
                     <input
@@ -126,8 +132,9 @@ export default function HomeClient() {
           <div className="seo-grid">
             <div className="seo-grid-item">
               <Search size={28} color="var(--primary-color)" className="seo-grid-item-icon" />
-              <h3>정교한 문항 설계</h3>
-              <p>작품의 세계관, 숨겨진 설정(이스터에그), 캐릭터의 대사 등 찐팬들만 알 수 있는 디테일한 문제로 구성됩니다.</p>
+              <h3 style={{ fontSize: '18px', marginBottom: '12px', fontWeight: 700 }}>정교한 문항 설계</h3>
+              <p style={{ fontSize: '15px', color: 'var(--secondary-text-color)', lineHeight: 1.6 }}>작품의 세계관, 숨겨진 설정(이스터에그), 캐릭터의 대사 등 찐팬들만 알 수 있는 디테일한 문제로 구성됩니다.</p>
+              <p style={{ fontSize: '14px', color: 'var(--primary-color)', marginTop: '8px', fontWeight: 600 }}>* 매번 20문제가 랜덤 출제되며 난이도별 차등 배점 적용</p>
             </div>
             <div className="seo-grid-item">
               <Award size={28} color="#8b5cf6" className="seo-grid-item-icon" />
