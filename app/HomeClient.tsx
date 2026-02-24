@@ -53,11 +53,14 @@ export default function HomeClient() {
 
                 <div className="card-expanded-content">
                   <p className="accordion-description">
-                    루피와 함께 위대한 항로를 개척할 준비가 되셨나요? 세계관, 인물, 스토리를 심층 검증합니다.<br />
-                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', display: 'block', marginTop: '8px' }}>
-                      * 방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
-                    </span>
+                    루피와 함께 위대한 항로를 개척할 준비가 되셨나요? 세계관, 인물, 스토리를 심층 검증합니다.
                   </p>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', padding: '12px 16px', background: 'rgba(241, 245, 249, 0.7)', borderRadius: '12px', marginBottom: '20px', borderLeft: '4px solid var(--primary-color)' }}>
+                    <span style={{ fontSize: '16px', marginTop: '2px' }}>💡</span>
+                    <span style={{ fontSize: '14px', color: 'var(--text-color)', lineHeight: '1.6' }}>
+                      방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
+                  </div>
                   <div className="input-group" onClick={(e) => e.stopPropagation()}>
                     <input
                       id="nickname"
@@ -97,11 +100,14 @@ export default function HomeClient() {
 
                 <div className="card-expanded-content">
                   <p className="accordion-description">
-                    소환사의 협곡에서 펼쳐지는 당신의 지식! 챔피언, 세계관, 게임 메커니즘을 마스터했나요?<br />
-                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', display: 'block', marginTop: '8px' }}>
-                      * 방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
-                    </span>
+                    소환사의 협곡에서 펼쳐지는 당신의 지식! 챔피언, 세계관, 게임 메커니즘을 마스터했나요?
                   </p>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', padding: '12px 16px', background: 'rgba(241, 245, 249, 0.7)', borderRadius: '12px', marginBottom: '20px', borderLeft: '4px solid var(--primary-color)' }}>
+                    <span style={{ fontSize: '16px', marginTop: '2px' }}>💡</span>
+                    <span style={{ fontSize: '14px', color: 'var(--text-color)', lineHeight: '1.6' }}>
+                      방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
+                  </div>
                   <div className="input-group" onClick={(e) => e.stopPropagation()}>
                     <input
                       id="nickname-lol"
