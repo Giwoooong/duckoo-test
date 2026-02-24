@@ -7,10 +7,7 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "build-cloudflare": "node build-cloudflare.js"
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
@@ -21,7 +18,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.17.1",
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

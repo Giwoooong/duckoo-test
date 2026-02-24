@@ -42,7 +42,7 @@
       ],
       "dest": "/index.rsc",
       "headers": {
-        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+        "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
       },
       "continue": true,
       "override": true
@@ -58,7 +58,7 @@
       ],
       "dest": "/$1.rsc",
       "headers": {
-        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+        "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
       },
       "continue": true,
       "override": true
@@ -135,7 +135,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|A3rTyQDnwy66anwghb1gT)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|YxDcKQaG\\-kVmYFv9KIUxW)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -164,18 +164,12 @@
     {
       "src": "/.*",
       "dest": "/404",
-      "status": 404,
-      "headers": {
-        "x-next-error-status": "404"
-      }
+      "status": 404
     },
     {
       "src": "/.*",
       "dest": "/500",
-      "status": 500,
-      "headers": {
-        "x-next-error-status": "500"
-      }
+      "status": 500
     }
   ],
   "images": {
@@ -216,12 +210,12 @@
       "path": "500",
       "contentType": "text/html; charset=utf-8"
     },
-    "_app.rsc.json": {
-      "path": "_app.rsc",
-      "contentType": "application/json"
-    },
     "_error.rsc.json": {
       "path": "_error.rsc",
+      "contentType": "application/json"
+    },
+    "_app.rsc.json": {
+      "path": "_app.rsc",
       "contentType": "application/json"
     },
     "_document.rsc.json": {
@@ -237,7 +231,7 @@
     }
   },
   "framework": {
-    "version": "15.5.12"
+    "version": "15.4.11"
   },
   "crons": []
 }
