@@ -92,7 +92,7 @@ a:hover {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   font-size: 24px;
   font-weight: 800;
   color: var(--text-color);
@@ -103,9 +103,9 @@ a:hover {
   text-decoration: none;
 }
 
-.brand-logo {
-  border-radius: 8px;
-  object-fit: contain;
+.brand-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
 }
 
 .brand-text {
@@ -270,6 +270,8 @@ p {
   letter-spacing: 0.05em;
   margin-bottom: 16px;
   box-shadow: 0 4px 10px rgba(225, 29, 72, 0.2);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Content Pages (About, Privacy, Terms) */
@@ -628,8 +630,8 @@ p {
 
 .accordion-card.expanded .card-header {
   background: transparent;
-  /* Remove gradient */
   padding: 32px 32px 16px 32px;
+  flex-wrap: wrap;
 }
 
 .accordion-card.expanded .accordion-title {

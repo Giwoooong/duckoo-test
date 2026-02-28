@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from 'next/navigation';
-import { MessageCircle, Twitter, Link as LinkIcon } from 'lucide-react';
+import { MessageCircle, Twitter, Link as LinkIcon, ClipboardCheck } from 'lucide-react';
 import { useToast } from './Toast';
 
 const SITE_URL = "https://duckootest.pages.dev";
@@ -65,7 +64,7 @@ export default function Header() {
   return (
     <header className="topbar glass-header">
       <Link href="/" className="brand">
-        <Image src="/logo.png" alt="덕후테스트 로고" width={40} height={40} className="brand-logo" />
+        <ClipboardCheck size={28} className="brand-icon" />
         <span className="brand-text">덕후테스트</span>
       </Link>
       <nav className="navLinks">
