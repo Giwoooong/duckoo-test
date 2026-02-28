@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Swords, Wand2, Gamepad2, Play, Flame, Search, Award, Share2, Asterisk, Clapperboard } from 'lucide-react';
+import { Swords, Wand2, Gamepad2, Play, Flame, Search, Award, Share2, Asterisk, Clapperboard, Shield } from 'lucide-react';
 
 const STORAGE = {
   name: "duckoo-player-name"
@@ -119,6 +119,53 @@ export default function HomeClient() {
                   </div>
 
                   <button className="startButton lol-btn" type="button" onClick={(e) => { e.stopPropagation(); startTest("lol"); }}>
+                    <Play size={18} className="icon-left" />
+                    테스트 바로 시작
+                  </button>
+                </div>
+              </>
+            )}
+          </article>
+
+          {/* Fullmetal Alchemist Test Card */}
+          <article
+            className={`themeCard highlighted-card accordion-card fma-card ${activeTheme === 'fma' ? 'expanded' : ''}`}
+            onClick={() => setActiveTheme(activeTheme === 'fma' ? null : 'fma')}
+            style={{ "--primary-color": "#b91c1c" } as React.CSSProperties}
+          >
+            {activeTheme !== 'fma' ? (
+              <>
+                <Play size={18} className="icon-left" />
+                강철의 연금술사 테스트
+              </>
+            ) : (
+              <>
+                <div className="card-header fma-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #b91c1c, #991b1b)' }}><Shield size={12} className="icon-left" />NEW</span>
+                  <h2 className="accordion-title">강철의 연금술사 테스트</h2>
+                </div>
+
+                <div className="card-expanded-content">
+                  <p className="accordion-description">
+                    등가교환의 법칙을 넘어선 진정한 연금술 마니아인가요? 캐릭터, 스토리, 세계관을 완벽히 검증합니다.
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', padding: '12px 16px', background: 'rgba(241, 245, 249, 0.7)', borderRadius: '12px', marginBottom: '20px', borderLeft: '4px solid var(--primary-color)' }}>
+                    <span style={{ fontSize: '16px', marginTop: '2px' }}>💡</span>
+                    <span style={{ fontSize: '14px', color: 'var(--text-color)', lineHeight: '1.6' }}>
+                      방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
+                  </div>
+                  <div className="input-group" onClick={(e) => e.stopPropagation()}>
+                    <input
+                      id="nickname-fma"
+                      className="nicknameInput"
+                      placeholder="인증서 닉네임 입력 (예: 강철의 연금술사)"
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+
+                  <button className="startButton fma-btn" type="button" onClick={(e) => { e.stopPropagation(); startTest("fma"); }}>
                     <Play size={18} className="icon-left" />
                     테스트 바로 시작
                   </button>

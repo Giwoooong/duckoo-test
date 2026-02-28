@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Download, MessageCircle, Instagram, Twitter, Share2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
+import { useToast } from '../Toast';
+
+const SITE_URL = "https://duckootest.pages.dev";
 
 interface ReviewItem {
   question: string;
@@ -39,6 +42,13 @@ function getRank(score: number, themeId: string): string {
     return "챌린저";
   }
 
+  if (themeId === "fma") {
+    if (score <= 30) return "연금술 입문생";
+    if (score <= 60) return "은시계의 연금술사";
+    if (score <= 85) return "국가 연금술사";
+    return "진리를 본 자";
+  }
+
   // Default (One Piece)
   if (score <= 30) return "입문 항해사";
   if (score <= 60) return "위대한 항로 루키";
@@ -52,6 +62,7 @@ export default function ResultClient() {
   const searchParams = useSearchParams();
   const themeId = searchParams.get("theme") ?? "onepiece";
   const certificateRef = useRef<HTMLDivElement>(null);
+  const { showToast } = useToast();
 
   useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -77,20 +88,21 @@ export default function ResultClient() {
     return result.review.filter((item) => item.selectedIndex !== item.answerIndex);
   }, [result]);
 
-  const shareText = result ? `[${result.themeName}] ${result.player} 님은 ${result.score}점 (${getRank(result.score, result.themeId)}) 달성!\n\n내 덕력 확인하기: ${window.location.href}` : "";
+  const shareUrl = `${SITE_URL}/result?theme=${themeId}`;
+  const shareText = result ? `[${result.themeName}] ${result.player} 님은 ${result.score}점 (${getRank(result.score, result.themeId)}) 달성!` : "";
   const shareTitle = "덕후테스트 결과";
+  const shareDescription = result ? `${result.totalCount}문제 중 ${result.correct}개 정답! 나도 도전하기 →` : "";
 
   const handleDownloadImage = async () => {
     if (!certificateRef.current) return;
 
     try {
-      // Temporarily add a class for specific download styling if needed
       certificateRef.current.classList.add('downloading');
 
       const canvas = await html2canvas(certificateRef.current, {
-        scale: 2, // Higher resolution
+        scale: 2,
         useCORS: true,
-        backgroundColor: '#ffffff', // Ensure background is solid for download
+        backgroundColor: '#ffffff',
       });
 
       certificateRef.current.classList.remove('downloading');
@@ -112,29 +124,60 @@ export default function ResultClient() {
         await navigator.share({
           title: shareTitle,
           text: shareText,
-          url: window.location.href,
+          url: shareUrl,
         });
-        console.log("공유 성공!");
-      } catch (error) {
-        console.error("공유 실패:", error);
+      } catch {
+        // User cancelled share
       }
     } else {
-      navigator.clipboard.writeText(`${shareText}`);
-      window.alert("링크와 텍스트가 클립보드에 복사되었습니다.");
+      try {
+        await navigator.clipboard.writeText(`${shareText}\n\n${shareUrl}`);
+        showToast("✅ 결과가 클립보드에 복사되었습니다!");
+      } catch {
+        showToast("복사에 실패했습니다.");
+      }
     }
   };
 
   const handleKakaoShare = () => {
-    window.alert("카카오톡 공유 API 통합이 필요합니다 (현재는 링크를 복사하여 공유해주세요).");
+    if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized() && result) {
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
+          description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
+          imageUrl: `${SITE_URL}/logo.png`,
+          link: {
+            mobileWebUrl: `${SITE_URL}`,
+            webUrl: `${SITE_URL}`,
+          },
+        },
+        buttons: [
+          {
+            title: '나도 덕력 테스트 하기',
+            link: {
+              mobileWebUrl: `${SITE_URL}`,
+              webUrl: `${SITE_URL}`,
+            },
+          },
+        ],
+      });
+    } else {
+      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+    }
   };
 
   const handleInstagramShare = () => {
-    // IG doesn't have a direct share link. Usually, users download the image and upload.
-    window.alert("인스타그램 공유를 위해서는 '인증서 저장' 버튼을 눌러 이미지를 저장한 후 업로드 해주세요.");
+    showToast("📸 인증서를 저장한 후 인스타그램에 업로드해주세요!");
   };
 
   const handleTwitterShare = () => {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, '_blank');
+    const text = `${shareText}\n나도 도전하기 →`;
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(`${SITE_URL}`)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   if (!loaded) return null;

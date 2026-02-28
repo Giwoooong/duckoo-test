@@ -1,49 +1,82 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from 'next/navigation';
-import { MessageCircle, Twitter, Link as LinkIcon, Sparkles } from 'lucide-react';
+import { MessageCircle, Twitter, Link as LinkIcon } from 'lucide-react';
+import { useToast } from './Toast';
+
+const SITE_URL = "https://duckootest.pages.dev";
 
 export default function Header() {
   const pathname = usePathname();
+  const { showToast } = useToast();
 
-  const shareTitle = "덕후테스트";
-  // For global share, the URL might need to be the homepage or the current page
-  // Let's make it the current page for now, as it's more dynamic.
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://duckootest.com'; // Fallback URL
+  const shareTitle = "덕후테스트 - 최애 작품 덕력을 증명하세요!";
+  const shareDescription = "애니, 영화, 게임 등 다양한 분야의 진정한 덕후를 가려냅니다. 당신의 덕력을 뽐내보세요.";
+  const shareUrl = `${SITE_URL}${pathname}`;
 
   const handleKakaoShare = () => {
-    alert("카카오톡 공유 기능은 구현 예정입니다.");
-    // TODO: Implement Kakao Share API
-    // Example: Kakao.Share.sendDefault({ objectType: 'feed', content: { title: shareTitle, imageUrl: '...', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } } });
+    if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized()) {
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: shareTitle,
+          description: shareDescription,
+          imageUrl: `${SITE_URL}/logo.png`,
+          link: {
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
+          },
+        },
+        buttons: [
+          {
+            title: '덕력 테스트 하기',
+            link: {
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
+            },
+          },
+        ],
+      });
+    } else {
+      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+    }
   };
 
   const handleTwitterShare = () => {
-    alert("트위터 공유 기능은 구현 예정입니다.");
-    // TODO: Implement Twitter Share API
-    // Example: window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+    const text = `${shareTitle}\n${shareDescription}`;
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(shareUrl);
-    alert("링크가 클립보드에 복사되었습니다.");
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      showToast("✅ 링크가 복사되었습니다!");
+    } catch {
+      showToast("링크 복사에 실패했습니다.");
+    }
   };
 
   return (
     <header className="topbar glass-header">
       <Link href="/" className="brand">
-        <Sparkles className="brand-icon" size={24} />
+        <Image src="/logo.png" alt="덕후테스트 로고" width={40} height={40} className="brand-logo" />
         <span className="brand-text">덕후테스트</span>
       </Link>
       <nav className="navLinks">
         <button className="iconButton kakao" onClick={handleKakaoShare} aria-label="카카오톡 공유">
-           <MessageCircle size={20} />
+          <MessageCircle size={22} />
         </button>
         <button className="iconButton x" onClick={handleTwitterShare} aria-label="X 공유">
-           <Twitter size={20} />
+          <Twitter size={22} />
         </button>
         <button className="iconButton copy-link" onClick={handleCopyLink} aria-label="링크 복사">
-           <LinkIcon size={20} />
+          <LinkIcon size={22} />
         </button>
       </nav>
     </header>
