@@ -42,13 +42,13 @@ export default function HomeClient() {
             {activeTheme !== 'onepiece' ? (
               <>
                 <Play size={18} className="icon-left" />
-                원피스 만렙 테스트
+                원피스 테스트
               </>
             ) : (
               <>
                 <div className="card-header onepiece-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <span className="chip" style={{ margin: 0, padding: '4px 8px' }}><Flame size={12} className="icon-left" />인기</span>
-                  <h2 className="accordion-title">원피스 만렙 테스트</h2>
+                  <h2 className="accordion-title">원피스 테스트</h2>
                 </div>
 
                 <div className="card-expanded-content">
