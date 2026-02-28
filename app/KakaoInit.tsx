@@ -11,7 +11,7 @@ declare global {
 export default function KakaoInit() {
     const handleLoad = () => {
         if (window.Kakao && !window.Kakao.isInitialized()) {
-            window.Kakao.init("2e75ee29ab8fbf9cdfb60a18a068adee");
+            window.Kakao.init("70df2653305d2ee08ca2393855f97e05");
         }
     };
 
