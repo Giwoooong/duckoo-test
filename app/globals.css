@@ -1314,6 +1314,27 @@ p {
     padding: 0 20px 24px 20px;
   }
 
+  .question {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .optionButton {
+    font-size: 15px;
+    padding: 14px 20px;
+    gap: 12px;
+  }
+
+  .optionButton span {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .wrong-q {
+    font-size: 17px;
+  }
+
   .certificate {
     padding: 24px 16px;
   }
