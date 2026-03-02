@@ -173,10 +173,13 @@ export default function ResultClient() {
               file: [file]
             });
 
-            // In Kakao API, the url is at infos[0].original.url
-            if (uploadRes && uploadRes.infos && uploadRes.infos.length > 0) {
-              imageUrl = uploadRes.infos[0].original.url;
+            // Kakao SDK returns different formats depending on version
+            if (uploadRes && uploadRes.infos && uploadRes.infos.original && uploadRes.infos.original.url) {
+              imageUrl = uploadRes.infos.original.url;
+            } else if (uploadRes && uploadRes.imageUrl) {
+              imageUrl = uploadRes.imageUrl;
             }
+            console.log('Kakao uploadImage response:', JSON.stringify(uploadRes));
           }
         } catch (uploadError) {
           console.warn("Kakao image upload failed, falling back to default image", uploadError);
@@ -264,7 +267,7 @@ export default function ResultClient() {
                 <div className="cert-body">
                   <div className="cert-info">
                     <span className="info-label">수여자</span>
-                    <strong className="info-value">{result.player}</strong>
+                    <span className="info-value">{result.player}</span>
                   </div>
 
                   <div className="cert-score-area">
