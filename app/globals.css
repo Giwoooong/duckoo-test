@@ -793,51 +793,68 @@ p {
   flex-direction: column;
   align-items: center;
   margin-bottom: 48px;
+  width: 100%;
 }
 
 /* 
- * FLUID RESPONSIVE CERTIFICATE
- * Base size is 600x400. On screens smaller than 600px, everything 
- * scales down using vw units (viewport width).
- * We use CSS variables to compute the fluid scale.
+ * Robust Landscape Certificate (600x400)
+ * On mobile, we use transform: scale() to fit the container width.
  */
-.landscape-cert {
-  --cert-width: min(100vw - 32px, 600px);
-  --cert-scale: calc(var(--cert-width) / 600);
+.landscape-cert-wrapper {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  /* Use JS or CSS to adjust height based on scale to avoid huge gaps */
+  height: auto;
+}
 
+.landscape-cert {
   background: white;
-  width: var(--cert-width);
-  height: calc(400px * var(--cert-scale));
+  width: 600px;
+  height: 400px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 calc(25px * var(--cert-scale)) calc(50px * var(--cert-scale)) calc(-12px * var(--cert-scale)) rgba(0, 0, 0, 0.25);
-  margin-bottom: calc(24px * var(--cert-scale));
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  transform-origin: top center;
+}
+
+/* Base mobile scaling when not downloading */
+@media (max-width: 640px) {
+  .landscape-cert {
+    transform: scale(calc((100vw - 40px) / 600));
+  }
+
+  .landscape-cert-wrapper {
+    /* Manually adjust wrapper height to match scaled height to avoid extra empty space */
+    height: calc(400px * ((100vw - 40px) / 600));
+  }
 }
 
 /* Ensure background renders cleanly when downloading via html2canvas */
 .landscape-cert.downloading {
   border-radius: 0;
   box-shadow: none;
-  /* Lock scale to exactly 1.0 (600x400) for exporting */
-  --cert-scale: 1;
-  width: 600px;
-  height: 400px;
+  transform: none !important;
 }
 
 .cert-inner {
-  padding: calc(16px * var(--cert-scale));
+  padding: 16px;
   width: 100%;
   height: 100%;
   background: #fdfbf7;
+  /* Ivory/Cream background */
 }
 
 .cert-border-inner {
-  border: calc(2px * var(--cert-scale)) solid var(--primary-color);
-  outline: calc(6px * var(--cert-scale)) solid var(--primary-color);
-  outline-offset: calc(-10px * var(--cert-scale));
+  border: 2px solid var(--primary-color);
+  outline: 6px solid var(--primary-color);
+  outline-offset: -10px;
   width: 100%;
   height: 100%;
-  padding: calc(24px * var(--cert-scale)) calc(32px * var(--cert-scale));
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -847,20 +864,20 @@ p {
 }
 
 .cert-header {
-  margin-bottom: calc(16px * var(--cert-scale));
+  margin-bottom: 12px;
 }
 
 .cert-subtitle {
-  font-size: calc(14px * var(--cert-scale));
+  font-size: 14px;
   font-weight: 600;
   color: #64748b;
-  margin-bottom: calc(8px * var(--cert-scale));
+  margin-bottom: 8px;
   letter-spacing: 0.15em;
 }
 
 .cert-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: calc(48px * var(--cert-scale));
+  font-size: 48px;
   font-weight: 900;
   color: var(--primary-color);
   letter-spacing: 0.12em;
@@ -870,26 +887,10 @@ p {
 
 .cert-eyebrow {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: calc(18px * var(--cert-scale));
+  font-size: 18px;
   color: #475569;
   letter-spacing: 0.2em;
-  margin-top: calc(4px * var(--cert-scale));
-}
-
-.watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-15deg);
-  font-size: calc(100px * var(--cert-scale));
-  font-weight: 900;
-  color: var(--primary-color);
-  opacity: 0.05;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 0;
-  letter-spacing: 0.05em;
-  font-family: 'Playfair Display', Georgia, serif;
+  margin-top: 4px;
 }
 
 .cert-body {
@@ -897,30 +898,28 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 calc(20px * var(--cert-scale));
-  position: relative;
-  z-index: 1;
+  padding: 0 20px;
 }
 
 .cert-recipient-area {
-  margin-bottom: calc(24px * var(--cert-scale));
+  margin-bottom: 20px;
+}
+
+.recipient-label {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 12px;
+  line-height: 1.5;
 }
 
 .recipient-name-box {
   display: inline-block;
-  border-bottom: calc(2px * var(--cert-scale)) solid var(--primary-color);
-  padding: 0 calc(40px * var(--cert-scale)) calc(12px * var(--cert-scale));
-  margin-bottom: calc(16px * var(--cert-scale));
-}
-
-.recipient-label {
-  font-size: calc(13px * var(--cert-scale));
-  color: #475569;
-  line-height: 1.5;
+  border-bottom: 1px solid var(--primary-color);
+  padding: 0 40px 8px;
 }
 
 .recipient-name {
-  font-size: calc(32px * var(--cert-scale));
+  font-size: 32px;
   font-weight: 800;
   color: var(--text-color);
   letter-spacing: 0.05em;
@@ -929,8 +928,8 @@ p {
 .cert-score-area {
   display: flex;
   justify-content: center;
-  gap: calc(32px * var(--cert-scale));
-  margin-top: calc(16px * var(--cert-scale));
+  gap: 32px;
+  margin-top: 16px;
 }
 
 .score-block {
@@ -938,15 +937,15 @@ p {
 }
 
 .score-label {
-  font-size: calc(12px * var(--cert-scale));
+  font-size: 12px;
   color: #64748b;
-  margin-bottom: calc(4px * var(--cert-scale));
+  margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
 .score-value {
-  font-size: calc(20px * var(--cert-scale));
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-color);
 }
@@ -956,7 +955,7 @@ p {
 }
 
 .score-detail {
-  font-size: calc(14px * var(--cert-scale));
+  font-size: 14px;
   color: #94a3b8;
   font-weight: 500;
 }
@@ -965,7 +964,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: calc(16px * var(--cert-scale));
+  margin-top: 16px;
   position: relative;
 }
 
@@ -977,7 +976,7 @@ p {
 
 .date-block {
   align-items: flex-start;
-  width: calc(120px * var(--cert-scale));
+  width: 120px;
 }
 
 .signature-block {
@@ -985,13 +984,27 @@ p {
   flex-grow: 1;
 }
 
+.seal-block {
+  width: 120px;
+  align-items: flex-end;
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+}
+
+.gold-seal {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
 .footer-label {
-  font-size: calc(11px * var(--cert-scale));
+  font-size: 11px;
   color: #94a3b8;
   letter-spacing: 0.15em;
-  margin-bottom: calc(8px * var(--cert-scale));
+  margin-bottom: 8px;
   border-bottom: 1px solid #e2e8f0;
-  padding-bottom: calc(4px * var(--cert-scale));
+  padding-bottom: 4px;
   width: 100%;
   text-align: center;
 }
@@ -1001,10 +1014,10 @@ p {
 }
 
 .footer-value {
-  font-size: calc(15px * var(--cert-scale));
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-color);
-  height: calc(32px * var(--cert-scale));
+  height: 32px;
   display: flex;
   align-items: center;
 }
@@ -1014,12 +1027,12 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: calc(140px * var(--cert-scale));
+  min-width: 140px;
 }
 
 .signature-font {
   font-family: 'Brush Script MT', 'Dancing Script', cursive;
-  font-size: calc(32px * var(--cert-scale));
+  font-size: 32px;
   color: var(--text-color);
   position: absolute;
   transform: rotate(-5deg);
@@ -1432,10 +1445,17 @@ p {
     font-size: 17px;
   }
 
-  /* 
-   * The landscape-cert is now fully responsive using container queries (cqw).
-   * No need for transform scaling hacks anymore.
-   */
+  .landscape-cert {
+    transform-origin: top center;
+    transform: scale(calc((100vw - 32px) / 600));
+    margin-bottom: calc(-400px * (1 - ((100vw - 32px) / 600)) + 24px);
+  }
+
+  .landscape-cert.downloading {
+    transform: none;
+    margin-bottom: 0;
+  }
+
   .action-row {
     flex-direction: column;
   }

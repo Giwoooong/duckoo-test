@@ -285,59 +285,63 @@ export default function ResultClient() {
           <h1 className="result-title">덕력 검증 결과</h1>
 
           <div className="certificate-container">
-
-            <section className="certificate landscape-cert" ref={certificateRef}>
-              <div className="cert-inner">
-                <div className="cert-border-inner">
-                  <div className="watermark">DUCKOO TEST</div>
-
-                  <div className="cert-header">
-                    <p className="cert-subtitle">덕력 검증 테스트 결과</p>
-                    <h2 className="cert-title">CERTIFICATE</h2>
-                    <p className="cert-eyebrow">of DUCKOO MASTERY</p>
-                  </div>
-
-                  <div className="cert-body">
-                    <div className="cert-recipient-area">
-                      <div className="recipient-name-box">
-                        <span className="recipient-name">{result.player}</span>
-                      </div>
-                      <p className="recipient-label">위 사람은 다음 분야에서 뛰어난 덕력을 증명하였으므로 이 증서를 수여합니다.</p>
+            <div className="landscape-cert-wrapper">
+              <section className="certificate landscape-cert" ref={certificateRef}>
+                <div className="cert-inner">
+                  <div className="cert-border-inner">
+                    <div className="cert-header">
+                      <p className="cert-subtitle">덕력 검증 테스트 결과</p>
+                      <h2 className="cert-title">CERTIFICATE</h2>
+                      <p className="cert-eyebrow">of OTACU MASTERY</p>
                     </div>
 
-                    <div className="cert-score-area">
-                      <div className="score-block">
-                        <p className="score-label">분야</p>
-                        <p className="score-value">{result.themeName}</p>
+                    <div className="cert-body">
+                      <div className="cert-recipient-area">
+                        <p className="recipient-label">위 사람은 다음 분야에서 뛰어난 덕력을 증명하였으므로 이 증서를 수여합니다.</p>
+                        <div className="recipient-name-box">
+                          <span className="recipient-name">{result.player}</span>
+                        </div>
                       </div>
-                      <div className="score-block">
-                        <p className="score-label">등급</p>
-                        <p className="score-value highlight">{getRank(result.score, result.themeId)}</p>
-                      </div>
-                      <div className="score-block">
-                        <p className="score-label">점수</p>
-                        <p className="score-value">{result.score}점 <span className="score-detail">({result.correct}/{result.totalCount})</span></p>
+
+                      <div className="cert-score-area">
+                        <div className="score-block">
+                          <p className="score-label">분야</p>
+                          <p className="score-value">{result.themeName}</p>
+                        </div>
+                        <div className="score-block">
+                          <p className="score-label">등급</p>
+                          <p className="score-value highlight">{getRank(result.score, result.themeId)}</p>
+                        </div>
+                        <div className="score-block">
+                          <p className="score-label">점수</p>
+                          <p className="score-value">{result.score}점 <span className="score-detail">({result.correct}/{result.totalCount})</span></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="cert-footer">
-                    <div className="footer-block date-block">
-                      <p className="footer-label">DATE</p>
-                      <p className="footer-value">{new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '. ')}</p>
-                    </div>
+                    <div className="cert-footer">
+                      <div className="footer-block date-block">
+                        <p className="footer-label">DATE</p>
+                        <p className="footer-value">{new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '. ')}</p>
+                      </div>
 
-                    <div className="footer-block signature-block">
-                      <p className="footer-label">ISSUER</p>
-                      <div className="signature-wrap">
-                        <p className="footer-value">DUCKOO TEST</p>
-                        <p className="signature-font">Duckoo</p>
+                      <div className="footer-block signature-block">
+                        <p className="footer-label">ISSUER</p>
+                        <div className="signature-wrap">
+                          <p className="footer-value">DUCKOO TEST</p>
+                          <p className="signature-font">Duckoo</p>
+                        </div>
+                      </div>
+
+                      <div className="footer-block seal-block">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/images/gold-seal.svg" alt="Gold Seal" className="gold-seal" crossOrigin="anonymous" />
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
 
             <button type="button" className="downloadButton" onClick={handleDownloadImage}>
               <Download size={20} className="icon-left" />
