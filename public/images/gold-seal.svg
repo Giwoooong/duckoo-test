@@ -1,0 +1,35 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gold-gradient" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#FFF3BA" />
+      <stop offset="40%" stop-color="#D4AF37" />
+      <stop offset="80%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#8C6207" />
+    </radialGradient>
+    <linearGradient id="gold-shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8D6" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8C6207" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Outer jagged seal edge -->
+  <path d="M60,4 C63.5,4 66.5,5.5 69,4.5 C72,3.5 75.5,5 77.5,7.5 C79.5,10 83,11 85.5,13 C88,15 91,16 93,18.5 C95,21 97,23.5 99.5,25.5 C102,27.5 104,30.5 105,33.5 C106,36.5 108,39 109,42.5 C110,46 111,49.5 111.5,53 C112,56.5 113,60 113,63.5 C113,67 112,70.5 111.5,74 C111,77.5 110,81 109,84.5 C108,88 106,90.5 105,93.5 C104,96.5 102,99.5 99.5,101.5 C97,103.5 95,106 93,108.5 C91,111 88,112 85.5,114 C83,116 79.5,117 77.5,119.5 C75.5,122 72,123.5 69,122.5 C66.5,121.5 63.5,123 60,123 C56.5,123 53.5,121.5 51,122.5 C48,123.5 44.5,122 42.5,119.5 C40.5,117 37,116 34.5,114 C32,112 29,111 27,108.5 C25,106 23,103.5 20.5,101.5 C18,99.5 16,96.5 15,93.5 C14,90.5 12,88 11,84.5 C10,81 9,77.5 8.5,74 C8,70.5 7,67 7,63.5 C7,60 8,56.5 8.5,53 C9,49.5 10,46 11,42.5 C12,39 14,36.5 15,33.5 C16,30.5 18,27.5 20.5,25.5 C23,23.5 25,21 27,18.5 C29,16 32,15 34.5,13 C37,11 40.5,10 42.5,7.5 C44.5,5 48,3.5 51,4.5 C53.5,5.5 56.5,4 60,4 Z" fill="url(#gold-gradient)" filter="url(#drop-shadow)"/>
+  
+  <!-- Outer metallic rim -->
+  <circle cx="60" cy="63.5" r="46" fill="url(#gold-shine)" stroke="url(#gold-gradient)" stroke-width="2"/>
+  <circle cx="60" cy="63.5" r="42" fill="url(#gold-gradient)" stroke="#AA7C11" stroke-width="1"/>
+  
+  <!-- Inner shiny circle with text/icon -->
+  <circle cx="60" cy="63.5" r="35" fill="none" stroke="url(#gold-shine)" stroke-width="3" stroke-dasharray="4 2"/>
+  
+  <!-- Content: Laurel Wreath + Duckoo Initial -->
+  <path d="M45,75 C40,65 42,52 50,45 C48,55 52,62 60,65 C55,70 50,75 45,75 Z" fill="#FFF3BA"/>
+  <path d="M75,75 C80,65 78,52 70,45 C72,55 68,62 60,65 C65,70 70,75 75,75 Z" fill="#FFF3BA"/>
+  
+  <text x="60" y="66" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#FFF3BA" text-anchor="middle" dominant-baseline="middle">D</text>
+  <text x="60" y="85" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#FFF3BA" text-anchor="middle" letter-spacing="2">DUCKOO</text>
+</svg>

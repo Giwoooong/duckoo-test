@@ -50,10 +50,10 @@ function getRank(score: number, themeId: string): string {
   }
 
   // Default (One Piece)
-  if (score <= 30) return "입문 항해사";
-  if (score <= 60) return "위대한 항로 루키";
-  if (score <= 85) return "신세계 정예";
-  return "해적왕급 마스터";
+  if (score <= 30) return "위대한 항로 루키";
+  if (score <= 65) return "신세계 최악의 세대";
+  if (score <= 94) return "사황";
+  return "해적왕";
 }
 
 export default function ResultClient() {
@@ -102,6 +102,9 @@ export default function ResultClient() {
         scale,
         useCORS: true,
         backgroundColor: '#ffffff',
+        width: 600,
+        height: 400,
+        windowWidth: 600,
       });
       certificateRef.current.classList.remove('downloading');
 
@@ -283,30 +286,58 @@ export default function ResultClient() {
 
           <div className="certificate-container">
 
-            <section className="certificate premium-cert" ref={certificateRef}>
+            <section className="certificate landscape-cert" ref={certificateRef}>
               <div className="cert-inner">
-                <div className="cert-header">
-                  <p className="certLabel">OFFICIAL CERTIFICATE</p>
-                  <h2>덕후 인증서</h2>
-                </div>
-
-                <div className="cert-body">
-                  <p style={{ fontSize: '16px', color: '#64748b', marginBottom: '8px', marginTop: '0' }}>수여자</p>
-                  <p style={{ fontSize: '28px', fontWeight: 800, color: '#4f46e5', marginBottom: '24px', marginTop: '0' }}>{result.player}</p>
-
-                  <div className="cert-score-area">
-                    <p className="certScore">{result.score}<span>점</span></p>
-                    <p className="certRank">{getRank(result.score, result.themeId)}</p>
+                <div className="cert-border-inner">
+                  <div className="cert-header">
+                    <p className="cert-subtitle">덕력 검증 테스트 결과</p>
+                    <h2 className="cert-title">CERTIFICATE</h2>
+                    <p className="cert-eyebrow">of OTACU MASTERY</p>
                   </div>
 
-                  <div className="cert-details">
-                    <p>{result.totalCount}문제 중 <strong>{result.correct}</strong>개 정답</p>
-                    <p className="detail-points">({result.rawPoints}/{result.totalPoints}점)</p>
-                  </div>
-                </div>
+                  <div className="cert-body">
+                    <div className="cert-recipient-area">
+                      <p className="recipient-label">위 사람은 다음 분야에서 뛰어난 덕력을 증명하였으므로 이 증서를 수여합니다.</p>
+                      <div className="recipient-name-box">
+                        <span className="recipient-name">{result.player}</span>
+                      </div>
+                    </div>
 
-                <div className="cert-footer" style={{ justifyContent: 'center' }}>
-                  <div className="cert-stamp">DUCKOO TEST</div>
+                    <div className="cert-score-area">
+                      <div className="score-block">
+                        <p className="score-label">분야</p>
+                        <p className="score-value">{result.themeName}</p>
+                      </div>
+                      <div className="score-block">
+                        <p className="score-label">등급</p>
+                        <p className="score-value highlight">{getRank(result.score, result.themeId)}</p>
+                      </div>
+                      <div className="score-block">
+                        <p className="score-label">점수</p>
+                        <p className="score-value">{result.score}점 <span className="score-detail">({result.correct}/{result.totalCount})</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="cert-footer">
+                    <div className="footer-block date-block">
+                      <p className="footer-label">DATE</p>
+                      <p className="footer-value">{new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '. ')}</p>
+                    </div>
+
+                    <div className="footer-block signature-block">
+                      <p className="footer-label">ISSUER</p>
+                      <div className="signature-wrap">
+                        <p className="footer-value">DUCKOO TEST</p>
+                        <p className="signature-font">Duckoo</p>
+                      </div>
+                    </div>
+
+                    <div className="footer-block seal-block">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/gold-seal.svg" alt="Gold Seal" className="gold-seal" crossOrigin="anonymous" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
