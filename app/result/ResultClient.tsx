@@ -283,17 +283,8 @@ export default function ResultClient() {
                 </div>
 
                 <div className="cert-body">
-                  <div style={{
-                    marginBottom: '24px',
-                    textAlign: 'center',
-                    background: '#f1f5f9',
-                    padding: '12px 32px',
-                    borderRadius: '9999px',
-                    display: 'inline-block',
-                  }}>
-                    <span style={{ fontSize: '16px', color: '#64748b', marginRight: '16px' }}>수여자</span>
-                    <span style={{ fontSize: '24px', fontWeight: 800, color: '#4f46e5' }}>{result.player}</span>
-                  </div>
+                  <p style={{ fontSize: '16px', color: '#64748b', marginBottom: '8px', marginTop: '0' }}>수여자</p>
+                  <p style={{ fontSize: '28px', fontWeight: 800, color: '#4f46e5', marginBottom: '24px', marginTop: '0' }}>{result.player}</p>
 
                   <div className="cert-score-area">
                     <p className="certScore">{result.score}<span>점</span></p>
