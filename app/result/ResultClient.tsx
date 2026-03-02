@@ -153,34 +153,57 @@ export default function ResultClient() {
     }
   };
 
-  const handleKakaoShare = () => {
+  const handleKakaoShare = async () => {
     if (!result) return;
 
-    if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized()) {
-      window.Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
-          description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
-          imageUrl: `${SITE_URL}/logo.png?v=2`,
+    if (typeof window === 'undefined' || !window.Kakao || !window.Kakao.isInitialized()) {
+      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+      return;
+    }
+
+    let imageUrl = `${SITE_URL}/logo.png?v=2`;
+
+    // Try to generate and upload certificate image
+    try {
+      const imageData = await generateCertificateImage(true);
+      if (imageData) {
+        const file = new File([imageData.blob], 'certificate.png', { type: 'image/png' });
+        const uploadRes = await window.Kakao.Share.uploadImage({ file: [file] });
+        console.log('Kakao uploadImage raw response:', uploadRes);
+
+        // Try all known response formats
+        if (uploadRes?.infos?.original?.url) {
+          imageUrl = uploadRes.infos.original.url;
+        } else if (uploadRes?.imageUrl) {
+          imageUrl = uploadRes.imageUrl;
+        }
+        console.log('Using imageUrl:', imageUrl);
+      }
+    } catch (err) {
+      console.warn('Kakao image upload failed:', err);
+    }
+
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
+        description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
+        imageUrl,
+        link: {
+          mobileWebUrl: `${SITE_URL}`,
+          webUrl: `${SITE_URL}`,
+        },
+      },
+      buttons: [
+        {
+          title: '나도 덕력 테스트 하기',
           link: {
             mobileWebUrl: `${SITE_URL}`,
             webUrl: `${SITE_URL}`,
           },
         },
-        buttons: [
-          {
-            title: '나도 덕력 테스트 하기',
-            link: {
-              mobileWebUrl: `${SITE_URL}`,
-              webUrl: `${SITE_URL}`,
-            },
-          },
-        ],
-      });
-    } else {
-      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
-    }
+      ],
+    });
   };
 
   const handleInstagramShare = async () => {
@@ -260,9 +283,16 @@ export default function ResultClient() {
                 </div>
 
                 <div className="cert-body">
-                  <div className="cert-info">
-                    <span className="info-label">수여자</span>
-                    <span className="info-value">{result.player}</span>
+                  <div style={{
+                    marginBottom: '24px',
+                    textAlign: 'center',
+                    background: '#f1f5f9',
+                    padding: '12px 32px',
+                    borderRadius: '9999px',
+                    display: 'inline-block',
+                  }}>
+                    <span style={{ fontSize: '16px', color: '#64748b', marginRight: '16px' }}>수여자</span>
+                    <span style={{ fontSize: '24px', fontWeight: 800, color: '#4f46e5' }}>{result.player}</span>
                   </div>
 
                   <div className="cert-score-area">
