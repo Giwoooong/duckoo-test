@@ -825,21 +825,22 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  background: rgba(241, 245, 249, 0.8);
+  /* Removed gap because html2canvas has issues with it */
+  background: #f1f5f9; /* Solid color instead of rgba for html2canvas */
   padding: 12px 32px;
   border-radius: 9999px;
 }
 
 .info-label {
   font-size: 16px;
-  color: var(--secondary-text-color);
+  color: #64748b; /* Solid hex instead of var */
+  margin-right: 16px; /* Replacement for gap */
 }
 
 .info-value {
   font-size: 24px;
   font-weight: 800;
-  color: var(--primary-color);
+  color: #4f46e5; /* Solid hex instead of var */
 }
 
 .cert-score-area {

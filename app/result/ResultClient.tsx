@@ -93,29 +93,34 @@ export default function ResultClient() {
   const shareTitle = "덕후테스트 결과";
   const shareDescription = result ? `${result.totalCount}문제 중 ${result.correct}개 정답! 나도 도전하기 →` : "";
 
-  const handleDownloadImage = async () => {
-    if (!certificateRef.current) return;
-
+  const generateCertificateImage = async (): Promise<string | null> => {
+    if (!certificateRef.current) return null;
     try {
       certificateRef.current.classList.add('downloading');
-
       const canvas = await html2canvas(certificateRef.current, {
-        scale: 2,
+        scale: 4, // Increased for better clarity on certificates
         useCORS: true,
         backgroundColor: '#ffffff',
       });
-
       certificateRef.current.classList.remove('downloading');
-
-      const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = `duckoo_certificate_${result?.player || 'result'}.png`;
-      link.click();
+      return canvas.toDataURL("image/png");
     } catch (error) {
-      console.error("인증서 저장 실패:", error);
-      alert("이미지 저장 중 오류가 발생했습니다.");
+      console.error("이미지 생성 실패:", error);
+      return null;
     }
+  };
+
+  const handleDownloadImage = async () => {
+    const imageDataUrl = await generateCertificateImage();
+    if (!imageDataUrl) {
+      alert("이미지 저장 중 오류가 발생했습니다.");
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = imageDataUrl;
+    link.download = `duckoo_certificate_${result?.player || 'result'}.png`;
+    link.click();
   };
 
   const handleWebShare = async () => {
@@ -139,29 +144,60 @@ export default function ResultClient() {
     }
   };
 
-  const handleKakaoShare = () => {
+  const handleKakaoShare = async () => {
     if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized() && result) {
-      window.Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
-          description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
-          imageUrl: `${SITE_URL}/logo.png`,
-          link: {
-            mobileWebUrl: `${SITE_URL}`,
-            webUrl: `${SITE_URL}`,
-          },
-        },
-        buttons: [
-          {
-            title: '나도 덕력 테스트 하기',
+      const btn = document.querySelector('.kakao-btn');
+      if (btn) btn.classList.add('loading');
+
+      try {
+        let imageUrl = `${SITE_URL}/logo.png`; // Fallback image
+
+        // Generate the high-res image
+        const imageDataUrl = await generateCertificateImage();
+
+        if (imageDataUrl) {
+          // Convert data URL to Blob/File
+          const res = await fetch(imageDataUrl);
+          const blob = await res.blob();
+          const file = new File([blob], 'certificate.png', { type: 'image/png' });
+
+          // Upload image to Kakao to get a temporary URL
+          const uploadRes = await window.Kakao.Share.uploadImage({
+            file: [file]
+          });
+
+          if (uploadRes && uploadRes.infos && uploadRes.infos.length > 0) {
+            imageUrl = uploadRes.infos[0].url;
+          }
+        }
+
+        window.Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
+            description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
+            imageUrl: imageUrl,
             link: {
               mobileWebUrl: `${SITE_URL}`,
               webUrl: `${SITE_URL}`,
             },
           },
-        ],
-      });
+          buttons: [
+            {
+              title: '나도 덕력 테스트 하기',
+              link: {
+                mobileWebUrl: `${SITE_URL}`,
+                webUrl: `${SITE_URL}`,
+              },
+            },
+          ],
+        });
+      } catch (error) {
+        console.error("카카오톡 공유 실패:", error);
+        showToast("카카오톡 공유 중 오류가 발생했습니다.");
+      } finally {
+        if (btn) btn.classList.remove('loading');
+      }
     } else {
       showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
     }
