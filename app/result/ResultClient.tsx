@@ -93,17 +93,26 @@ export default function ResultClient() {
   const shareTitle = "덕후테스트 결과";
   const shareDescription = result ? `${result.totalCount}문제 중 ${result.correct}개 정답! 나도 도전하기 →` : "";
 
-  const generateCertificateImage = async (): Promise<string | null> => {
+  const generateCertificateImage = async (isShare = false): Promise<{ dataUrl: string, blob: Blob } | null> => {
     if (!certificateRef.current) return null;
     try {
       certificateRef.current.classList.add('downloading');
+      const scale = isShare ? 2 : 4; // Kakao upload max is 5MB, 2 is safer for JPEG
       const canvas = await html2canvas(certificateRef.current, {
-        scale: 4, // Increased for better clarity on certificates
+        scale,
         useCORS: true,
         backgroundColor: '#ffffff',
       });
       certificateRef.current.classList.remove('downloading');
-      return canvas.toDataURL("image/png");
+
+      const type = isShare ? 'image/jpeg' : 'image/png';
+      const quality = isShare ? 0.8 : 1.0;
+      const dataUrl = canvas.toDataURL(type, quality);
+
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+
+      return { dataUrl, blob };
     } catch (error) {
       console.error("이미지 생성 실패:", error);
       return null;
@@ -111,14 +120,14 @@ export default function ResultClient() {
   };
 
   const handleDownloadImage = async () => {
-    const imageDataUrl = await generateCertificateImage();
-    if (!imageDataUrl) {
+    const imageData = await generateCertificateImage(false);
+    if (!imageData) {
       alert("이미지 저장 중 오류가 발생했습니다.");
       return;
     }
 
     const link = document.createElement("a");
-    link.href = imageDataUrl;
+    link.href = imageData.dataUrl;
     link.download = `duckoo_certificate_${result?.player || 'result'}.png`;
     link.click();
   };
@@ -152,23 +161,25 @@ export default function ResultClient() {
       try {
         let imageUrl = `${SITE_URL}/logo.png`; // Fallback image
 
-        // Generate the high-res image
-        const imageDataUrl = await generateCertificateImage();
+        try {
+          // Generate the high-res image optimized for Kakao
+          const imageData = await generateCertificateImage(true);
 
-        if (imageDataUrl) {
-          // Convert data URL to Blob/File
-          const res = await fetch(imageDataUrl);
-          const blob = await res.blob();
-          const file = new File([blob], 'certificate.png', { type: 'image/png' });
+          if (imageData) {
+            const file = new File([imageData.blob], 'certificate.jpg', { type: 'image/jpeg' });
 
-          // Upload image to Kakao to get a temporary URL
-          const uploadRes = await window.Kakao.Share.uploadImage({
-            file: [file]
-          });
+            // Upload image to Kakao to get a temporary URL
+            const uploadRes = await window.Kakao.Share.uploadImage({
+              file: [file]
+            });
 
-          if (uploadRes && uploadRes.infos && uploadRes.infos.length > 0) {
-            imageUrl = uploadRes.infos[0].url;
+            // In Kakao API, the url is at infos[0].original.url
+            if (uploadRes && uploadRes.infos && uploadRes.infos.length > 0) {
+              imageUrl = uploadRes.infos[0].original.url;
+            }
           }
+        } catch (uploadError) {
+          console.warn("Kakao image upload failed, falling back to default image", uploadError);
         }
 
         window.Kakao.Share.sendDefault({
