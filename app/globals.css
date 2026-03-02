@@ -651,6 +651,28 @@ p {
   margin-bottom: 24px;
 }
 
+.accordion-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(241, 245, 249, 0.7);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.accordion-info-box .info-icon {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.accordion-info-box .info-text {
+  font-size: 14px;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
 @keyframes slideDownFade {
   from {
     opacity: 0;
@@ -826,21 +848,25 @@ p {
   align-items: center;
   justify-content: center;
   /* Removed gap because html2canvas has issues with it */
-  background: #f1f5f9; /* Solid color instead of rgba for html2canvas */
+  background: #f1f5f9;
+  /* Solid color instead of rgba for html2canvas */
   padding: 12px 32px;
   border-radius: 9999px;
 }
 
 .info-label {
   font-size: 16px;
-  color: #64748b; /* Solid hex instead of var */
-  margin-right: 16px; /* Replacement for gap */
+  color: #64748b;
+  /* Solid hex instead of var */
+  margin-right: 16px;
+  /* Replacement for gap */
 }
 
 .info-value {
   font-size: 24px;
   font-weight: 800;
-  color: #4f46e5; /* Solid hex instead of var */
+  color: #4f46e5;
+  /* Solid hex instead of var */
 }
 
 .cert-score-area {
@@ -1276,20 +1302,32 @@ p {
   }
 
   .themeCard {
-    padding: 24px 20px;
+    padding: 16px;
     border-radius: 20px;
   }
 
+  .accordion-card.expanded .card-header {
+    padding: 20px 20px 0 20px;
+  }
+
+  .card-expanded-content {
+    padding: 0 20px 24px 20px;
+  }
+
   .certificate {
-    padding: 32px 20px;
+    padding: 24px 16px;
   }
 
   .infoList {
     grid-template-columns: 1fr;
   }
 
+  .premium-cert {
+    padding: 4px;
+  }
+
   .cert-inner {
-    padding: 20px;
+    padding: 16px;
   }
 
   .cert-header h2 {
