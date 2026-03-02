@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getThemes } from '@/lib/tests/registry';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://duckoo.test'; // 실제 도메인으로 변경해주세요
+    const baseUrl = 'https://duckootest.pages.dev'; // 실제 도메인으로 업데이트 완료
 
     // 정적 페이지들
     const staticPages = [
