@@ -289,18 +289,20 @@ export default function ResultClient() {
             <section className="certificate landscape-cert" ref={certificateRef}>
               <div className="cert-inner">
                 <div className="cert-border-inner">
+                  <div className="watermark">DUCKOO TEST</div>
+
                   <div className="cert-header">
                     <p className="cert-subtitle">덕력 검증 테스트 결과</p>
                     <h2 className="cert-title">CERTIFICATE</h2>
-                    <p className="cert-eyebrow">of OTACU MASTERY</p>
+                    <p className="cert-eyebrow">of DUCKOO MASTERY</p>
                   </div>
 
                   <div className="cert-body">
                     <div className="cert-recipient-area">
-                      <p className="recipient-label">위 사람은 다음 분야에서 뛰어난 덕력을 증명하였으므로 이 증서를 수여합니다.</p>
                       <div className="recipient-name-box">
                         <span className="recipient-name">{result.player}</span>
                       </div>
+                      <p className="recipient-label">위 사람은 다음 분야에서 뛰어난 덕력을 증명하였으므로 이 증서를 수여합니다.</p>
                     </div>
 
                     <div className="cert-score-area">
@@ -331,11 +333,6 @@ export default function ResultClient() {
                         <p className="footer-value">DUCKOO TEST</p>
                         <p className="signature-font">Duckoo</p>
                       </div>
-                    </div>
-
-                    <div className="footer-block seal-block">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/images/gold-seal.svg" alt="Gold Seal" className="gold-seal" crossOrigin="anonymous" />
                     </div>
                   </div>
                 </div>

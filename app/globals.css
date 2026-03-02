@@ -867,29 +867,47 @@ p {
   margin-top: 4px;
 }
 
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-size: 100px;
+  font-weight: 900;
+  color: var(--primary-color);
+  opacity: 0.05;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.05em;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
 .cert-body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .cert-recipient-area {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.recipient-name-box {
+  display: inline-block;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0 40px 12px;
+  margin-bottom: 16px;
 }
 
 .recipient-label {
   font-size: 13px;
   color: #475569;
-  margin-bottom: 12px;
   line-height: 1.5;
-}
-
-.recipient-name-box {
-  display: inline-block;
-  border-bottom: 1px solid var(--primary-color);
-  padding: 0 40px 8px;
 }
 
 .recipient-name {
@@ -956,20 +974,6 @@ p {
 .signature-block {
   align-items: center;
   flex-grow: 1;
-}
-
-.seal-block {
-  width: 120px;
-  align-items: flex-end;
-  position: absolute;
-  right: -10px;
-  bottom: -10px;
-}
-
-.gold-seal {
-  width: 90px;
-  height: 90px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 .footer-label {
