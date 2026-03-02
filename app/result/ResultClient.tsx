@@ -153,64 +153,33 @@ export default function ResultClient() {
     }
   };
 
-  const handleKakaoShare = async () => {
+  const handleKakaoShare = () => {
     if (!result) return;
 
-    const btn = document.querySelector('.kakao-btn');
-    if (btn) btn.classList.add('loading');
-
-    try {
-      // Generate certificate image
-      const imageData = await generateCertificateImage(true);
-
-      if (imageData && navigator.canShare) {
-        const file = new File([imageData.blob], 'duckoo_certificate.jpg', { type: 'image/jpeg' });
-
-        // Check if file sharing is supported
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: shareTitle,
-            text: `${shareText}\n\n나도 도전하기 → ${SITE_URL}`,
-            files: [file],
-          });
-          return;
-        }
-      }
-
-      // Fallback: use Kakao SDK sendDefault with logo
-      if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized()) {
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
-            description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
-            imageUrl: `${SITE_URL}/logo.png?v=2`,
+    if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized()) {
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
+          description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
+          imageUrl: `${SITE_URL}/logo.png?v=2`,
+          link: {
+            mobileWebUrl: `${SITE_URL}`,
+            webUrl: `${SITE_URL}`,
+          },
+        },
+        buttons: [
+          {
+            title: '나도 덕력 테스트 하기',
             link: {
               mobileWebUrl: `${SITE_URL}`,
               webUrl: `${SITE_URL}`,
             },
           },
-          buttons: [
-            {
-              title: '나도 덕력 테스트 하기',
-              link: {
-                mobileWebUrl: `${SITE_URL}`,
-                webUrl: `${SITE_URL}`,
-              },
-            },
-          ],
-        });
-      } else {
-        showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
-      }
-    } catch (error: unknown) {
-      // User cancelled share is not an error
-      if (error instanceof Error && error.name !== 'AbortError') {
-        console.error("카카오톡 공유 실패:", error);
-        showToast("카카오톡 공유 중 오류가 발생했습니다.");
-      }
-    } finally {
-      if (btn) btn.classList.remove('loading');
+        ],
+      });
+    } else {
+      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
     }
   };
 
