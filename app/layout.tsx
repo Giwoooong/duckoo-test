@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   verification: {
     google: "sHd9GFy0lNlMXxdvDJOSMaC_-6tsoCFHSnyAOhwCrPg",
   },
+  other: {
+    "google-adsense-account": "ca-pub-3939831601648260",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -35,6 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-8FRKH2L3HB');
           `}
         </Script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3939831601648260"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <ToastProvider>
           <KakaoInit />
           <Header />
