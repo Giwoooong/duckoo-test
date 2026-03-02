@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -17,6 +18,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8FRKH2L3HB"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-8FRKH2L3HB');
+          `}
+        </Script>
         <ToastProvider>
           <KakaoInit />
           <Header />
