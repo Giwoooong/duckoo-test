@@ -208,6 +208,14 @@ export default function ResultClient() {
 
   const handleInstagramShare = async () => {
     try {
+      // Auto-copy link to clipboard for Instagram Story "Link" sticker
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        showToast("🔗 링크가 복사되었습니다! 인스타그램 스토리에 붙여넣기 해보세요.");
+      } catch (clipboardError) {
+        console.warn("Failed to copy link to clipboard", clipboardError);
+      }
+
       const imageData = await generateCertificateImage(true);
 
       if (imageData && navigator.canShare) {
