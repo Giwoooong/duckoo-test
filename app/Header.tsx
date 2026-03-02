@@ -22,7 +22,7 @@ export default function Header() {
         content: {
           title: shareTitle,
           description: shareDescription,
-          imageUrl: `${SITE_URL}/logo.png`,
+          imageUrl: `${SITE_URL}/logo.png?v=2`,
           link: {
             mobileWebUrl: shareUrl,
             webUrl: shareUrl,

@@ -154,43 +154,37 @@ export default function ResultClient() {
   };
 
   const handleKakaoShare = async () => {
-    if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized() && result) {
-      const btn = document.querySelector('.kakao-btn');
-      if (btn) btn.classList.add('loading');
+    if (!result) return;
 
-      try {
-        let imageUrl = `${SITE_URL}/logo.png`; // Fallback image
+    const btn = document.querySelector('.kakao-btn');
+    if (btn) btn.classList.add('loading');
 
-        try {
-          // Generate the high-res image optimized for Kakao
-          const imageData = await generateCertificateImage(true);
+    try {
+      // Generate certificate image
+      const imageData = await generateCertificateImage(true);
 
-          if (imageData) {
-            const file = new File([imageData.blob], 'certificate.jpg', { type: 'image/jpeg' });
+      if (imageData && navigator.canShare) {
+        const file = new File([imageData.blob], 'duckoo_certificate.jpg', { type: 'image/jpeg' });
 
-            // Upload image to Kakao to get a temporary URL
-            const uploadRes = await window.Kakao.Share.uploadImage({
-              file: [file]
-            });
-
-            // Kakao SDK returns different formats depending on version
-            if (uploadRes && uploadRes.infos && uploadRes.infos.original && uploadRes.infos.original.url) {
-              imageUrl = uploadRes.infos.original.url;
-            } else if (uploadRes && uploadRes.imageUrl) {
-              imageUrl = uploadRes.imageUrl;
-            }
-            console.log('Kakao uploadImage response:', JSON.stringify(uploadRes));
-          }
-        } catch (uploadError) {
-          console.warn("Kakao image upload failed, falling back to default image", uploadError);
+        // Check if file sharing is supported
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: shareTitle,
+            text: `${shareText}\n\n나도 도전하기 → ${SITE_URL}`,
+            files: [file],
+          });
+          return;
         }
+      }
 
+      // Fallback: use Kakao SDK sendDefault with logo
+      if (typeof window !== 'undefined' && window.Kakao && window.Kakao.isInitialized()) {
         window.Kakao.Share.sendDefault({
           objectType: 'feed',
           content: {
             title: `${shareTitle} - ${getRank(result.score, result.themeId)}`,
             description: `${result.player} 님의 ${result.themeName} ${result.score}점! ${shareDescription}`,
-            imageUrl: imageUrl,
+            imageUrl: `${SITE_URL}/logo.png?v=2`,
             link: {
               mobileWebUrl: `${SITE_URL}`,
               webUrl: `${SITE_URL}`,
@@ -206,19 +200,51 @@ export default function ResultClient() {
             },
           ],
         });
-      } catch (error) {
+      } else {
+        showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+      }
+    } catch (error: unknown) {
+      // User cancelled share is not an error
+      if (error instanceof Error && error.name !== 'AbortError') {
         console.error("카카오톡 공유 실패:", error);
         showToast("카카오톡 공유 중 오류가 발생했습니다.");
-      } finally {
-        if (btn) btn.classList.remove('loading');
       }
-    } else {
-      showToast("카카오톡 SDK를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      if (btn) btn.classList.remove('loading');
     }
   };
 
-  const handleInstagramShare = () => {
-    showToast("📸 인증서를 저장한 후 인스타그램에 업로드해주세요!");
+  const handleInstagramShare = async () => {
+    try {
+      const imageData = await generateCertificateImage(true);
+
+      if (imageData && navigator.canShare) {
+        const file = new File([imageData.blob], 'duckoo_certificate.jpg', { type: 'image/jpeg' });
+
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+          });
+          return;
+        }
+      }
+
+      // Fallback: download the image and prompt user
+      if (imageData) {
+        const link = document.createElement("a");
+        link.href = imageData.dataUrl;
+        link.download = `duckoo_certificate_${result?.player || 'result'}.jpg`;
+        link.click();
+        showToast("📸 인증서가 저장되었습니다. 인스타그램에서 업로드해주세요!");
+      } else {
+        showToast("이미지 생성에 실패했습니다.");
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error("인스타그램 공유 실패:", error);
+        showToast("공유 중 오류가 발생했습니다.");
+      }
+    }
   };
 
   const handleTwitterShare = () => {
