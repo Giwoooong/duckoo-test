@@ -456,6 +456,9 @@ export default function ResultClient() {
                     <div style={{ height: '2px', width: '24px', backgroundColor: '#4f46e5', opacity: 0.5, marginLeft: '12px' }} />
                   </div>
                   <h2 style={{ fontSize: '32px', fontWeight: 900, color: '#0f172a', letterSpacing: '0.15em', margin: 0, textShadow: '1px 1px 2px rgba(0,0,0,0.05)' }}>덕후 인증서</h2>
+                  <p style={{ fontSize: '16px', fontWeight: 700, color: '#64748b', marginTop: '10px', marginBottom: 0 }}>
+                    {meta.emoji} {result.themeName}
+                  </p>
                 </div>
 
                 <div style={{
