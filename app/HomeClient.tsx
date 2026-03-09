@@ -202,7 +202,7 @@ export default function HomeClient() {
           <article
             className={`themeCard highlighted-card accordion-card pokemon-card ${activeTheme === 'pokemon' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'pokemon' ? null : 'pokemon')}
-            style={{ "--primary-color": "#b8860b" } as React.CSSProperties}
+            style={{ "--primary-color": "#16a34a" } as React.CSSProperties}
           >
             {activeTheme !== 'pokemon' ? (
               <>
@@ -212,7 +212,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header pokemon-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #FFCC00, #b8860b)', color: '#1a1a1a' }}><Gamepad2 size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}><Gamepad2 size={12} className="icon-left" />NEW</span>
                   <h2 className="accordion-title">포켓몬스터 덕후 테스트</h2>
                 </div>
 

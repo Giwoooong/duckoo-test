@@ -6,7 +6,7 @@ export const pokemonTheme: Theme = {
     name: "포켓몬스터 덕후 테스트",
     subtitle: "1~2세대 포켓몬 마스터! 당신의 덕후력은?",
     badge: "Pokémon",
-    accent: "#FFCC00",
+    accent: "#16a34a",
     questionCount: 20,
     questions: questionBank as unknown as Question[],
     seo: {

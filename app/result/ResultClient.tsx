@@ -89,7 +89,7 @@ const THEME_META: Record<string, {
     ],
     otherThemes: [
       { id: "lol", name: "리그 오브 레전드 테스트", emoji: "⚔️", desc: "소환사의 협곡에서 펼쳐지는 지식 배틀! LoL 찐팬을 가려냅니다.", color: "#c8aa6e" },
-      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#16a34a" },
     ],
   },
   lol: {
@@ -104,7 +104,7 @@ const THEME_META: Record<string, {
     ],
     otherThemes: [
       { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
-      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#16a34a" },
     ],
   },
   fma: {
@@ -119,13 +119,13 @@ const THEME_META: Record<string, {
     ],
     otherThemes: [
       { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
-      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#16a34a" },
     ],
   },
   pokemon: {
     emoji: "🎮",
-    color: "#b8860b",
-    gradient: "linear-gradient(135deg, #FFCC00, #b8860b)",
+    color: "#16a34a",
+    gradient: "linear-gradient(135deg, #22c55e, #16a34a)",
     hashtags: ["#포켓몬덕후테스트", "#덕후테스트", "#포켓몬스터", "#Pokemon", "#포켓몬마스터"],
     links: [
       { label: "포켓몬 나무위키", url: "https://namu.wiki/w/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%8A%A4%ED%84%B0", desc: "포켓몬스터 세계관·시리즈 전반 나무위키" },
