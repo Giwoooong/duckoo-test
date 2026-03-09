@@ -49,6 +49,16 @@ function getRank(score: number, themeId: string): string {
     return "진리를 본 자";
   }
 
+  if (themeId === "pokemon") {
+    if (score <= 20) return "새내기 트레이너";
+    if (score <= 40) return "포켓몬 수집가";
+    if (score <= 60) return "체육관 배지 수집가";
+    if (score <= 75) return "로켓단 저지선";
+    if (score <= 89) return "사천왕 도전자";
+    if (score <= 99) return "챔피언";
+    return "포켓몬 마스터";
+  }
+
   // Default (One Piece)
   if (score <= 24) return "이스트 블루 루키";
   if (score <= 49) return "위대한 항로 모험가";
@@ -79,7 +89,7 @@ const THEME_META: Record<string, {
     ],
     otherThemes: [
       { id: "lol", name: "리그 오브 레전드 테스트", emoji: "⚔️", desc: "소환사의 협곡에서 펼쳐지는 지식 배틀! LoL 찐팬을 가려냅니다.", color: "#c8aa6e" },
-      { id: "fma", name: "강철의 연금술사 테스트", emoji: "🔱", desc: "등가교환의 세계! FMA 마니아의 덕력을 검증합니다.", color: "#b91c1c" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
     ],
   },
   lol: {
@@ -94,7 +104,7 @@ const THEME_META: Record<string, {
     ],
     otherThemes: [
       { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
-      { id: "fma", name: "강철의 연금술사 테스트", emoji: "🔱", desc: "등가교환의 세계! FMA 마니아의 덕력을 검증합니다.", color: "#b91c1c" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
     ],
   },
   fma: {
@@ -106,6 +116,21 @@ const THEME_META: Record<string, {
       { label: "FMA 나무위키", url: "https://namu.wiki/w/%EA%B0%95%EC%B2%A0%EC%9D%98%20%EC%97%B0%EA%B8%88%EC%88%A0%EC%82%AC", desc: "강철의 연금술사 세계관·캐릭터 나무위키" },
       { label: "FMA Brotherhood", url: "https://namu.wiki/w/%EA%B0%95%EC%B2%A0%EC%9D%98%20%EC%97%B0%EA%B8%88%EC%88%A0%EC%82%AC%20BROTHERHOOD", desc: "브라더후드 시리즈 상세 정보" },
       { label: "FMA 공식 X", url: "https://twitter.com/hagaren_anime", desc: "강철의 연금술사 공식 트위터/X 계정" },
+    ],
+    otherThemes: [
+      { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
+      { id: "pokemon", name: "포켓몬스터 덕후 테스트", emoji: "🎮", desc: "1~2세대 관동·성도 지방! 포켓몬 마스터를 가려냅니다.", color: "#FFCC00" },
+    ],
+  },
+  pokemon: {
+    emoji: "🎮",
+    color: "#b8860b",
+    gradient: "linear-gradient(135deg, #FFCC00, #b8860b)",
+    hashtags: ["#포켓몬덕후테스트", "#덕후테스트", "#포켓몬스터", "#Pokemon", "#포켓몬마스터"],
+    links: [
+      { label: "포켓몬 나무위키", url: "https://namu.wiki/w/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%8A%A4%ED%84%B0", desc: "포켓몬스터 세계관·시리즈 전반 나무위키" },
+      { label: "포켓몬 공식 사이트", url: "https://www.pokemon.co.kr", desc: "포켓몬 한국 공식 홈페이지" },
+      { label: "Bulbapedia", url: "https://bulbapedia.bulbagarden.net", desc: "영어권 포켓몬 공식 위키 백과" },
     ],
     otherThemes: [
       { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },

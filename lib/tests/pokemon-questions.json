@@ -1,0 +1,782 @@
+[
+    {
+        "id": 1,
+        "question": "포켓몬스터 1세대 주인공의 기본 이름은?",
+        "options": [
+            "지우",
+            "웅이",
+            "민지",
+            "이슬"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 2,
+        "question": "불꽃 타입 스타터 포켓몬 '파이리'의 최종 진화형은?",
+        "options": [
+            "리자몽",
+            "파이어",
+            "마그마",
+            "파이리온"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 3,
+        "question": "피카츄의 타입은?",
+        "options": [
+            "전기",
+            "물",
+            "불꽃",
+            "노말"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 4,
+        "question": "1세대 포켓몬의 총 수는?",
+        "options": [
+            "151마리",
+            "100마리",
+            "200마리",
+            "130마리"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 5,
+        "question": "1세대 물 타입 스타터 포켓몬은?",
+        "options": [
+            "꼬부기",
+            "잉어킹",
+            "스타유",
+            "왕수리"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 6,
+        "question": "전설의 포켓몬 '뮤츠'는 어느 타입인가?",
+        "options": [
+            "에스퍼",
+            "드래곤",
+            "격투",
+            "악"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 7,
+        "question": "로켓단의 라이벌 듀오는?",
+        "options": [
+            "로사·냉동이",
+            "한지우·보람",
+            "영·미사",
+            "보라·파동"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 8,
+        "question": "포켓몬스터 1세대 최초 관장(체육관 리더)의 이름은?",
+        "options": [
+            "바위관장 바위",
+            "이슬",
+            "웅이",
+            "민화"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 9,
+        "question": "잠만보의 타입은?",
+        "options": [
+            "노말",
+            "물",
+            "얼음",
+            "에스퍼"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 10,
+        "question": "팬텀(고오스 계열)의 타입 두 가지는?",
+        "options": [
+            "고스트/독",
+            "고스트/에스퍼",
+            "독/에스퍼",
+            "악/고스트"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 11,
+        "question": "잉어킹이 진화하면?",
+        "options": [
+            "갸라도스",
+            "망나뇽",
+            "수라기",
+            "켄타로스"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 12,
+        "question": "자라앉은 화석로 부활시키는 포켓몬은?",
+        "options": [
+            "암스타",
+            "프테라",
+            "화석납치",
+            "딱구리"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 13,
+        "question": "1세대 불꽃/비행 타입 포켓몬은?",
+        "options": [
+            "리자몽",
+            "파이어",
+            "파오리",
+            "붐볼"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 14,
+        "question": "로켓단의 간부 보스 이름은?",
+        "options": [
+            "비주기",
+            "무기",
+            "독침붕",
+            "나옹"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 15,
+        "question": "피카츄가 진화하면?",
+        "options": [
+            "라이츄",
+            "썬더",
+            "에레키드",
+            "자리"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 16,
+        "question": "포켓몬 도감 번호 1번 포켓몬은?",
+        "options": [
+            "이상해씨",
+            "파이리",
+            "꼬부기",
+            "피카츄"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 17,
+        "question": "2세대에서 새로 추가된 타입 두 가지는?",
+        "options": [
+            "악/강철",
+            "드래곤/격투",
+            "얼음/악",
+            "페어리/비행"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 18,
+        "question": "2세대 스타터 풀 타입 포켓몬은?",
+        "options": [
+            "치코리타",
+            "리아코",
+            "브케인",
+            "새우겹빵"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 19,
+        "question": "2세대 전설 포켓몬 '루기아'의 타입은?",
+        "options": [
+            "에스퍼/비행",
+            "물/비행",
+            "얼음/비행",
+            "드래곤/비행"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 20,
+        "question": "밤에 이브이를 진화시키면?",
+        "options": [
+            "블래키",
+            "에브이",
+            "샤미드",
+            "에스피온"
+        ],
+        "answerIndex": 0,
+        "difficulty": "하",
+        "points": 4
+    },
+    {
+        "id": 21,
+        "question": "파이어/썬더/냉동버드의 공통 타입은?",
+        "options": [
+            "비행",
+            "불꽃",
+            "전기",
+            "얼음"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 22,
+        "question": "악/고스트 타입 포켓몬 '헬가르'가 속한 세대는?",
+        "options": [
+            "2세대",
+            "1세대",
+            "3세대",
+            "4세대"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 23,
+        "question": "2세대 포켓몬의 총 수는?(1세대 포함 누적 아닌 2세대 추가분)",
+        "options": [
+            "100마리",
+            "151마리",
+            "135마리",
+            "251마리"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 24,
+        "question": "1세대에서 기술 교환 NPC에게 '잠자기'를 알려주면 얻는 기술은?",
+        "options": [
+            "지진",
+            "냉동빔",
+            "10만볼트",
+            "폭발"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 25,
+        "question": "뮤(MUU)의 포켓몬 도감 번호는?",
+        "options": [
+            "151번",
+            "150번",
+            "152번",
+            "100번"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 26,
+        "question": "2세대 전설 '엔테이'의 타입은?",
+        "options": [
+            "불꽃",
+            "불꽃/격투",
+            "격투",
+            "불꽃/땅"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 27,
+        "question": "이상해씨의 최종 진화형이 가진 타입 두 가지는?",
+        "options": [
+            "풀/독",
+            "풀/물",
+            "풀/비행",
+            "풀/에스퍼"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 28,
+        "question": "포켓몬 애니에서 지우의 피카츄가 처음으로 이긴 체육관 관장은?",
+        "options": [
+            "마티스(바위)",
+            "이슬(물)",
+            "웅이(풀)",
+            "블레인(불꽃)"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 29,
+        "question": "2세대 초반 주인공 마을인 '연한내음마을'이 위치한 지방은?",
+        "options": [
+            "성도지방",
+            "관동지방",
+            "호연지방",
+            "신오지방"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 30,
+        "question": "포켓몬 기술 '잠자기'의 효과는?",
+        "options": [
+            "체력 전부 회복 후 2턴 잠든다",
+            "상대를 잠재운다",
+            "10% 확률로 잠재운다",
+            "체력을 절반 회복한다"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 31,
+        "question": "1세대에서 유일하게 '고스트' 기술이 통하지 않는 포켓몬은?",
+        "options": [
+            "뮤츠",
+            "잠만보",
+            "팬텀",
+            "게든"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 32,
+        "question": "2세대 금/은 버전에서 뒤에 오는 파트너 포켓몬으로 걷게 되는 기능의 이름은?",
+        "options": [
+            "포켓워크",
+            "함께걷기",
+            "포켓몬워크",
+            "포켓깸"
+        ],
+        "answerIndex": 1,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 33,
+        "question": "2세대 '리아코'의 최종 진화형은?",
+        "options": [
+            "엘리게이블",
+            "어리둥절",
+            "아리아르도",
+            "두빅굴"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 34,
+        "question": "강철 타입이 처음 등장한 세대는?",
+        "options": [
+            "2세대",
+            "1세대",
+            "3세대",
+            "4세대"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 35,
+        "question": "2세대 전설 포켓몬 '호오'의 타입은?",
+        "options": [
+            "불꽃/비행",
+            "비행/강철",
+            "에스퍼/비행",
+            "불꽃/에스퍼"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 36,
+        "question": "포켓몬 기술 '사이코키네시스'는 어느 타입인가?",
+        "options": [
+            "에스퍼",
+            "고스트",
+            "악",
+            "노말"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 37,
+        "question": "1세대에서 지우의 라이벌 이름(게임 기본)은?",
+        "options": [
+            "블루",
+            "실버",
+            "바리",
+            "토파"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 38,
+        "question": "3마리의 개 전설 포켓몬(2세대)에 속하지 않는 포켓몬은?",
+        "options": [
+            "호오",
+            "스이쿤",
+            "라이코",
+            "엔테이"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 39,
+        "question": "1세대 TM28번 기술은?",
+        "options": [
+            "지진",
+            "10만볼트",
+            "화염방사",
+            "냉동빔"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 40,
+        "question": "이브이의 2세대 추가 진화형 중 에스퍼 타입은?",
+        "options": [
+            "에스피온",
+            "블래키",
+            "샤미드",
+            "글레이시아"
+        ],
+        "answerIndex": 0,
+        "difficulty": "중",
+        "points": 5
+    },
+    {
+        "id": 41,
+        "question": "1세대 게임에서 포켓몬을 교환해야 진화하는 포켓몬이 아닌 것은?",
+        "options": [
+            "팬텀",
+            "강철톤",
+            "겐가",
+            "에레키블"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 42,
+        "question": "포켓몬 금/은 버전에서 전화번호를 교환할 수 있는 NPC가 처음 등장한 장소는?",
+        "options": [
+            "30번도로",
+            "1번도로",
+            "에크루틱시티",
+            "연분홍시티"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 43,
+        "question": "1세대 기술 '폭발'의 위력은?",
+        "options": [
+            "250",
+            "200",
+            "150",
+            "300"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 44,
+        "question": "2세대 '브케인'의 최종 진화형 블레이범의 타입은?",
+        "options": [
+            "불꽃",
+            "불꽃/격투",
+            "불꽃/악",
+            "불꽃/에스퍼"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 45,
+        "question": "1세대 포켓몬 '파라스'의 타입 두 가지는?",
+        "options": [
+            "벌레/풀",
+            "벌레/독",
+            "풀/독",
+            "벌레/땅"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 46,
+        "question": "2세대 '헤라크로스'의 타입 두 가지는?",
+        "options": [
+            "벌레/격투",
+            "벌레/악",
+            "격투/악",
+            "벌레/노말"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 47,
+        "question": "1세대 게임에서 '비전머신03'의 기술은?",
+        "options": [
+            "파도타기",
+            "잠수",
+            "날기",
+            "바위깨기"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 48,
+        "question": "2세대 '페르시온'의 특성(1세대 게임 기준 특수 능력)은 무엇인가?",
+        "options": [
+            "모래밭에서 조우율 감소",
+            "독 면역",
+            "잠 면역",
+            "회피율 상승"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 49,
+        "question": "1세대 관동지방의 도시 수는? (마을 제외, 시티·타운 기준)",
+        "options": [
+            "10개",
+            "8개",
+            "12개",
+            "6개"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 50,
+        "question": "2세대 포켓몬 헤라크로스를 야생에서 처음 잡을 수 있는 방법은?",
+        "options": [
+            "나무에 달콤한꿀 바르기",
+            "낚시",
+            "도감 완성 후 입수",
+            "골든로드 풀밭"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 51,
+        "question": "1세대 '겐가'가 배울 수 있는 고스트 타입 기술은?(기술머신 제외 자력기 기준)",
+        "options": [
+            "나이트헤드",
+            "섀도볼",
+            "괴상한빛",
+            "나쁜음모"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 52,
+        "question": "2세대 배틀 타워가 처음 등장한 게임 버전은?",
+        "options": [
+            "크리스탈",
+            "금",
+            "은",
+            "하트골드"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 53,
+        "question": "1세대 포켓몬 '케이시'의 최종 진화형 후딘의 베이스 특수 능력치는?",
+        "options": [
+            "135",
+            "100",
+            "120",
+            "150"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 54,
+        "question": "2세대 포켓몬 '전룡'의 타입 두 가지는?",
+        "options": [
+            "드래곤/전기",
+            "드래곤/비행",
+            "드래곤/얼음",
+            "전기/비행"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 55,
+        "question": "1세대 게임에서 '썬더배지'를 주는 체육관 관장의 이름은?",
+        "options": [
+            "마티스",
+            "카스미",
+            "타케시",
+            "캇챠"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 56,
+        "question": "2세대 '스이쿤'의 타입은?",
+        "options": [
+            "물",
+            "물/얼음",
+            "에스퍼/물",
+            "물/비행"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 57,
+        "question": "1세대 포켓몬 '탕구리'의 전국 도감 번호는?",
+        "options": [
+            "104번",
+            "100번",
+            "110번",
+            "115번"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 58,
+        "question": "2세대 '엔테이'를 처음으로 만날 수 있는 조건은?",
+        "options": [
+            "에크루틱시티 극장 회관 방문 후 야생 배회",
+            "루이나 타운의 특정 건물",
+            "레벨 30 이상 때 3번도로",
+            "전설의 세 마리 포켓몬 포획 후"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 59,
+        "question": "1세대에서 '닌텐도 게임큐브 배틀 포켓몬 콜로세움'과 관련 없는 것은?",
+        "options": [
+            "관동지방 배경",
+            "포켓몬 스냅",
+            "데이터 교환",
+            "이벤트 한정 배포"
+        ],
+        "answerIndex": 0,
+        "difficulty": "상",
+        "points": 7
+    },
+    {
+        "id": 60,
+        "question": "2세대 크리스탈 버전에서 추가된 전설 포켓몬은?",
+        "options": [
+            "수왕정",
+            "세레비",
+            "루기아",
+            "호오"
+        ],
+        "answerIndex": 1,
+        "difficulty": "상",
+        "points": 7
+    }
+]
