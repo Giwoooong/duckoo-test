@@ -622,6 +622,18 @@ p {
   filter: brightness(1.1);
 }
 
+/* Base button appearance for Pokémon */
+.accordion-card:not(.expanded).pokemon-card {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+}
+
+.accordion-card:not(.expanded).pokemon-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
+  filter: brightness(1.1);
+}
+
 /* Expanded State Styles */
 .accordion-card.expanded {
   background: var(--surface-color);
