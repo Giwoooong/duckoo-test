@@ -207,7 +207,7 @@ export default function HomeClient() {
             {activeTheme !== 'pokemon' ? (
               <>
                 <Play size={18} className="icon-left" />
-                포켓몬스터 덕후 테스트
+                포켓몬스터 1-2세대 덕후 테스트
               </>
             ) : (
               <>
