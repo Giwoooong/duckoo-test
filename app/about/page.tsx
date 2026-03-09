@@ -49,7 +49,7 @@ export default function AboutPage() {
 
         <section className="intro-hero">
           <h2>&ldquo;당신의 덕력은 어느 정도인가요?&rdquo;</h2>
-          <p>덕후테스트는 누구나 손쉽게 자신의 &lsquo;덕력&rsquo;을 증명하고 서로 공유하며 즐길 수 있는 신개념 팬덤 검증 서비스입니다. 단순한 퀴즈를 넘어, 작품의 세계관과 스토리에 대한 심층적인 질문을 통해 진정한 마스터를 찾아냅니다. 원피스, 리그 오브 레전드, 강철의 연금술사를 시작으로 다양한 테마의 테스트가 계속 추가되고 있습니다.</p>
+          <p>덕후테스트는 누구나 손쉽게 자신의 &lsquo;덕력&rsquo;을 증명하고 서로 공유하며 즐길 수 있는 신개념 팬덤 검증 서비스입니다. 단순한 퀴즈를 넘어, 작품의 세계관과 스토리에 대한 심층적인 질문을 통해 진정한 마스터를 찾아냅니다. 원피스, 리그 오브 레전드, 강철의 연금술사, 포켓몬스터, 디아블로 2 등을 시작으로 다양한 테마의 테스트가 지속적으로 추가되고 있습니다.</p>
         </section>
 
         {/* 서비스 철학 섹션 */}
@@ -119,7 +119,7 @@ export default function AboutPage() {
         <section className="content-section card-base-styles">
           <h2>📚 현재 제공 중인 테스트 테마</h2>
           <p style={{ marginBottom: '24px', lineHeight: 1.8, color: 'var(--secondary-text-color)' }}>
-            현재 세 가지 테마의 테스트가 운영 중이며, 각 테마는 수십 개의 문항으로 구성된 방대한 문제 은행을 보유하고 있습니다. 매 테스트마다 20문제가 무작위로 출제되어 반복 도전의 재미를 제공합니다.
+            현재 다섯 가지 테마의 테스트가 운영 중이며, 각 테마는 수십 개의 문항으로 구성된 방대한 문제 은행을 보유하고 있습니다. 매 테스트마다 20문제가 무작위로 출제되어 반복 도전의 재미를 제공합니다.
           </p>
           <div className="theme-overview-list">
             <div className="theme-overview-item">
@@ -136,6 +136,16 @@ export default function AboutPage() {
               <div className="theme-overview-badge fma-badge">NEW</div>
               <h3>🔱 강철의 연금술사 (Fullmetal Alchemist)</h3>
               <p>등가교환의 법칙으로 이루어진 세계. 에드워드와 알폰스의 여정, 연금술의 원리, 호문클루스의 정체, 암스트롱 일가의 비밀 등 FMA의 깊은 설정을 파고드는 문제들입니다. 등급: 연금술 입문생 → 은시계의 연금술사 → 국가 연금술사 → 진리를 본 자</p>
+            </div>
+            <div className="theme-overview-item">
+              <div className="theme-overview-badge pokemon-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white' }}>애니/게임</div>
+              <h3>🎮 포켓몬스터 1-2세대 (Pokémon)</h3>
+              <p>관동 지방과 성도 지방을 휩쓸던 포켓몬 마스터의 지식! 1-2세대 포켓몬 도감 정보, 체육관 관장, 애니메이션 한국어 더빙판 기준의 폭넓은 지식을 검증합니다. 등급: 새내기 트레이너 → 포켓몬 수집가 → 체육관 배지 수집가 → 로켓단 저지선 → 사천왕 도전자 → 챔피언 → 포켓몬 마스터</p>
+            </div>
+            <div className="theme-overview-item">
+              <div className="theme-overview-badge diablo2-badge" style={{ background: 'linear-gradient(135deg, #dc2626, #7f1d1d)', color: 'white' }}>NEW/게임</div>
+              <h3>🔥 디아블로 2 (Diablo II + LoD + Warlock DLC)</h3>
+              <p>성역의 수호자여! 디아블로 2 레저렉션과 최근 출시된 악마술사의 군림 DLC까지, 룬어(룬워드), 클래스 스킬트리, 우버 보스 등 하드코어한 지식을 모았습니다. 등급: 노멀 모험가 → 나이트메어 생존자 → 헬 정복자 → 우버 헌터 → 네팔렘 → 성역의 수호자</p>
             </div>
           </div>
         </section>
@@ -213,6 +223,6 @@ export default function AboutPage() {
           </Link>
         </div>
       </main>
-    </div>
+    </div >
   );
 }

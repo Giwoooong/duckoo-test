@@ -138,7 +138,7 @@ const THEME_META: Record<string, {
     hashtags: ["#포켓몬덕후테스트", "#덕후테스트", "#포켓몬스터", "#Pokemon", "#포켓몬마스터"],
     links: [
       { label: "포켓몬 나무위키", url: "https://namu.wiki/w/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%8A%A4%ED%84%B0", desc: "포켓몬스터 세계관·시리즈 전반 나무위키" },
-      { label: "포켓몬 공식 사이트", url: "https://www.pokemon.co.kr", desc: "포켓몬 한국 공식 홈페이지" },
+      { label: "포켓몬 공식 사이트", url: "https://pokemonkorea.co.kr", desc: "포켓몬 한국 공식 홈페이지" },
       { label: "Bulbapedia", url: "https://bulbapedia.bulbagarden.net", desc: "영어권 포켓몬 공식 위키 백과" },
     ],
     otherThemes: [
