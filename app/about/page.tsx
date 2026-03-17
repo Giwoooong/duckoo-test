@@ -160,7 +160,7 @@ export default function AboutPage() {
             <div className="theme-overview-item">
               <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #6b7280, #111827)', color: 'white' }}>NEW/애니</div>
               <h3>🪽 진격의 거인 (Attack on Titan)</h3>
-              <p>시가시나, 지하실, 마레, 길, 땅울림까지 이어지는 복선 회수형 서사를 기반으로 한 고밀도 퀴즈 테마입니다. 등급: 훈련병단 신병 → 조사병단 정예 → 엘디아 비밀 해독자 → 벽 너머의 진실 도달자</p>
+              <p>시가시나, 지하실, 마레, 길, 땅울림까지 이어지는 복선 회수형 서사를 기반으로 한 고밀도 퀴즈 테마입니다. 등급: 훈련병단 신병 → 조사병단 정예 → 에르디아 비밀 해독자 → 벽 너머의 진실 도달자</p>
             </div>
             <div className="theme-overview-item">
               <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}>NEW/스포츠</div>

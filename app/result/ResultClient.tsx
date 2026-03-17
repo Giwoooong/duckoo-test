@@ -93,7 +93,7 @@ function getRank(score: number, themeId: string): string {
     if (score <= 40) return "주둔병단 실전병";
     if (score <= 60) return "조사병단 정예";
     if (score <= 75) return "월 마리아 탈환대";
-    if (score <= 89) return "엘디아 비밀 해독자";
+    if (score <= 89) return "에르디아 비밀 해독자";
     if (score <= 99) return "자유의 날개 계승자";
     return "벽 너머의 진실 도달자";
   }
@@ -277,7 +277,7 @@ const THEME_META: Record<string, {
     gradient: "linear-gradient(135deg, #22c55e, #166534)",
     hashtags: ["#헌터헌터덕후테스트", "#덕후테스트", "#헌터x헌터", "#HunterxHunter", "#넨"],
     links: [
-      { label: "헌터x헌터 나무위키", url: "https://namu.wiki/w/HUNTER%C3%97HUNTER", desc: "작품 세계관과 인물, 능력 정리" },
+      { label: "헌터x헌터 나무위키", url: "https://namu.wiki/w/%ED%97%8C%ED%84%B0%C3%97%ED%97%8C%ED%84%B0?from=%ED%97%8C%ED%84%B0%ED%97%8C%ED%84%B0", desc: "작품 세계관과 인물, 능력 정리" },
       { label: "점프 공식", url: "https://www.shonenjump.com", desc: "소년 점프 공식 사이트" },
       { label: "애니메이션 공식", url: "https://www.ntv.co.jp/hunterhunter/", desc: "애니메이션 공식 사이트" },
     ],
@@ -788,6 +788,16 @@ export default function ResultClient() {
               </ul>
             )}
           </section>
+
+          {/* 하단 재도전 / 다른 테스트 */}
+          <div className="action-row" style={{ marginTop: '40px' }}>
+            <Link href={`/test/${themeId}`} className="ghostButton action-btn">
+              다시 도전
+            </Link>
+            <Link href="/" className="startButton action-btn">
+              다른 테스트 하기
+            </Link>
+          </div>
         </div>
       </main>
     </div>
