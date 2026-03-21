@@ -429,7 +429,7 @@ export default function ResultClient() {
       return;
     }
 
-    let imageUrl = `${SITE_URL}/logo.png?v=2`;
+    let imageUrl = `${SITE_URL}/og.png?v=2`;
 
     try {
       const imageData = await generateCertificateImage(true);
