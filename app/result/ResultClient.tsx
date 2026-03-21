@@ -732,8 +732,33 @@ export default function ResultClient() {
     subTextColor = "#10b981";
     nameBoxBg = "rgba(6, 78, 59, 0.7)";
     nameBoxBorder = "rgba(16, 185, 129, 0.8)";
-    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(16, 185, 129, 0.8)";
     smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(16, 185, 129, 0.6)";
+  } else if (result.themeId === "lotr") {
+    hasImageBg = true;
+    certBorderColor = "transparent";
+    certBg = "none";
+    watermarkBg = "transparent";
+    watermarkOpacity = 0;
+    accentColor = "#ca8a04";
+    textColor = "#ffffff";
+    subTextColor = "#eab308";
+    nameBoxBg = "rgba(41, 37, 36, 0.7)";
+    nameBoxBorder = "rgba(202, 138, 4, 0.8)";
+    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(202, 138, 4, 0.8)";
+    smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(202, 138, 4, 0.6)";
+  } else if (result.themeId === "bleach") {
+    hasImageBg = true;
+    certBorderColor = "transparent";
+    certBg = "none";
+    watermarkBg = "transparent";
+    watermarkOpacity = 0;
+    accentColor = "#06b6d4";
+    textColor = "#ffffff";
+    subTextColor = "#22d3ee";
+    nameBoxBg = "rgba(15, 23, 42, 0.7)";
+    nameBoxBorder = "rgba(6, 182, 212, 0.8)";
+    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(6, 182, 212, 0.8)";
+    smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(6, 182, 212, 0.6)";
   }
   
   let certBgImageUrl = "";
@@ -747,6 +772,8 @@ export default function ResultClient() {
   else if (result.themeId === "aot") certBgImageUrl = "/images/aot_cert_bg.png?v=1";
   else if (result.themeId === "slamdunk") certBgImageUrl = "/images/slamdunk_cert_bg.png?v=1";
   else if (result.themeId === "hxh") certBgImageUrl = "/images/hxh_cert_bg.png?v=1";
+  else if (result.themeId === "lotr") certBgImageUrl = "/images/lotr_cert_bg.png?v=1";
+  else if (result.themeId === "bleach") certBgImageUrl = "/images/bleach_cert_bg.png?v=1";
 
   return (
     <div className="shell result-shell">
