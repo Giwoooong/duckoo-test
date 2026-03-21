@@ -337,6 +337,53 @@ export default function HomeClient() {
             )}
           </article>
 
+          {/* Bleach Test Card */}
+          <article
+            className={`themeCard highlighted-card accordion-card bleach-card ${activeTheme === 'bleach' ? 'expanded' : ''}`}
+            onClick={() => setActiveTheme(activeTheme === 'bleach' ? null : 'bleach')}
+            style={{ "--primary-color": "#ea580c" } as React.CSSProperties}
+          >
+            {activeTheme !== 'bleach' ? (
+              <>
+                <Play size={18} className="icon-left" />
+                블리치 덕후 테스트
+              </>
+            ) : (
+              <>
+                <div className="card-header bleach-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #f97316, #9a3412)' }}>웹툰/애니</span>
+                  <h2 className="accordion-title">블리치 덕후 테스트</h2>
+                </div>
+
+                <div className="card-expanded-content">
+                  <p className="accordion-description">
+                    만해(卍解)..! 사신, 아란칼, 퀸시가 격돌하는 세계관 지식을 검증합니다. 당신의 등급은 평대원일까요, 대장일까요?
+                  </p>
+                  <div className="accordion-info-box">
+                    <span className="info-icon">💡</span>
+                    <span className="info-text">
+                      방대한 문제 은행에서 <strong>무작위로 20문제</strong>가 출제되며, 난이도(상/중/하)에 따라 배점이 다릅니다.
+                    </span>
+                  </div>
+                  <div className="input-group" onClick={(e) => e.stopPropagation()}>
+                    <input
+                      id="nickname-bleach"
+                      className="nicknameInput"
+                      placeholder="인증서 닉네임 입력 (예: 이치고)"
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+
+                  <button className="startButton bleach-btn" type="button" onClick={(e) => { e.stopPropagation(); startTest("bleach"); }}>
+                    <Play size={18} className="icon-left" />
+                    테스트 바로 시작
+                  </button>
+                </div>
+              </>
+            )}
+          </article>
+
           {/* MCU Test Card */}
           <article
             className={`themeCard highlighted-card accordion-card mcu-card ${activeTheme === 'mcu' ? 'expanded' : ''}`}

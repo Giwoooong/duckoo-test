@@ -118,6 +118,15 @@ function getRank(score: number, themeId: string): string {
     return "더블 스타급 헌터";
   }
 
+  if (themeId === "bleach") {
+    if (score <= 24) return "사패장 소년";
+    if (score <= 49) return "평대원";
+    if (score <= 69) return "석관";
+    if (score <= 84) return "부대장";
+    if (score <= 94) return "호정 13대 대장";
+    return "0번대 (왕속부대)";
+  }
+
   // Default (One Piece)
   if (score <= 24) return "이스트 블루 루키";
   if (score <= 49) return "위대한 항로 모험가";
@@ -224,6 +233,21 @@ const THEME_META: Record<string, {
     otherThemes: [
       { id: "diablo2", name: "디아블로 2 덕후 테스트", emoji: "🔥", desc: "성역의 수호자를 검증합니다! D2 + 악마술사 DLC", color: "#9f1414" },
       { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
+    ],
+  },
+  bleach: {
+    emoji: "⚔️",
+    color: "#ea580c",
+    gradient: "linear-gradient(135deg, #f97316, #9a3412)",
+    hashtags: ["#블리치덕후테스트", "#덕후테스트", "#블리치", "#Bleach", "#만해"],
+    links: [
+      { label: "블리치 나무위키", url: "https://namu.wiki/w/%EB%B8%94%EB%A6%AC%EC%B9%98", desc: "블리치 세계관·등장인물 나무위키" },
+      { label: "블리치 애니 공식 X", url: "https://twitter.com/BLEACHanimation", desc: "블리치 천년혈전 편 공식 트위터" },
+      { label: "블리치 팬덤 위키", url: "https://bleach.fandom.com/wiki/Bleach_Wiki", desc: "블리치 공식 설정 영문 팬덤 위키" },
+    ],
+    otherThemes: [
+      { id: "onepiece", name: "원피스 덕후 테스트", emoji: "⛵", desc: "해적왕의 꿈! 원피스 세계관 지식을 검증합니다.", color: "#4f46e5" },
+      { id: "sololeveling", name: "나 혼자만 레벨업 덕후 테스트", emoji: "🗡️", desc: "성진우와 그림자 군단의 이야기!", color: "#4c1d95" },
     ],
   },
   mcu: {
@@ -648,6 +672,45 @@ export default function ResultClient() {
     nameBoxBorder = "rgba(59, 130, 246, 0.8)";
     textShadow = "0 0 12px rgba(96, 165, 250, 0.9), 0 0 24px rgba(239, 68, 68, 0.6)";
     smallTextShadow = "0 0 8px rgba(96, 165, 250, 0.8), 0 0 16px rgba(239, 68, 68, 0.5)";
+  } else if (result.themeId === "aot") {
+    hasImageBg = true;
+    certBorderColor = "transparent";
+    certBg = "none";
+    watermarkBg = "transparent";
+    watermarkOpacity = 0;
+    accentColor = "#ef4444";
+    textColor = "#ffffff";
+    subTextColor = "#ef4444";
+    nameBoxBg = "rgba(41, 37, 36, 0.7)";
+    nameBoxBorder = "rgba(120, 113, 108, 0.8)";
+    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(220, 38, 38, 0.8)";
+    smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(220, 38, 38, 0.6)";
+  } else if (result.themeId === "slamdunk") {
+    hasImageBg = true;
+    certBorderColor = "transparent";
+    certBg = "none";
+    watermarkBg = "transparent";
+    watermarkOpacity = 0;
+    accentColor = "#dc2626";
+    textColor = "#ffffff";
+    subTextColor = "#ef4444";
+    nameBoxBg = "rgba(0, 0, 0, 0.7)";
+    nameBoxBorder = "rgba(220, 38, 38, 0.8)";
+    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(220, 38, 38, 0.8)";
+    smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(220, 38, 38, 0.6)";
+  } else if (result.themeId === "hxh") {
+    hasImageBg = true;
+    certBorderColor = "transparent";
+    certBg = "none";
+    watermarkBg = "transparent";
+    watermarkOpacity = 0;
+    accentColor = "#16a34a";
+    textColor = "#ffffff";
+    subTextColor = "#10b981";
+    nameBoxBg = "rgba(6, 78, 59, 0.7)";
+    nameBoxBorder = "rgba(16, 185, 129, 0.8)";
+    textShadow = "0 0 12px rgba(0,0,0,1), 0 0 24px rgba(16, 185, 129, 0.8)";
+    smallTextShadow = "0 0 8px rgba(0,0,0,1), 0 0 16px rgba(16, 185, 129, 0.6)";
   }
   
   let certBgImageUrl = "";
@@ -658,6 +721,9 @@ export default function ResultClient() {
   else if (result.themeId === "diablo2") certBgImageUrl = "/images/diablo2_cert_bg.png?v=1";
   else if (result.themeId === "sololeveling") certBgImageUrl = "/images/sololeveling_cert_bg.png?v=1";
   else if (result.themeId === "mcu") certBgImageUrl = "/images/mcu_cert_bg.png?v=2";
+  else if (result.themeId === "aot") certBgImageUrl = "/images/aot_cert_bg.png?v=1";
+  else if (result.themeId === "slamdunk") certBgImageUrl = "/images/slamdunk_cert_bg.png?v=1";
+  else if (result.themeId === "hxh") certBgImageUrl = "/images/hxh_cert_bg.png?v=1";
 
   return (
     <div className="shell result-shell">

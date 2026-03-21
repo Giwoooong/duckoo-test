@@ -658,6 +658,18 @@ p {
   filter: brightness(1.1);
 }
 
+/* Base button appearance for Bleach */
+.accordion-card:not(.expanded).bleach-card {
+  background: linear-gradient(135deg, #f97316, #9a3412);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+}
+
+.accordion-card:not(.expanded).bleach-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
+  filter: brightness(1.1);
+}
+
 /* Base button appearance for MCU */
 .accordion-card:not(.expanded).mcu-card {
   background: linear-gradient(135deg, #ef4444, #991b1b);

@@ -8,6 +8,7 @@ import { mcuTheme } from "./mcu";
 import { aotTheme } from "./aot";
 import { slamdunkTheme } from "./slamdunk";
 import { hxhTheme } from "./hxh";
+import { bleachTheme } from "./bleach";
 import type { Theme } from "./types";
 
 const themes: Record<string, Theme> = {
@@ -21,6 +22,7 @@ const themes: Record<string, Theme> = {
   [aotTheme.id]: aotTheme,
   [slamdunkTheme.id]: slamdunkTheme,
   [hxhTheme.id]: hxhTheme,
+  [bleachTheme.id]: bleachTheme,
 };
 
 export function getTheme(themeId: string): Theme | null {
