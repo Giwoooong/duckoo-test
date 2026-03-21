@@ -342,6 +342,7 @@ export default function ResultClient() {
   const searchParams = useSearchParams();
   const themeId = searchParams.get("theme") ?? "onepiece";
   const certificateRef = useRef<HTMLDivElement>(null);
+  const [certScale, setCertScale] = useState(1);
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -367,6 +368,26 @@ export default function ResultClient() {
 
     setLoaded(true);
   }, [themeId]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    const node = certificateRef.current;
+    if (!node) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width } = entry.contentRect;
+        if (width > 0 && width < 450) {
+          setCertScale(width / 450);
+        } else {
+          setCertScale(1);
+        }
+      }
+    });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [loaded]);
 
   const wrongAnswers = useMemo(() => {
     if (!result) return [];
@@ -802,12 +823,12 @@ export default function ResultClient() {
                   flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  padding: '24px',
+                  padding: `${24 * certScale}px`,
                   background: certBg,
-                  border: hasImageBg ? 'none' : `4px double ${certBorderColor}`,
-                  borderRadius: hasImageBg ? '16px' : '8px',
+                  border: hasImageBg ? 'none' : `${4 * certScale}px double ${certBorderColor}`,
+                  borderRadius: hasImageBg ? `${16 * certScale}px` : `${8 * certScale}px`,
                   outline: 'none',
-                  boxShadow: hasImageBg ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
+                  boxShadow: hasImageBg ? `0 ${10 * certScale}px ${30 * certScale}px rgba(0,0,0,0.5)` : 'none',
                   overflow: 'hidden'
                 }}
               >
@@ -850,21 +871,21 @@ export default function ResultClient() {
                     <div style={{
                       backgroundColor: watermarkBg,
                       borderRadius: '50%',
-                      width: '350px',
-                      height: '350px',
+                      width: `${350 * certScale}px`,
+                      height: `${350 * certScale}px`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <ClipboardCheck size={180} color="white" strokeWidth={1.5} />
+                      <ClipboardCheck size={180 * certScale} color="white" strokeWidth={1.5} />
                     </div>
                   </div>
                 )}
 
-                <div style={{ marginBottom: '24px', textAlign: 'center', marginTop: '16px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
+                <div style={{ marginBottom: `${24 * certScale}px`, textAlign: 'center', marginTop: `${16 * certScale}px` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: `${8 * certScale}px` }}>
                     <p style={{ 
-                      fontSize: '13px', 
+                      fontSize: `${13 * certScale}px`, 
                       fontWeight: 800, 
                       color: accentColor, 
                       letterSpacing: '0.2em', 
@@ -873,7 +894,7 @@ export default function ResultClient() {
                     }}>OFFICIAL CERTIFICATE</p>
                   </div>
                   <h2 style={{ 
-                    fontSize: '32px', 
+                    fontSize: `${32 * certScale}px`, 
                     fontWeight: 900, 
                     color: textColor, 
                     letterSpacing: '0.15em', 
@@ -881,10 +902,10 @@ export default function ResultClient() {
                     textShadow: textShadow 
                   }}>덕후 인증서</h2>
                   <p style={{ 
-                    fontSize: '16px', 
+                    fontSize: `${16 * certScale}px`, 
                     fontWeight: 700, 
                     color: subTextColor, 
-                    marginTop: '10px', 
+                    marginTop: `${10 * certScale}px`, 
                     marginBottom: 0,
                     textShadow: smallTextShadow
                   }}>
@@ -894,35 +915,35 @@ export default function ResultClient() {
 
                 <div style={{
                   backgroundColor: nameBoxBg,
-                  padding: '12px 32px',
-                  borderRadius: '16px',
+                  padding: `${12 * certScale}px ${32 * certScale}px`,
+                  borderRadius: `${16 * certScale}px`,
                   display: 'inline-block',
-                  marginBottom: '24px',
-                  border: `2px solid ${nameBoxBorder}`,
-                  boxShadow: `0 4px 12px ${hasImageBg ? 'rgba(183, 121, 47, 0.1)' : 'rgba(79, 70, 229, 0.1)'}`,
+                  marginBottom: `${24 * certScale}px`,
+                  border: `${2 * certScale}px solid ${nameBoxBorder}`,
+                  boxShadow: `0 ${4 * certScale}px ${12 * certScale}px ${hasImageBg ? 'rgba(183, 121, 47, 0.1)' : 'rgba(79, 70, 229, 0.1)'}`,
                   textAlign: 'center'
                 }}>
-                  <p style={{ fontSize: '28px', fontWeight: 900, color: accentColor, margin: 0, letterSpacing: '0.05em' }}>{result.player}</p>
+                  <p style={{ fontSize: `${28 * certScale}px`, fontWeight: 900, color: accentColor, margin: 0, letterSpacing: '0.05em' }}>{result.player}</p>
                 </div>
 
-                <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                <div style={{ textAlign: 'center', marginBottom: `${16 * certScale}px` }}>
                   <p className="certScore" style={{ 
-                    fontSize: '64px', 
+                    fontSize: `${64 * certScale}px`, 
                     margin: 0, 
                     color: textColor,
                     textShadow: textShadow
                   }}>
                     {result.score}
                     <span style={{ 
-                      fontSize: '24px', 
+                      fontSize: `${24 * certScale}px`, 
                       color: subTextColor,
                       textShadow: smallTextShadow
                     }}>점</span>
                   </p>
                   
-                  <div style={{ marginTop: '8px' }}>
+                  <div style={{ marginTop: `${8 * certScale}px` }}>
                     <p className="certRank" style={{ 
-                      fontSize: '24px', 
+                      fontSize: `${24 * certScale}px`, 
                       margin: 0, 
                       color: accentColor,
                       display: 'block',

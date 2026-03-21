@@ -48,7 +48,7 @@ export function buildQuiz(questions: Question[], count: number): Question[] {
     picked.push(...rest.slice(0, count - picked.length));
   }
 
-  return shuffle(picked.slice(0, count)).map(shuffleQuestionOptions);
+  return picked.slice(0, count).map(shuffleQuestionOptions);
 }
 
 export function calculateResult(quiz: Question[], answers: Array<number | null>): QuizResult {
