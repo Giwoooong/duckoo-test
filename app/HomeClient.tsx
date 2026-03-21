@@ -69,7 +69,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header onepiece-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px' }}><Flame size={12} className="icon-left" />인기</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">원피스 덕후 테스트</h2>
                 </div>
 
@@ -116,7 +116,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header lol-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px' }}><Gamepad2 size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px' }}><Gamepad2 size={12} className="icon-left" />게임</span>
                   <h2 className="accordion-title">리그 오브 레전드 덕후 테스트</h2>
                 </div>
 
@@ -163,7 +163,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header fma-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #b91c1c, #991b1b)' }}><Shield size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #b91c1c, #991b1b)' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">강철의 연금술사 덕후 테스트</h2>
                 </div>
 
@@ -210,7 +210,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header pokemon-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}><Gamepad2 size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}><Gamepad2 size={12} className="icon-left" />게임</span>
                   <h2 className="accordion-title">포켓몬스터 덕후 테스트</h2>
                 </div>
 
@@ -257,7 +257,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header diablo2-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #dc2626, #7f1d1d)' }}><Flame size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #dc2626, #7f1d1d)' }}><Gamepad2 size={12} className="icon-left" />게임</span>
                   <h2 className="accordion-title">디아블로 2 덕후 테스트</h2>
                 </div>
 
@@ -304,7 +304,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header sololeveling-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #6d28d9, #312e81)' }}>웹툰/애니</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #6d28d9, #312e81)' }}><BookOpen size={12} className="icon-left" />웹툰/애니</span>
                   <h2 className="accordion-title">나 혼자만 레벨업 덕후 테스트</h2>
                 </div>
 
@@ -351,7 +351,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header bleach-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #f97316, #9a3412)' }}>만화/애니</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #f97316, #9a3412)' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">블리치 덕후 테스트</h2>
                 </div>
 
@@ -398,7 +398,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header lotr-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #eab308, #854d0e)' }}><Award size={12} className="icon-left" />영화</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #eab308, #854d0e)' }}><Clapperboard size={12} className="icon-left" />영화</span>
                   <h2 className="accordion-title">반지의 제왕 덕후 테스트</h2>
                 </div>
 
@@ -445,7 +445,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header mcu-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}><Clapperboard size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}><Clapperboard size={12} className="icon-left" />영화</span>
                   <h2 className="accordion-title">마블 시네마틱 유니버스 테스트</h2>
                 </div>
 
@@ -491,7 +491,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header aot-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #4b5563, #111827)' }}><Shield size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #4b5563, #111827)' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">진격의 거인 덕후 테스트</h2>
                 </div>
 
@@ -537,7 +537,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header slamdunk-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}><Award size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #ef4444, #b91c1c)' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">슬램덩크 덕후 테스트</h2>
                 </div>
 
@@ -583,7 +583,7 @@ export default function HomeClient() {
             ) : (
               <>
                 <div className="card-header hxh-header" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #22c55e, #15803d)' }}><Gamepad2 size={12} className="icon-left" />NEW</span>
+                  <span className="chip" style={{ margin: 0, padding: '4px 8px', background: 'linear-gradient(135deg, #22c55e, #15803d)' }}><BookOpen size={12} className="icon-left" />만화/애니</span>
                   <h2 className="accordion-title">헌터x헌터 덕후 테스트</h2>
                 </div>
 

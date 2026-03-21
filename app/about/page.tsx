@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Sparkles, Compass, History, CheckCircle2, Target, Users, Zap, BookOpen, Heart, MessageSquare, ChevronDown, ChevronUp, Award, Globe, Shield } from 'lucide-react';
+import { Sparkles, Compass, History, CheckCircle2, Target, Users, Zap, BookOpen, Heart, MessageSquare, ChevronDown, ChevronUp, Award, Globe, Shield, Gamepad2, Clapperboard } from 'lucide-react';
 
 const faqItems = [
   {
@@ -123,62 +123,62 @@ export default function AboutPage() {
           </p>
           <div className="theme-overview-list">
             <div className="theme-overview-item">
-              <div className="theme-overview-badge onepiece-badge">인기 1위</div>
+              <div className="theme-overview-badge onepiece-badge"><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>⛵ 원피스 (ONE PIECE)</h3>
               <p>해적왕을 꿈꾸는 루피와 동료들의 이야기. 위대한 항로의 세계관, 악마의 열매, 칠무해, 사황, 해군 본부 등 방대한 원피스 세계의 디테일을 검증합니다. 등급: 위대한 항로 루키 → 신세계 최악의 세대 → 사황 → 해적왕</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge lol-badge">게임</div>
+              <div className="theme-overview-badge lol-badge"><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
               <h3>⚔️ 리그 오브 레전드 (League of Legends)</h3>
               <p>소환사의 협곡 위에서 펼쳐지는 치열한 지식 배틀. 챔피언의 스킬과 배경 스토리, 룬테라 세계관, 게임 메커니즘까지 LoL 마스터의 자격을 검증합니다. 등급: 아이언 → 브론즈 → 실버 → 골드 → 플래티넘 → 다이아몬드 → 마스터 → 챌린저</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge fma-badge">NEW</div>
+              <div className="theme-overview-badge fma-badge"><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>🔱 강철의 연금술사 (Fullmetal Alchemist)</h3>
               <p>등가교환의 법칙으로 이루어진 세계. 에드워드와 알폰스의 여정, 연금술의 원리, 호문클루스의 정체, 암스트롱 일가의 비밀 등 FMA의 깊은 설정을 파고드는 문제들입니다. 등급: 연금술 입문생 → 은시계의 연금술사 → 국가 연금술사 → 진리를 본 자</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge pokemon-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white' }}>애니/게임</div>
+              <div className="theme-overview-badge pokemon-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white' }}><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
               <h3>🎮 포켓몬스터 1-2세대 (Pokémon)</h3>
               <p>관동 지방과 성도 지방을 휩쓸던 포켓몬 마스터의 지식! 1-2세대 포켓몬 도감 정보, 체육관 관장, 애니메이션 한국어 더빙판 기준의 폭넓은 지식을 검증합니다. 등급: 새내기 트레이너 → 포켓몬 수집가 → 체육관 배지 수집가 → 로켓단 저지선 → 사천왕 도전자 → 챔피언 → 포켓몬 마스터</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge diablo2-badge" style={{ background: 'linear-gradient(135deg, #dc2626, #7f1d1d)', color: 'white' }}>NEW/게임</div>
+              <div className="theme-overview-badge diablo2-badge" style={{ background: 'linear-gradient(135deg, #dc2626, #7f1d1d)', color: 'white' }}><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
               <h3>🔥 디아블로 2 (Diablo II + LoD + Warlock DLC)</h3>
               <p>성역의 수호자여! 디아블로 2 레저렉션과 최근 출시된 악마술사의 군림 DLC까지, 룬어(룬워드), 클래스 스킬트리, 우버 보스 등 하드코어한 지식을 모았습니다. 등급: 노멀 모험가 → 나이트메어 생존자 → 헬 정복자 → 우버 헌터 → 네팔렘 → 성역의 수호자</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge sololeveling-badge" style={{ background: 'linear-gradient(135deg, #6d28d9, #312e81)', color: 'white' }}>NEW/애니</div>
+              <div className="theme-overview-badge sololeveling-badge" style={{ background: 'linear-gradient(135deg, #6d28d9, #312e81)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />웹툰/애니</div>
               <h3>🗡️ 나 혼자만 레벨업 (Solo Leveling)</h3>
               <p>전 세계를 휩쓴 K-웹툰/애니메이션의 전설! 성진우와 그림자 군단의 서사, 헌터 랭킹 및 세계관의 심층 지식을 검증합니다. 등급: E급 헌터 → C급 헌터 → A급 헌터 → S급 헌터 → 국가 권력급 → 그림자 군주</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge bleach-badge" style={{ background: 'linear-gradient(135deg, #f97316, #9a3412)', color: 'white' }}>NEW/만화/애니</div>
+              <div className="theme-overview-badge bleach-badge" style={{ background: 'linear-gradient(135deg, #f97316, #9a3412)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>⚔️ 블리치 (Bleach)</h3>
               <p>만해(卍解)..! 사신, 아란칼, 퀸시가 격돌하는 블리치 세계관! 참백도 이름과 호정 13대의 디테일한 설정을 꿰뚫는 자를 가려냅니다. 등급: 사패장 소년 → 평대원 → 석관 → 부대장 → 호정 13대 대장 → 0번대 (왕속부대)</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge lotr-badge" style={{ background: 'linear-gradient(135deg, #eab308, #854d0e)', color: 'white' }}>NEW/영화</div>
+              <div className="theme-overview-badge lotr-badge" style={{ background: 'linear-gradient(135deg, #eab308, #854d0e)', color: 'white' }}><Clapperboard size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />영화</div>
               <h3>💍 반지의 제왕 (LOTR)</h3>
               <p>호빗부터 요정, 절대반지와 사우론까지! 방대한 중간계 세계관과 종족, 반지원정대의 여정을 가장 완벽하게 꿰뚫는 자를 찾습니다. 등급: 호빗 마을 주민 → 로한/곤도르의 병사 → 정예 요정 전사 → 반지원정대 일원 → 백색의 이스타리 → 반지의 제왕</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}>NEW/영화</div>
+              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}><Clapperboard size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />영화</div>
               <h3>🦸 마블 시네마틱 유니버스 (MCU)</h3>
               <p>아이언맨부터 어벤져스, 인피니티 사가, 멀티버스까지. 히어로와 빌런, 인피니티 스톤, 명대사와 설정 디테일을 모두 아우르는 영화/드라마 통합 덕력 검증 테마입니다. 등급: 쉴드 신입 요원 → 정식 어벤져스 → 인피니티 사가 전문가 → 어셈블 마스터</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #6b7280, #111827)', color: 'white' }}>NEW/애니</div>
+              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #6b7280, #111827)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>🪽 진격의 거인 (Attack on Titan)</h3>
               <p>시가시나, 지하실, 마레, 길, 땅울림까지 이어지는 복선 회수형 서사를 기반으로 한 고밀도 퀴즈 테마입니다. 등급: 훈련병단 신병 → 조사병단 정예 → 에르디아 비밀 해독자 → 벽 너머의 진실 도달자</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}>NEW/스포츠</div>
+              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>🏀 슬램덩크 (Slam Dunk)</h3>
               <p>북산 5인방의 성장, 능남과 해남, 그리고 전국대회 산왕전까지. 농구 경기의 열기와 캐릭터 서사를 함께 기억하는 팬을 위한 테마입니다. 등급: 농구부 신입 → 주전급 플레이어 → 전국대회 핵심 전력 → 북산의 전설</p>
             </div>
             <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #166534)', color: 'white' }}>NEW/애니</div>
+              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #166534)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
               <h3>🃏 헌터x헌터 (Hunter x Hunter)</h3>
               <p>헌터 시험, 요크신 시티, 그리드 아일랜드, 키메라 앤트, 넨 계통까지 단계적으로 파고드는 전략형 퀴즈 테마입니다. 등급: 헌터 시험 응시생 → 넨 수련자 → 헌터 협회 핵심 → 더블 스타급 헌터</p>
             </div>
