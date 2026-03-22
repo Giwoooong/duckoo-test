@@ -37,6 +37,12 @@ const faqData = [
 export default function HomeClient() {
   const [name, setName] = useState("");
   const [activeTheme, setActiveTheme] = useState<string | null>("onepiece");
+  const [activeTab, setActiveTab] = useState("추천");
+  const tabs = ["추천", "만화/애니", "웹툰/애니", "게임", "영화"];
+  const isTabVisible = (genre: string, themeId: string) => {
+    if (activeTab === "추천") return ["onepiece", "lol", "sololeveling", "mcu", "bleach", "lotr"].includes(themeId);
+    return activeTab === genre;
+  };
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const router = useRouter();
 
@@ -55,8 +61,32 @@ export default function HomeClient() {
           <p className="lead">애니, 영화, 게임 등 다양한 분야의 진정한 덕후를 가려냅니다. 당신의 덕력을 뽐내보세요.</p>
         </div>
 
+        
+        <div className="tab-menu" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '16px', marginBottom: '8px', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          {tabs.map(tab => (
+            <button
+              key={tab}
+              onClick={() => { setActiveTab(tab); setActiveTheme(null); }}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: activeTab === tab ? 'var(--primary-color, #3b82f6)' : 'rgba(255,255,255,0.05)',
+                color: activeTab === tab ? '#fff' : '#a1a1aa',
+                fontWeight: activeTab === tab ? '600' : '400',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
         <section className="themeGrid" style={{ flexWrap: 'wrap', gap: '32px' }}>
           {/* One Piece Test Card */}
+          {isTabVisible("만화/애니", "onepiece") && (
           <article
             className={`themeCard highlighted-card accordion-card onepiece-card ${activeTheme === 'onepiece' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'onepiece' ? null : 'onepiece')}
@@ -101,8 +131,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* League of Legends Test Card */}
+          {isTabVisible("게임", "lol") && (
           <article
             className={`themeCard highlighted-card accordion-card lol-card ${activeTheme === 'lol' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'lol' ? null : 'lol')}
@@ -148,8 +180,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* Fullmetal Alchemist Test Card */}
+          {isTabVisible("만화/애니", "fma") && (
           <article
             className={`themeCard highlighted-card accordion-card fma-card ${activeTheme === 'fma' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'fma' ? null : 'fma')}
@@ -195,8 +229,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* Pokémon Test Card */}
+          {isTabVisible("게임", "pokemon") && (
           <article
             className={`themeCard highlighted-card accordion-card pokemon-card ${activeTheme === 'pokemon' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'pokemon' ? null : 'pokemon')}
@@ -242,8 +278,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* Diablo 2 Test Card */}
+          {isTabVisible("게임", "diablo2") && (
           <article
             className={`themeCard highlighted-card accordion-card diablo2-card ${activeTheme === 'diablo2' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'diablo2' ? null : 'diablo2')}
@@ -289,8 +327,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* Solo Leveling Test Card */}
+          {isTabVisible("웹툰/애니", "sololeveling") && (
           <article
             className={`themeCard highlighted-card accordion-card sololeveling-card ${activeTheme === 'sololeveling' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'sololeveling' ? null : 'sololeveling')}
@@ -336,8 +376,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* Bleach Test Card */}
+          {isTabVisible("만화/애니", "bleach") && (
           <article
             className={`themeCard highlighted-card accordion-card bleach-card ${activeTheme === 'bleach' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'bleach' ? null : 'bleach')}
@@ -383,8 +425,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* LOTR Test Card */}
+          {isTabVisible("영화", "lotr") && (
           <article
             className={`themeCard highlighted-card accordion-card lotr-card ${activeTheme === 'lotr' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'lotr' ? null : 'lotr')}
@@ -430,8 +474,10 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
           {/* MCU Test Card */}
+          {isTabVisible("영화", "mcu") && (
           <article
             className={`themeCard highlighted-card accordion-card mcu-card ${activeTheme === 'mcu' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'mcu' ? null : 'mcu')}
@@ -477,7 +523,9 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
+          {isTabVisible("만화/애니", "aot") && (
           <article
             className={`themeCard highlighted-card accordion-card aot-card ${activeTheme === 'aot' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'aot' ? null : 'aot')}
@@ -523,7 +571,9 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
+          {isTabVisible("만화/애니", "slamdunk") && (
           <article
             className={`themeCard highlighted-card accordion-card slamdunk-card ${activeTheme === 'slamdunk' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'slamdunk' ? null : 'slamdunk')}
@@ -569,7 +619,9 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
 
+          {isTabVisible("만화/애니", "hxh") && (
           <article
             className={`themeCard highlighted-card accordion-card hxh-card ${activeTheme === 'hxh' ? 'expanded' : ''}`}
             onClick={() => setActiveTheme(activeTheme === 'hxh' ? null : 'hxh')}
@@ -615,6 +667,7 @@ export default function HomeClient() {
               </>
             )}
           </article>
+          )}
         </section>
 
         {/* How It Works Section */}
