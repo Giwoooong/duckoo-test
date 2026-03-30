@@ -62,7 +62,7 @@ export default function HomeClient() {
         </div>
 
         
-        <div className="tab-menu" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '16px', marginBottom: '8px', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+        <div className="tab-menu" style={{ display: 'flex', justifyContent: 'center', gap: '8px', overflowX: 'auto', paddingBottom: '16px', marginBottom: '8px', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
           {tabs.map(tab => (
             <button
               key={tab}
