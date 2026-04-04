@@ -2,18 +2,23 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 const path = require('path');
 
-const targetPath = path.join(__dirname, 'app/test/[themeId]/page.tsx');
+const targetPaths = [
+    path.join(__dirname, 'app/test/[themeId]/page.tsx'),
+    path.join(__dirname, 'app/result/page.tsx')
+];
 const edgeConfig = "\nexport const runtime = 'edge';\n";
 
-let originalContent = '';
+let originalContents = new Map();
 try {
-    originalContent = fs.readFileSync(targetPath, 'utf8');
-
-    // Only add if not already present
-    if (!originalContent.includes("runtime = 'edge'")) {
-        fs.writeFileSync(targetPath, originalContent + edgeConfig);
-        console.log("✅ Injected Edge runtime config for Cloudflare build");
+    for (const targetPath of targetPaths) {
+        let content = fs.readFileSync(targetPath, 'utf8');
+        originalContents.set(targetPath, content);
+        
+        if (!content.includes("runtime = 'edge'")) {
+            fs.writeFileSync(targetPath, content + edgeConfig);
+        }
     }
+    console.log("✅ Injected Edge runtime config for Cloudflare build");
 
     // Run the Cloudflare build
     console.log("🚀 Starting Cloudflare next-on-pages build...");
@@ -24,8 +29,8 @@ try {
     process.exitCode = 1;
 } finally {
     // Always restore the original content to keep local dev clean
-    if (originalContent) {
-        fs.writeFileSync(targetPath, originalContent);
-        console.log("♻️ Restored original file without Edge config");
+    for (const [targetPath, content] of originalContents.entries()) {
+        fs.writeFileSync(targetPath, content);
     }
+    console.log("♻️ Restored original files without Edge config");
 }
