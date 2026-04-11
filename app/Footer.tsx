@@ -8,6 +8,7 @@ export default function Footer() {
       <div className="shell">
         <p className="footer-text">&copy; {new Date().getFullYear()} 덕후테스트(DUCKOO TEST). All rights reserved.</p>
         <nav className="footer-nav">
+          <Link href="/blog">덕후 블로그</Link>
           <Link href="/about">서비스 소개</Link>
           <Link href="/privacy">개인정보처리방침</Link>
           <Link href="/terms">이용약관</Link>
