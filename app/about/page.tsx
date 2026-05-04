@@ -1,8 +1,18 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useState } from "react";
-import { Sparkles, Compass, History, CheckCircle2, Target, Users, Zap, BookOpen, Heart, MessageSquare, ChevronDown, ChevronUp, Award, Globe, Shield, Gamepad2, Clapperboard } from 'lucide-react';
+import AboutFaq from "./AboutFaq";
+
+export const metadata: Metadata = {
+  title: "서비스 소개 | 덕후테스트",
+  description:
+    "덕후테스트(DUCKOO TEST)는 애니메이션, 게임, 영화 등 서브컬처 콘텐츠에 대한 팬의 지식과 애정을 퀴즈 형식으로 측정하고 공식 인증서를 발급하는 팬덤 검증 플랫폼입니다.",
+  openGraph: {
+    title: "서비스 소개 | 덕후테스트",
+    description:
+      "덕후테스트(DUCKOO TEST)는 애니메이션, 게임, 영화 등 서브컬처 콘텐츠에 대한 팬의 지식을 측정하는 프리미엄 팬덤 퀴즈 플랫폼입니다.",
+    images: ["/og.png"],
+  },
+};
 
 const faqItems = [
   {
@@ -35,9 +45,23 @@ const faqItems = [
   }
 ];
 
-export default function AboutPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+const themes = [
+  { badge: "만화/애니", badgeClass: "onepiece-badge", icon: "⛵", name: "원피스 (ONE PIECE)", desc: "해적왕을 꿈꾸는 루피와 동료들의 이야기. 위대한 항로의 세계관, 악마의 열매, 칠무해, 사황, 해군 본부 등 방대한 원피스 세계의 디테일을 검증합니다. 등급: 위대한 항로 루키 → 신세계 최악의 세대 → 사황 → 해적왕" },
+  { badge: "게임", badgeClass: "lol-badge", icon: "⚔️", name: "리그 오브 레전드 (League of Legends)", desc: "소환사의 협곡 위에서 펼쳐지는 치열한 지식 배틀. 챔피언의 스킬과 배경 스토리, 룬테라 세계관, 게임 메커니즘까지 LoL 마스터의 자격을 검증합니다. 등급: 아이언 → 브론즈 → 실버 → 골드 → 플래티넘 → 다이아몬드 → 마스터 → 챌린저" },
+  { badge: "만화/애니", badgeClass: "fma-badge", icon: "🔱", name: "강철의 연금술사 (Fullmetal Alchemist)", desc: "등가교환의 법칙으로 이루어진 세계. 에드워드와 알폰스의 여정, 연금술의 원리, 호문클루스의 정체, 암스트롱 일가의 비밀 등 FMA의 깊은 설정을 파고드는 문제들입니다. 등급: 연금술 입문생 → 은시계의 연금술사 → 국가 연금술사 → 진리를 본 자" },
+  { badge: "게임", badgeClass: "pokemon-badge", icon: "🎮", name: "포켓몬스터 1-2세대 (Pokémon)", desc: "관동 지방과 성도 지방을 휩쓸던 포켓몬 마스터의 지식! 1-2세대 포켓몬 도감 정보, 체육관 관장, 애니메이션 한국어 더빙판 기준의 폭넓은 지식을 검증합니다. 등급: 새내기 트레이너 → 포켓몬 수집가 → 체육관 배지 수집가 → 로켓단 저지선 → 사천왕 도전자 → 챔피언 → 포켓몬 마스터" },
+  { badge: "게임", badgeClass: "diablo2-badge", icon: "🔥", name: "디아블로 2 (Diablo II + LoD + Warlock DLC)", desc: "성역의 수호자여! 디아블로 2 레저렉션과 최근 출시된 악마술사의 군림 DLC까지, 룬어(룬워드), 클래스 스킬트리, 우버 보스 등 하드코어한 지식을 모았습니다. 등급: 노멀 모험가 → 나이트메어 생존자 → 헬 정복자 → 우버 헌터 → 네팔렘 → 성역의 수호자" },
+  { badge: "웹툰/애니", badgeClass: "sololeveling-badge", icon: "🗡️", name: "나 혼자만 레벨업 (Solo Leveling)", desc: "전 세계를 휩쓴 K-웹툰/애니메이션의 전설! 성진우와 그림자 군단의 서사, 헌터 랭킹 및 세계관의 심층 지식을 검증합니다. 등급: E급 헌터 → C급 헌터 → A급 헌터 → S급 헌터 → 국가 권력급 → 그림자 군주" },
+  { badge: "웹툰/애니", badgeClass: "orv-badge", icon: "📖", name: "전지적 독자 시점 (Omniscient Reader&apos;s Viewpoint)", desc: "멸망한 세계에서 살아남는 세 가지 방법을 다 읽은 유일한 독자. 성좌와 시나리오, 멸살법 설정의 모든 것을 파고드는 K-웹소설/웹툰의 마스터피스. 등급: 하차한 독자 → 일반 화신 → 상위 랭커 화신 → 역사급 성좌 → 신화급 성좌 → 가장 오래된 꿈 (구원의 마왕)" },
+  { badge: "만화/애니", badgeClass: "bleach-badge", icon: "⚔️", name: "블리치 (Bleach)", desc: "만해(卍解)..! 사신, 아란칼, 퀸시가 격돌하는 블리치 세계관! 참백도 이름과 호정 13대의 디테일한 설정을 꿰뚫는 자를 가려냅니다. 등급: 사패장 소년 → 평대원 → 석관 → 부대장 → 호정 13대 대장 → 0번대 (왕속부대)" },
+  { badge: "영화", badgeClass: "lotr-badge", icon: "💍", name: "반지의 제왕 (LOTR)", desc: "호빗부터 요정, 절대반지와 사우론까지! 방대한 중간계 세계관과 종족, 반지원정대의 여정을 가장 완벽하게 꿰뚫는 자를 찾습니다. 등급: 호빗 마을 주민 → 로한/곤도르의 병사 → 정예 요정 전사 → 반지원정대 일원 → 백색의 이스타리 → 반지의 제왕" },
+  { badge: "영화", badgeClass: "", icon: "🦸", name: "마블 시네마틱 유니버스 (MCU)", desc: "아이언맨부터 어벤져스, 인피니티 사가, 멀티버스까지. 히어로와 빌런, 인피니티 스톤, 명대사와 설정 디테일을 모두 아우르는 영화/드라마 통합 덕력 검증 테마입니다. 등급: 쉴드 신입 요원 → 정식 어벤져스 → 인피니티 사가 전문가 → 어셈블 마스터" },
+  { badge: "만화/애니", badgeClass: "", icon: "🪽", name: "진격의 거인 (Attack on Titan)", desc: "시가시나, 지하실, 마레, 길, 땅울림까지 이어지는 복선 회수형 서사를 기반으로 한 고밀도 퀴즈 테마입니다. 등급: 훈련병단 신병 → 조사병단 정예 → 에르디아 비밀 해독자 → 벽 너머의 진실 도달자" },
+  { badge: "만화/애니", badgeClass: "", icon: "🏀", name: "슬램덩크 (Slam Dunk)", desc: "북산 5인방의 성장, 능남과 해남, 그리고 전국대회 산왕전까지. 농구 경기의 열기와 캐릭터 서사를 함께 기억하는 팬을 위한 테마입니다. 등급: 농구부 신입 → 주전급 플레이어 → 전국대회 핵심 전력 → 북산의 전설" },
+  { badge: "만화/애니", badgeClass: "", icon: "🃏", name: "헌터x헌터 (Hunter x Hunter)", desc: "헌터 시험, 요크신 시티, 그리드 아일랜드, 키메라 앤트, 넨 계통까지 단계적으로 파고드는 전략형 퀴즈 테마입니다. 등급: 헌터 시험 응시생 → 넨 수련자 → 헌터 협회 핵심 → 더블 스타급 헌터" },
+];
 
+export default function AboutPage() {
   return (
     <div className="shell">
       <main className="panel content-page glass">
@@ -63,25 +87,13 @@ export default function AboutPage() {
           </p>
           <div className="philosophy-grid">
             <div className="philosophy-item">
-              <Target size={24} color="var(--primary-color)" />
-              <div>
-                <h3>전문성</h3>
-                <p>표면적인 지식이 아닌 원작의 심층적인 설정과 디테일을 검증합니다. 진정한 마스터만이 알 수 있는 문제들로 구성합니다.</p>
-              </div>
+              <div><h3>전문성</h3><p>표면적인 지식이 아닌 원작의 심층적인 설정과 디테일을 검증합니다. 진정한 마스터만이 알 수 있는 문제들로 구성합니다.</p></div>
             </div>
             <div className="philosophy-item">
-              <Heart size={24} color="#ef4444" />
-              <div>
-                <h3>접근성</h3>
-                <p>팬덤의 문턱을 낮춥니다. 회원가입 없이, 로그인 없이, 누구나 언제든 즐길 수 있는 완전 무료 서비스를 지향합니다.</p>
-              </div>
+              <div><h3>접근성</h3><p>팬덤의 문턱을 낮춥니다. 회원가입 없이, 로그인 없이, 누구나 언제든 즐길 수 있는 완전 무료 서비스를 지향합니다.</p></div>
             </div>
             <div className="philosophy-item">
-              <Users size={24} color="#8b5cf6" />
-              <div>
-                <h3>커뮤니티</h3>
-                <p>개인의 덕력 측정을 넘어, 팬들이 서로 결과를 공유하고 경쟁하며 함께 성장하는 팬덤 커뮤니티를 만들어갑니다.</p>
-              </div>
+              <div><h3>커뮤니티</h3><p>개인의 덕력 측정을 넘어, 팬들이 서로 결과를 공유하고 경쟁하며 함께 성장하는 팬덤 커뮤니티를 만들어갑니다.</p></div>
             </div>
           </div>
         </section>
@@ -90,25 +102,18 @@ export default function AboutPage() {
           <h2>🔥 덕후테스트가 제공하는 가치</h2>
           <div className="feature-grid">
             <div className="feature-card">
-              <Compass size={32} color="var(--primary-color)" className="feature-icon" />
               <h3>세밀한 세계관 검증</h3>
               <p>스토리 라인 겉핥기를 넘어서, 캐릭터의 설정 한 줄, 에피소드의 디테일까지 다루는 전문적이고 심층적인 문항들로 구성되어 본인의 팬심을 객관적으로 측정합니다. 난이도별로 문항이 분류되어 입문자부터 마니아까지 모두 즐길 수 있습니다.</p>
             </div>
-
             <div className="feature-card">
-              <Sparkles size={32} color="#8b5cf6" className="feature-icon" />
               <h3>고품격 온라인 인증서</h3>
               <p>테스트 종료 후 제공되는 멋진 디자인의 공식 &lsquo;마스터 인증서&rsquo;를 다운로드 하세요. 칭호와 점수가 부여된 이미지를 소셜 미디어에 공유하고 내 덕력을 뽐낼 수 있습니다. 테마마다 다른 디자인과 칭호 시스템이 적용됩니다.</p>
             </div>
-
             <div className="feature-card">
-              <History size={32} color="#0ea5e9" className="feature-icon" />
               <h3>친절한 오답 노트 시스템</h3>
               <p>점수만 알려주고 끝나는 테스트는 그만. 어디에서 내 팬심이 빗나갔는지 문항별로 피드백을 확인하고, 오답노트를 통해 내가 놓친 원작 설정의 매력을 다시금 탐구할 수 있습니다. 틀린 문제의 정답을 통해 새로운 지식을 습득하는 기회가 됩니다.</p>
             </div>
-
             <div className="feature-card">
-              <Zap size={32} color="#f59e0b" className="feature-icon" />
               <h3>빠르고 직관적인 UI</h3>
               <p>최신 웹 기술로 구현된 매끄러운 인터페이스에서 불필요한 광고나 팝업 없이 테스트에만 집중할 수 있습니다. 모바일, 태블릿, PC 어떤 환경에서도 최적화된 경험을 제공합니다.</p>
             </div>
@@ -125,71 +130,13 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="theme-overview-list">
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge onepiece-badge"><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>⛵ 원피스 (ONE PIECE)</h3>
-              <p>해적왕을 꿈꾸는 루피와 동료들의 이야기. 위대한 항로의 세계관, 악마의 열매, 칠무해, 사황, 해군 본부 등 방대한 원피스 세계의 디테일을 검증합니다. 등급: 위대한 항로 루키 → 신세계 최악의 세대 → 사황 → 해적왕</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge lol-badge"><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
-              <h3>⚔️ 리그 오브 레전드 (League of Legends)</h3>
-              <p>소환사의 협곡 위에서 펼쳐지는 치열한 지식 배틀. 챔피언의 스킬과 배경 스토리, 룬테라 세계관, 게임 메커니즘까지 LoL 마스터의 자격을 검증합니다. 등급: 아이언 → 브론즈 → 실버 → 골드 → 플래티넘 → 다이아몬드 → 마스터 → 챌린저</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge fma-badge"><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>🔱 강철의 연금술사 (Fullmetal Alchemist)</h3>
-              <p>등가교환의 법칙으로 이루어진 세계. 에드워드와 알폰스의 여정, 연금술의 원리, 호문클루스의 정체, 암스트롱 일가의 비밀 등 FMA의 깊은 설정을 파고드는 문제들입니다. 등급: 연금술 입문생 → 은시계의 연금술사 → 국가 연금술사 → 진리를 본 자</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge pokemon-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white' }}><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
-              <h3>🎮 포켓몬스터 1-2세대 (Pokémon)</h3>
-              <p>관동 지방과 성도 지방을 휩쓸던 포켓몬 마스터의 지식! 1-2세대 포켓몬 도감 정보, 체육관 관장, 애니메이션 한국어 더빙판 기준의 폭넓은 지식을 검증합니다. 등급: 새내기 트레이너 → 포켓몬 수집가 → 체육관 배지 수집가 → 로켓단 저지선 → 사천왕 도전자 → 챔피언 → 포켓몬 마스터</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge diablo2-badge" style={{ background: 'linear-gradient(135deg, #dc2626, #7f1d1d)', color: 'white' }}><Gamepad2 size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />게임</div>
-              <h3>🔥 디아블로 2 (Diablo II + LoD + Warlock DLC)</h3>
-              <p>성역의 수호자여! 디아블로 2 레저렉션과 최근 출시된 악마술사의 군림 DLC까지, 룬어(룬워드), 클래스 스킬트리, 우버 보스 등 하드코어한 지식을 모았습니다. 등급: 노멀 모험가 → 나이트메어 생존자 → 헬 정복자 → 우버 헌터 → 네팔렘 → 성역의 수호자</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge sololeveling-badge" style={{ background: 'linear-gradient(135deg, #6d28d9, #312e81)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />웹툰/애니</div>
-              <h3>🗡️ 나 혼자만 레벨업 (Solo Leveling)</h3>
-              <p>전 세계를 휩쓴 K-웹툰/애니메이션의 전설! 성진우와 그림자 군단의 서사, 헌터 랭킹 및 세계관의 심층 지식을 검증합니다. 등급: E급 헌터 → C급 헌터 → A급 헌터 → S급 헌터 → 국가 권력급 → 그림자 군주</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge orv-badge" style={{ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />웹툰/애니</div>
-              <h3>📖 전지적 독자 시점 (Omniscient Reader&apos;s Viewpoint)</h3>
-              <p>멸망한 세계에서 살아남는 세 가지 방법을 다 읽은 유일한 독자. 성좌와 시나리오, 멸살법 설정의 모든 것을 파고드는 K-웹소설/웹툰의 마스터피스. 등급: 하차한 독자 → 일반 화신 → 상위 랭커 화신 → 역사급 성좌 → 신화급 성좌 → 가장 오래된 꿈 (구원의 마왕)</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge bleach-badge" style={{ background: 'linear-gradient(135deg, #f97316, #9a3412)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>⚔️ 블리치 (Bleach)</h3>
-              <p>만해(卍解)..! 사신, 아란칼, 퀸시가 격돌하는 블리치 세계관! 참백도 이름과 호정 13대의 디테일한 설정을 꿰뚫는 자를 가려냅니다. 등급: 사패장 소년 → 평대원 → 석관 → 부대장 → 호정 13대 대장 → 0번대 (왕속부대)</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge lotr-badge" style={{ background: 'linear-gradient(135deg, #eab308, #854d0e)', color: 'white' }}><Clapperboard size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />영화</div>
-              <h3>💍 반지의 제왕 (LOTR)</h3>
-              <p>호빗부터 요정, 절대반지와 사우론까지! 방대한 중간계 세계관과 종족, 반지원정대의 여정을 가장 완벽하게 꿰뚫는 자를 찾습니다. 등급: 호빗 마을 주민 → 로한/곤도르의 병사 → 정예 요정 전사 → 반지원정대 일원 → 백색의 이스타리 → 반지의 제왕</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}><Clapperboard size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />영화</div>
-              <h3>🦸 마블 시네마틱 유니버스 (MCU)</h3>
-              <p>아이언맨부터 어벤져스, 인피니티 사가, 멀티버스까지. 히어로와 빌런, 인피니티 스톤, 명대사와 설정 디테일을 모두 아우르는 영화/드라마 통합 덕력 검증 테마입니다. 등급: 쉴드 신입 요원 → 정식 어벤져스 → 인피니티 사가 전문가 → 어셈블 마스터</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #6b7280, #111827)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>🪽 진격의 거인 (Attack on Titan)</h3>
-              <p>시가시나, 지하실, 마레, 길, 땅울림까지 이어지는 복선 회수형 서사를 기반으로 한 고밀도 퀴즈 테마입니다. 등급: 훈련병단 신병 → 조사병단 정예 → 에르디아 비밀 해독자 → 벽 너머의 진실 도달자</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #ef4444, #991b1b)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>🏀 슬램덩크 (Slam Dunk)</h3>
-              <p>북산 5인방의 성장, 능남과 해남, 그리고 전국대회 산왕전까지. 농구 경기의 열기와 캐릭터 서사를 함께 기억하는 팬을 위한 테마입니다. 등급: 농구부 신입 → 주전급 플레이어 → 전국대회 핵심 전력 → 북산의 전설</p>
-            </div>
-            <div className="theme-overview-item">
-              <div className="theme-overview-badge" style={{ background: 'linear-gradient(135deg, #22c55e, #166534)', color: 'white' }}><BookOpen size={12} style={{marginRight: "4px", marginBottom: "-1px"}} />만화/애니</div>
-              <h3>🃏 헌터x헌터 (Hunter x Hunter)</h3>
-              <p>헌터 시험, 요크신 시티, 그리드 아일랜드, 키메라 앤트, 넨 계통까지 단계적으로 파고드는 전략형 퀴즈 테마입니다. 등급: 헌터 시험 응시생 → 넨 수련자 → 헌터 협회 핵심 → 더블 스타급 헌터</p>
-            </div>
+            {themes.map((t, i) => (
+              <div key={i} className="theme-overview-item">
+                <div className={`theme-overview-badge ${t.badgeClass}`}>{t.badge}</div>
+                <h3>{t.icon} {t.name}</h3>
+                <p>{t.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -198,30 +145,12 @@ export default function AboutPage() {
           <p className="description-text">복잡한 회원가입이나 로그인 절차에 지치셨나요? 덕후테스트는 사용자의 최소한의 입력(결과창에 인쇄될 닉네임)만으로 모든 문항을 <strong>직관적이고 매끄럽게</strong> 풀 수 있습니다. 브라우저 로컬 저장소를 활용하여 개인정보 유출 걱정 없이 안전하게 즐길 수 있습니다.</p>
 
           <div className="service-details-grid">
-            <div className="service-detail-item">
-              <Globe size={20} color="var(--primary-color)" />
-              <span>웹 브라우저 어디서나 접속 가능</span>
-            </div>
-            <div className="service-detail-item">
-              <Shield size={20} color="#10b981" />
-              <span>개인정보 서버 전송 없음 (로컬 저장)</span>
-            </div>
-            <div className="service-detail-item">
-              <Zap size={20} color="#f59e0b" />
-              <span>즉시 시작, 평균 소요 시간 10~15분</span>
-            </div>
-            <div className="service-detail-item">
-              <Award size={20} color="#8b5cf6" />
-              <span>테스트 완료 시 공식 인증서 즉시 발급</span>
-            </div>
-            <div className="service-detail-item">
-              <BookOpen size={20} color="#0ea5e9" />
-              <span>오답 노트로 학습 효과까지</span>
-            </div>
-            <div className="service-detail-item">
-              <MessageSquare size={20} color="#ef4444" />
-              <span>카카오톡·인스타·X 원클릭 공유</span>
-            </div>
+            <div className="service-detail-item"><span>🌐 웹 브라우저 어디서나 접속 가능</span></div>
+            <div className="service-detail-item"><span>🛡️ 개인정보 서버 전송 없음 (로컬 저장)</span></div>
+            <div className="service-detail-item"><span>⚡ 즉시 시작, 평균 소요 시간 10~15분</span></div>
+            <div className="service-detail-item"><span>🏆 테스트 완료 시 공식 인증서 즉시 발급</span></div>
+            <div className="service-detail-item"><span>📖 오답 노트로 학습 효과까지</span></div>
+            <div className="service-detail-item"><span>💬 카카오톡·인스타·X 원클릭 공유</span></div>
           </div>
 
           <div className="highlight-box">
@@ -230,42 +159,34 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* FAQ 섹션 */}
+        {/* FAQ 섹션 — 클라이언트 아코디언 */}
         <section className="content-section card-base-styles">
           <h2>❓ 자주 묻는 질문 (FAQ)</h2>
           <p style={{ marginBottom: '24px', color: 'var(--secondary-text-color)', lineHeight: 1.7 }}>
             덕후테스트 이용 전 궁금한 점들을 모아봤습니다. 아래 내용을 확인해도 해결이 되지 않으시면 문의하기를 이용해주세요.
           </p>
+          {/* FAQ 답변 텍스트를 SSR로도 노출 (noscript/details) */}
           <div className="faq-list">
             {faqItems.map((item, idx) => (
-              <div key={idx} className={`faq-item glass ${openFaq === idx ? 'faq-open' : ''}`}>
-                <button
-                  className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  aria-expanded={openFaq === idx}
-                >
-                  <span>{item.q}</span>
-                  {openFaq === idx ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                </button>
-                {openFaq === idx && (
-                  <div className="faq-answer">
-                    <p>{item.a}</p>
-                  </div>
-                )}
-              </div>
+              <details key={idx} className="faq-item glass">
+                <summary className="faq-question"><span>{item.q}</span></summary>
+                <div className="faq-answer"><p>{item.a}</p></div>
+              </details>
             ))}
           </div>
+          {/* 인터랙티브 FAQ (JS 실행 시 위 details를 대체하는 버전) */}
+          <AboutFaq items={faqItems} />
         </section>
 
         <div className="action-row action-row-center">
           <Link href="/" className="startButton action-btn">
-            <CheckCircle2 size={20} className="icon-left" /> 지금 바로 덕력 검증하기
+            ✅ 지금 바로 덕력 검증하기
           </Link>
           <Link href="/contact" className="ghostButton action-btn">
-            <MessageSquare size={20} className="icon-left" /> 문의하기
+            💬 문의하기
           </Link>
         </div>
       </main>
-    </div >
+    </div>
   );
 }
